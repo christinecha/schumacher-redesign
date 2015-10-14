@@ -1,0 +1,132 @@
+@font-face {
+    font-family: 'Gotham';
+    src: url("fonts/Gotham-Light.ttf");
+}
+
+@font-face {
+    font-family: 'Gotham';
+    src: url("fonts/Gotham-Bold.ttf");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Chronicle';
+    src: url("fonts/ChronTexG1Rom");
+}
+
+@font-face {
+    font-family: 'Chronicle';
+    src: url("fonts/ChronTexG1Ita");
+    font-style: italic;
+}
+
+.row { width: 80%; max-width: initial; }
+
+.promo {
+  text-transform: uppercase;
+  font-family: 'Gotham';
+  background-color: #ffea00;
+  text-align: center;
+  padding: 5px 0;
+  margin-bottom: 10px;
+}
+
+.promo p { font-size: 11px; margin-bottom: 0; color: #404040; }
+
+.header { margin-bottom: 20px; }
+
+.top-bar {
+  background-color: white;
+  height: auto;
+}
+
+.logo {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.top-bar-section ul li  {
+  background-color: white;
+  color: #404040;
+  font-family: 'Gotham';
+  font-size: .675em;
+  cursor: pointer;
+  box-sizing: border-box;
+  border-bottom: 3px solid #fff;
+}
+
+.main-nav li.selected {
+  font-weight: bold;
+  margin-top: -1px;
+  border-bottom: 3px solid #404040;
+}
+
+.left li { margin-right: 30px; }
+
+.search {
+  background: #e6e6e6 !important;
+  padding: 3px 10px 1px 10px;
+  width: 250px;
+  margin-top: -5px;
+}
+
+.dropdown {
+  z-index: 100;
+  position: absolute;
+  background-color: white;
+  list-style: none;
+  margin-left: 0;
+  padding: 15px 25px;
+  border: 1px solid #eee;
+  margin-top: -1px;
+}
+
+.dropdownColumn {
+  vertical-align: top;
+  display: inline-block;
+  width: 160px;
+}
+
+.dropdownColumn-special {
+  border-left: 1px solid #eee;
+  padding-left: 20px;
+  font-weight: bold;
+}
+.dropdownColumn-special li:hover { font-weight: bold; color: #888; }
+
+.dropdown li {
+  font-family: 'Gotham';
+  font-size: 11px;
+  margin: 5px 0;
+  cursor: pointer;
+}
+
+.dropdown p { font-family: 'Gotham'; font-size: 13px; }
+.dropdownColumn li:hover { font-weight: bold; }
+
+.dropdown .category {
+  font-family: 'Chronicle';
+  font-style: italic;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.dropdownButton {
+  font-family: 'Gotham';
+  font-weight: bold;
+  font-size: 11px;
+  background-color: #404040;
+  padding: 10px 15px;
+  margin: 0;
+  -webkit-transition: background 0s;
+}
+
+.dropdownButton:hover {
+  background-color: #ffea00;
+  color: #404040;
+  -webkit-transition: background 0s;
+}
+
+.placeholder {
+  margin-top: 10px;
+}

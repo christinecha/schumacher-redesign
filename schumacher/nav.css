@@ -20,7 +20,7 @@
     font-style: italic;
 }
 
-.row { width: 80%; max-width: initial; }
+.row { width: 90%; max-width: initial; }
 
 .promo {
   text-transform: uppercase;
@@ -33,8 +33,6 @@
 
 .promo p { font-size: 11px; margin-bottom: 0; color: #404040; }
 
-.header { margin-bottom: 20px; }
-
 .top-bar {
   background-color: white;
   height: auto;
@@ -42,6 +40,7 @@
 
 .logo {
   text-align: center;
+  margin-top: 20px;
   margin-bottom: 25px;
 }
 
@@ -55,7 +54,14 @@
   border-bottom: 3px solid #fff;
 }
 
-.main-nav li.selected {
+.top-nav li, .top-nav p { display: inline-block; }
+#shopping-bag { width: 50px; text-align: right; }
+.shopping-bag { width: 300px; }
+.shopping-bag--itemPhoto { width: 80px; display: inline-block; }
+.shopping-bag--itemInfo { display: inline-block; width: 150px; float: right;}
+.shopping-bag--itemTitle { font-family: 'Gotham', sans-serif; font-size: 14px; font-weight: bold; margin-top: 0; }
+.shopping-bag--itemCost { float: right; }
+.main-nav li.selected, .top-nav li.selected {
   font-weight: bold;
   margin-top: -1px;
   border-bottom: 3px solid #404040;
@@ -79,6 +85,8 @@
   padding: 15px 25px;
   border: 1px solid #eee;
   margin-top: -1px;
+  height: 350px;
+  display: none;
 }
 
 .dropdownColumn {
@@ -108,7 +116,7 @@
   font-family: 'Chronicle';
   font-style: italic;
   font-size: 18px;
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
 
 .dropdownButton {
@@ -118,6 +126,7 @@
   background-color: #404040;
   padding: 10px 15px;
   margin: 0;
+  width: 100%;
   -webkit-transition: background 0s;
 }
 

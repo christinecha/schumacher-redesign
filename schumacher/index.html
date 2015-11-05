@@ -17,15 +17,46 @@
   <div class="row header">
     <nav class="top-bar" data-topbar role="navigation" data-options="sticky_on: large">
       <section class="top-bar-section">
-      <ul class="left">
-        <li>GET TO KNOW US &nbsp;|&nbsp; BLOG &nbsp;|&nbsp; INSPIRATION<li>
+      <ul class="left top-nav">
+        <li>GET TO KNOW US &nbsp;|&nbsp; BLOG &nbsp;|&nbsp; INSPIRATION</li>
       </ul>
-      <ul class="right">
-        <li>MY SCHUMACHER &nbsp;|&nbsp; <img width="18px" src="assets/shopping-cart.png"> ( 10 )<li>
+      <ul class="right top-nav">
+        <li id="my-schumacher">MY SCHUMACHER</li>
+        <li>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+        <li id="shopping-bag"><img width="15px" src="assets/shopping-cart.png"> ( 10 )</li>
       </ul>
       </section>
     </nav>
   </div>
+
+  <div class="row">
+    <ul class="dropdown my-schumacher" style="width:180px; height: 150px; ">
+      <div class="dropdownColumn" style="width: 180px;">
+        <li>MY ORDERS</li>
+        <li>MY PROFILE</li>
+        <li>MY FAVORITES</li>
+        <button class="dropdownButton" style="width:125px; margin-top:5px;">SIGN OUT</button>
+      </div>
+    </ul>
+  </div>
+
+  <div class="row">
+    <ul class="dropdown shopping-bag" style="height: inherit; ">
+      <li>
+        <img class="shopping-bag--itemPhoto" src="https://www.fschumacher.com/s3/schumacher-webassets/5007534.jpg?width=600&height=600&mode=crop&scale=both&quality=100">
+        <div class="shopping-bag--itemInfo">
+          <h5 class="shopping-bag--itemTitle">PRODUCT NAME</h5>
+          <span class="shopping-bag--itemCode">66600 DELFT</span><br>
+          <span class="shopping-bag--itemMemo">MEMO</span><br>
+          <span class="shopping-bag--itemQty">QTY: 1.0</span>
+          <span class="shopping-bag--itemCost">$0.00</span>
+        </div>
+      </li>
+      <button class="dropdownButton" style="width:250px; margin-top:5px;">PROCEED TO CHECKOUT</button>
+    </ul>
+  </div>
+
+
 
   <div class="row logo">
     <img src="assets/logo.png" />
@@ -92,7 +123,7 @@
         <li>COLLECTIONS</li>
         <br>
         <br>
-        <button class="dropdownButton">SEE ALL FABRICS</button>
+        <button class="dropdownButton">SHOP FABRICS</button>
       </div>
     </ul>
     </div>
@@ -109,7 +140,7 @@
           <li>PERFECT BASICS: UNION</li>
           <li>DRAWN FROM NATURE</li>
           <br>
-          <button class="dropdownButton">SEE ALL COLLECTIONS</button>
+          <button class="dropdownButton">SHOP COLLECTIONS</button>
         </div>
       </ul>
     </div>
@@ -155,10 +186,8 @@
       <li>NEW ARRIVALS</li>
       <li>LOOKBOOKS</li>
       <li>COLLECTIONS</li>
-      <li>PAPERBACKED FABRIC</li>
-      <br>
-      <br>
-      <button class="dropdownButton">SEE ALL WALLPAPER</button>
+      <br><br><br><br><br><br>
+      <button class="dropdownButton">SHOP WALLPAPER</button>
     </div>
   </ul>
 </div>
@@ -199,9 +228,8 @@
     <div class="dropdownColumn dropdownColumn-special">
       <li>NEW ARRIVALS</li>
       <li>COLLECTIONS</li>
-      <br>
-      <br>
-      <button class="dropdownButton">SEE ALL TRIM</button>
+      <br><br><br><br><br><br>
+      <button class="dropdownButton">SHOP TRIM</button>
     </div>
   </ul>
 </div>
@@ -219,20 +247,20 @@
         <li>TABLES</li>
         <li>LIGHTING</li>
         <br>
-        <button class="dropdownButton">SEE ALL FURNITURE</button>
+        <button class="dropdownButton">SHOP FURNITURE</button>
       </div>
     </ul>
   </div>
 
   <div class="row">
     <ul class="dropdown rugs-carpets">
-      <div class="dropdownColumn" style="width: 200px; padding-right: 20px;">
+      <div class="dropdownColumn text-center" style="width: 300px; padding-right: 20px;">
         <h4 class="category">Our Sister Brand</h4>
-        <p>Schumacher Patterson Flynn Martin</p>
+        <img src="assets/logo.png" width="200px"/>
+        <img src="http://www.pattersonflynnmartin.com/wp-content/uploads/2015/10/PFM-LOGO.jpg" />
+        <br><br>
+        <p>A leading source of luxury floor coverings, Patterson Flynn Martin's offerings include exclusive Tibetan, Wilton, hand-tufted, and hand-knotted rugs, and the ability to fulfill the custom wishes of even the most discerning clients.</p>
         <button class="dropdownButton">VISIT PATTERSON FLYNN MARTIN</button>
-      </div>
-      <div class="dropdownColumn dropdownColumn-special" style="width: 200px;">
-        <img src="assets/rugs-carpets.jpg">
       </div>
     </ul>
   </div>
@@ -244,7 +272,7 @@
         <p>Schumacher is the premier source of luxury fabrics, wallcoverings, and trim for the contract market, custom residential projects, and historic reproductions.</p>
         <p>To learn more please call us at 1-800-572-0032.</p>
       </div>
-      <div class="dropdownColumn dropdownColumn-special" style="width: 200px;">
+      <div class="dropdownColumn dropdownColumn-special" style="width: 270px;">
         <img src="assets/custom-contract.jpg">
       </div>
     </ul>
@@ -252,10 +280,9 @@
 
   <div class="row">
     <ul class="dropdown services">
-      <div class="dropdownColumn" style="width: 200px; padding-right: 20px;">
+      <div class="dropdownColumn" style="width: 350px; padding-right: 20px;">
         <p>Schumacher is proud to offer a range of services including paperbacking.</p>
-        <p>To learn more please call us at 1-800-572-0032 or click the button below.</p>
-        <button class="dropdownButton">ALL SERVICES</button>
+        <p>To learn more please call us at 1-800-572-0032.</p>
       </div>
     </ul>
   </div>

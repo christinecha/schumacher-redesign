@@ -1,0 +1,14 @@
+input, textarea {
+  border: 2px solid #f2f2f2;
+  min-width: 300px;
+  padding: 5px 10px; 
+}
+
+form {
+  margin: 0 10%;
+}
+
+.field {
+  padding: 10px;
+  margin: 10px;
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>OrBareket</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto:300,500,700' rel='stylesheet' type='text/css'>
+  <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+  <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css' rel='stylesheet' type='text/css'>
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css' rel='stylesheet' type='text/css'>
+
+  <link href='css/global.css' rel='stylesheet' type='text/css'>
+  <link href='css/admin.css' rel='stylesheet' type='text/css'>
+
+  <script src="https://cdn.firebase.com/js/client/2.2.9/firebase.js"></script>
+
+</head>
+
+
+<body>
+  <form>
+    <div class="field">
+      <h1> ADD NEW SHOW </h1>
+      <br>
+      <label>date &amp; time</label>
+      <br>
+      <input type="datetime-local" id="showDateTime">
+    </div>
+    <div class="field">
+      <input type="text" placeholder="TITLE (e.g. 'Or Bareket Trio')" id="showTitle">
+    </div>
+    <div class="field">
+      <input type="text" placeholder="VENUE (e.g. 'Smalls Jazz Club')" id="showVenue">
+    </div>
+    <div class="field">
+      <label>artists &amp; other details</label>
+      <br>
+      <textarea id="showArtists"></textarea>
+    </div>
+    <div class="field">
+      <input type="text" placeholder="LINK (e.g. 'www.facebook.com/event/12345')" id="showLink">
+    </div>
+    <div class="field">
+      <input type="submit" value="SUBMIT" id="showSubmit">
+    </div>
+  </form>
+
+  <script src='https://code.jquery.com/jquery-2.1.4.min.js' type='text/javascript'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js' type='text/javascript'></script>
+  <script src='js/animation.js' type='text/javascript'></script>
+  <script src='js/shows.js' type='text/javascript'></script>
+
+</body>
+</html>

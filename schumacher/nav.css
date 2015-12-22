@@ -11,12 +11,12 @@
 
 @font-face {
     font-family: 'Chronicle';
-    src: url("fonts/ChronTexG1Rom");
+    src: url("fonts/ChronicleTextG1/ChronicleTextG1-Roman1.ttf");
 }
 
 @font-face {
     font-family: 'Chronicle';
-    src: url("fonts/ChronTexG1Ita");
+    src: url("fonts/ChronicleTextG1/ChronicleTextG1-Italic1.ttf");
     font-style: italic;
 }
 
@@ -36,6 +36,7 @@
 .top-bar {
   background-color: white;
   height: auto;
+  margin-bottom: 10px;
 }
 
 .logo {

@@ -1,0 +1,44 @@
+body {
+  color: #555759;
+}
+
+.content {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.home .columns {
+  padding: 0.375rem;
+}
+
+.section-title {
+  text-align: center;
+  padding: 30px 0 10px 0;
+  overflow: hidden;
+}
+
+.section-title span {
+  display: inline-block;
+  position: relative;
+  font-family: 'Chronicle', serif;
+  font-size: 40px;
+}
+
+.section-title span:before,
+.section-title span:after {
+  content: "";
+  position: absolute;
+  height: 5px;
+  border-bottom: 1px solid #555759;
+  top: 25px;
+  width: 600px;
+}
+
+.section-title span:before {
+  right: 100%;
+  margin-right: 15px;
+}
+.section-title span:after {
+  left: 100%;
+  margin-left: 15px;
+}

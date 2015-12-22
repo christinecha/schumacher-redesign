@@ -5,6 +5,7 @@
   <link href="foundation-5.5.2/css/normalize.css" rel="stylesheet" type="text/css">
   <link href="foundation-5.5.2/css/foundation.min.css" rel="stylesheet" type="text/css">
   <link href="nav.css" rel="stylesheet" type="text/css">
+  <link href="home.css" rel="stylesheet" type="text/css">
   <script src="https://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
 </head>
 
@@ -14,89 +15,202 @@
     <p><b>Laidback Glamour:</b> Discover Celerie Kemble's latest collection</p>
   </div>
 
-  <div class="row header">
-    <nav class="top-bar" data-topbar role="navigation" data-options="sticky_on: large">
-      <section class="top-bar-section">
-      <ul class="left top-nav">
-        <li>GET TO KNOW US &nbsp;|&nbsp; BLOG &nbsp;|&nbsp; INSPIRATION</li>
-      </ul>
-      <ul class="right top-nav">
-        <li id="my-schumacher">MY SCHUMACHER</li>
-        <li>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</li>
-        <li id="shopping-bag"><img width="15px" src="assets/shopping-cart.png"> ( 10 )</li>
-      </ul>
-      </section>
-    </nav>
-  </div>
+  <div class="content">
 
-  <div class="row">
-    <ul class="dropdown my-schumacher" style="width:180px; height: 150px; ">
-      <div class="dropdownColumn" style="width: 180px;">
-        <li>MY ORDERS</li>
-        <li>MY PROFILE</li>
-        <li>MY FAVORITES</li>
-        <button class="dropdownButton" style="width:125px; margin-top:5px;">SIGN OUT</button>
-      </div>
-    </ul>
-  </div>
+  <div class="navigation">
+    <div class="row header">
+      <nav class="top-bar" data-topbar role="navigation" data-options="sticky_on: large">
+        <section class="top-bar-section">
+        <ul class="left top-nav">
+          <li>GET TO KNOW US &nbsp;|&nbsp; BLOG &nbsp;|&nbsp; INSPIRATION</li>
+        </ul>
+        <ul class="right top-nav">
+          <li id="my-schumacher">MY SCHUMACHER</li>
+          <li>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+          <li id="shopping-bag"><img width="15px" src="assets/shopping-cart.png"> ( 10 )</li>
+        </ul>
+        </section>
+      </nav>
+    </div>
 
-  <div class="row">
-    <ul class="dropdown shopping-bag" style="height: inherit; ">
-      <li>
-        <img class="shopping-bag--itemPhoto" src="https://www.fschumacher.com/s3/schumacher-webassets/5007534.jpg?width=600&height=600&mode=crop&scale=both&quality=100">
-        <div class="shopping-bag--itemInfo">
-          <h5 class="shopping-bag--itemTitle">PRODUCT NAME</h5>
-          <span class="shopping-bag--itemCode">66600 DELFT</span><br>
-          <span class="shopping-bag--itemMemo">MEMO</span><br>
-          <span class="shopping-bag--itemQty">QTY: 1.0</span>
-          <span class="shopping-bag--itemCost">$0.00</span>
+    <div class="row">
+      <ul class="dropdown my-schumacher" style="width:180px; height: 150px; ">
+        <div class="dropdownColumn" style="width: 180px;">
+          <li>MY ORDERS</li>
+          <li>MY PROFILE</li>
+          <li>MY FAVORITES</li>
+          <button class="dropdownButton" style="width:125px; margin-top:5px;">SIGN OUT</button>
         </div>
-      </li>
-      <button class="dropdownButton" style="width:250px; margin-top:5px;">PROCEED TO CHECKOUT</button>
-    </ul>
-  </div>
+      </ul>
+    </div>
+
+    <div class="row">
+      <ul class="dropdown shopping-bag" style="height: inherit; ">
+        <li>
+          <img class="shopping-bag--itemPhoto" src="https://www.fschumacher.com/s3/schumacher-webassets/5007534.jpg?width=600&height=600&mode=crop&scale=both&quality=100">
+          <div class="shopping-bag--itemInfo">
+            <h5 class="shopping-bag--itemTitle">PRODUCT NAME</h5>
+            <span class="shopping-bag--itemCode">66600 DELFT</span><br>
+            <span class="shopping-bag--itemMemo">MEMO</span><br>
+            <span class="shopping-bag--itemQty">QTY: 1.0</span>
+            <span class="shopping-bag--itemCost">$0.00</span>
+          </div>
+        </li>
+        <button class="dropdownButton" style="width:250px; margin-top:5px;">PROCEED TO CHECKOUT</button>
+      </ul>
+    </div>
 
 
 
-  <div class="row logo">
-    <img src="assets/logo.png" />
-  </div>
+    <div class="row logo">
+      <img src="assets/logo.png" />
+    </div>
 
+
+    <div class="row">
+      <nav class="top-bar" data-topbar role="navigation" data-options="sticky_on: large">
+        <section class="top-bar-section">
+        <ul class="left main-nav">
+          <li id="new-arrivals">NEW ARRIVALS</li>
+          <li id="fabric">FABRIC</li>
+          <li id="wallpaper">WALLPAPER</li>
+          <li id="trim">TRIM</li>
+          <li id="furniture">FURNITURE</li>
+          <li id="rugs-carpets">RUGS &amp; CARPETS</li>
+          <li id="custom-contract">CUSTOM &amp; CONTRACT</li>
+          <li id="services">SERVICES</li>
+        </ul>
+        <ul class="right">
+          <li class="search">Enter SKU, color, keyword <img style="width:15px; float:right;" src="assets/search-icon.png"><li>
+        </ul>
+        </section>
+      </nav>
+    </div>
+
+    <div class="row">
+      <ul class="dropdown fabric">
+        <div class="dropdownColumn">
+          <h4 class="category">Type</h4>
+          <li>PRINTS</li>
+          <li>WOVENS</li>
+          <li>SHEERS</li>
+          <li>EMBROIDERIES</li>
+          <li>BASICS</li>
+          <li>SOLIDS</li>
+          <li>TEXTURES</li>
+          <li>VELVETS</li>
+        </div>
+        <div class="dropdownColumn">
+          <h4 class="category">Style</h4>
+          <li>TRANSITIONAL</li>
+          <li>CONTEMPORARY</li>
+          <li>CLASSIC</li>
+          <li>ETHNIC</li>
+          <li>LUXE</li>
+        </div>
+        <div class="dropdownColumn">
+          <h4 class="category">Color</h4>
+          <li>BLUES</li>
+          <li>NEUTRALS</li>
+          <li>GREENS</li>
+          <li>GREYS</li>
+          <li>WHITES</li>
+          <li>METALLICS</li>
+          <li>MULTICOLOR</li>
+          <li>MORE ...</li>
+        </div>
+        <div class="dropdownColumn dropdownColumn-special">
+          <li>NEW ARRIVALS</li>
+          <li>INDOOR + OUTDOOR</li>
+          <li>PERFECT BASICS</li>
+          <li>LOOKBOOKS</li>
+          <li>COLLECTIONS</li>
+          <br>
+          <br>
+          <button class="dropdownButton">SHOP FABRICS</button>
+        </div>
+      </ul>
+      </div>
+
+      <div class="row">
+        <ul class="dropdown new-arrivals">
+          <div class="dropdownColumn" style="width: 180px;">
+            <h4 class="category">Latest Collections</h4>
+            <li>IKATS</li>
+            <li>MILES REED</li>
+            <li>UNDERSTATED LUXURY</li>
+            <li>PERFECT BASICS: CHENILLE</li>
+            <li>PERFECT BASICS: LINEN</li>
+            <li>PERFECT BASICS: UNION</li>
+            <li>DRAWN FROM NATURE</li>
+            <br>
+            <button class="dropdownButton">SHOP COLLECTIONS</button>
+          </div>
+        </ul>
+      </div>
+    </div>
 
   <div class="row">
-    <nav class="top-bar" data-topbar role="navigation" data-options="sticky_on: large">
-      <section class="top-bar-section">
-      <ul class="left main-nav">
-        <li id="new-arrivals">NEW ARRIVALS</li>
-        <li id="fabric">FABRIC</li>
-        <li id="wallpaper">WALLPAPER</li>
-        <li id="trim">TRIM</li>
-        <li id="furniture">FURNITURE</li>
-        <li id="rugs-carpets">RUGS &amp; CARPETS</li>
-        <li id="custom-contract">CUSTOM &amp; CONTRACT</li>
-        <li id="services">SERVICES</li>
-      </ul>
-      <ul class="right">
-        <li class="search">Enter SKU, color, keyword <img style="width:15px; float:right;" src="assets/search-icon.png"><li>
-      </ul>
-      </section>
-    </nav>
-  </div>
-
-  <div class="row">
-    <ul class="dropdown fabric">
-      <div class="dropdownColumn">
+    <ul class="dropdown wallpaper">
+      <div class="dropdownColumn" style="width:200px;">
         <h4 class="category">Type</h4>
         <li>PRINTS</li>
-        <li>WOVENS</li>
-        <li>SHEERS</li>
-        <li>EMBROIDERIES</li>
-        <li>BASICS</li>
-        <li>SOLIDS</li>
+        <li>BLOCK PRINTS</li>
+        <li>PLAIN GRASSCLOTHS</li>
+        <li>EMBELLISHED GRASSCLOTHS</li>
+        <li>VINYLS</li>
+        <li>FAUX FINISHES</li>
         <li>TEXTURES</li>
-        <li>VELVETS</li>
+        <li>MURALS & PANELS</li>
+        <li>PAPERBACKED FABRICS</li>
+        <li>SPECIALTY</li>
       </div>
       <div class="dropdownColumn">
+        <h4 class="category">Style</h4>
+        <li>TRANSITIONAL</li>
+        <li>CONTEMPORARY</li>
+        <li>CLASSIC</li>
+        <li>ETHNIC</li>
+        <li>LUXE</li>
+        <li>CHILDRENS</li>
+        <li>ASIAN</li>
+      </div>
+      <div class="dropdownColumn">
+        <h4 class="category">Color</h4>
+        <li>BLUES</li>
+        <li>NEUTRALS</li>
+        <li>GREENS</li>
+        <li>GREYS</li>
+        <li>WHITES</li>
+        <li>METALLICS</li>
+        <li>MULTICOLOR</li>
+        <li>MORE ...</li>
+      </div>
+      <div class="dropdownColumn dropdownColumn-special">
+        <li>NEW ARRIVALS</li>
+        <li>LOOKBOOKS</li>
+        <li>COLLECTIONS</li>
+        <br><br><br><br><br><br>
+        <button class="dropdownButton">SHOP WALLPAPER</button>
+      </div>
+    </ul>
+  </div>
+
+  <div class="row">
+    <ul class="dropdown trim">
+      <div class="dropdownColumn" style="width: 120px;">
+        <h4 class="category">Type</h4>
+        <li>FRINGE</li>
+        <li>TAPES</li>
+        <li>CORDS</li>
+        <li>BRAIDS</li>
+        <li>GUMPS</li>
+        <li>APPLIQUE</li>
+        <li>RUCHES</li>
+        <li>BEADED</li>
+        <li>MORE...</li>
+      </div>
+      <div class="dropdownColumn" style="width: 150px;">
         <h4 class="category">Style</h4>
         <li>TRANSITIONAL</li>
         <li>CONTEMPORARY</li>
@@ -117,178 +231,129 @@
       </div>
       <div class="dropdownColumn dropdownColumn-special">
         <li>NEW ARRIVALS</li>
-        <li>INDOOR + OUTDOOR</li>
-        <li>PERFECT BASICS</li>
-        <li>LOOKBOOKS</li>
         <li>COLLECTIONS</li>
-        <br>
-        <br>
-        <button class="dropdownButton">SHOP FABRICS</button>
+        <br><br><br><br><br><br>
+        <button class="dropdownButton">SHOP TRIM</button>
       </div>
     </ul>
-    </div>
+  </div>
 
     <div class="row">
-      <ul class="dropdown new-arrivals">
-        <div class="dropdownColumn" style="width: 180px;">
-          <h4 class="category">Latest Collections</h4>
-          <li>IKATS</li>
-          <li>MILES REED</li>
-          <li>UNDERSTATED LUXURY</li>
-          <li>PERFECT BASICS: CHENILLE</li>
-          <li>PERFECT BASICS: LINEN</li>
-          <li>PERFECT BASICS: UNION</li>
-          <li>DRAWN FROM NATURE</li>
+      <ul class="dropdown furniture">
+        <div class="dropdownColumn">
+          <h4 class="category">Type</h4>
+          <li>ANTIQUES</li>
+          <li>ACCENT CHAIRS</li>
+          <li>UPHOLSTERED CHAIRS</li>
+          <li>DINING & SIDE CHAIRS</li>
+          <li>SOFAS & LOVESEATS</li>
+          <li>OTTOMANS & BENCHES</li>
+          <li>TABLES</li>
+          <li>LIGHTING</li>
           <br>
-          <button class="dropdownButton">SHOP COLLECTIONS</button>
+          <button class="dropdownButton">SHOP FURNITURE</button>
         </div>
       </ul>
     </div>
-  </div>
 
-<div class="row">
-  <ul class="dropdown wallpaper">
-    <div class="dropdownColumn" style="width:200px;">
-      <h4 class="category">Type</h4>
-      <li>PRINTS</li>
-      <li>BLOCK PRINTS</li>
-      <li>PLAIN GRASSCLOTHS</li>
-      <li>EMBELLISHED GRASSCLOTHS</li>
-      <li>VINYLS</li>
-      <li>FAUX FINISHES</li>
-      <li>TEXTURES</li>
-      <li>MURALS & PANELS</li>
-      <li>PAPERBACKED FABRICS</li>
-      <li>SPECIALTY</li>
+    <div class="row">
+      <ul class="dropdown rugs-carpets">
+        <div class="dropdownColumn text-center" style="width: 300px; padding-right: 20px;">
+          <h4 class="category">Our Sister Brand</h4>
+          <img src="assets/logo.png" width="200px"/>
+          <img src="http://www.pattersonflynnmartin.com/wp-content/uploads/2015/10/PFM-LOGO.jpg" />
+          <br><br>
+          <p>A leading source of luxury floor coverings, Patterson Flynn Martin's offerings include exclusive Tibetan, Wilton, hand-tufted, and hand-knotted rugs, and the ability to fulfill the custom wishes of even the most discerning clients.</p>
+          <button class="dropdownButton">VISIT PATTERSON FLYNN MARTIN</button>
+        </div>
+      </ul>
     </div>
-    <div class="dropdownColumn">
-      <h4 class="category">Style</h4>
-      <li>TRANSITIONAL</li>
-      <li>CONTEMPORARY</li>
-      <li>CLASSIC</li>
-      <li>ETHNIC</li>
-      <li>LUXE</li>
-      <li>CHILDRENS</li>
-      <li>ASIAN</li>
-    </div>
-    <div class="dropdownColumn">
-      <h4 class="category">Color</h4>
-      <li>BLUES</li>
-      <li>NEUTRALS</li>
-      <li>GREENS</li>
-      <li>GREYS</li>
-      <li>WHITES</li>
-      <li>METALLICS</li>
-      <li>MULTICOLOR</li>
-      <li>MORE ...</li>
-    </div>
-    <div class="dropdownColumn dropdownColumn-special">
-      <li>NEW ARRIVALS</li>
-      <li>LOOKBOOKS</li>
-      <li>COLLECTIONS</li>
-      <br><br><br><br><br><br>
-      <button class="dropdownButton">SHOP WALLPAPER</button>
-    </div>
-  </ul>
-</div>
 
-<div class="row">
-  <ul class="dropdown trim">
-    <div class="dropdownColumn" style="width: 120px;">
-      <h4 class="category">Type</h4>
-      <li>FRINGE</li>
-      <li>TAPES</li>
-      <li>CORDS</li>
-      <li>BRAIDS</li>
-      <li>GUMPS</li>
-      <li>APPLIQUE</li>
-      <li>RUCHES</li>
-      <li>BEADED</li>
-      <li>MORE...</li>
+    <div class="row">
+      <ul class="dropdown custom-contract" style="padding-bottom: 0;">
+        <div class="dropdownColumn" style="width: 200px; padding-right: 20px;">
+          <h4 class="category">Make it your own.</h4>
+          <p>Schumacher is the premier source of luxury fabrics, wallcoverings, and trim for the contract market, custom residential projects, and historic reproductions.</p>
+          <p>To learn more please call us at 1-800-572-0032.</p>
+        </div>
+        <div class="dropdownColumn dropdownColumn-special" style="width: 270px;">
+          <img src="assets/custom-contract.jpg">
+        </div>
+      </ul>
     </div>
-    <div class="dropdownColumn" style="width: 150px;">
-      <h4 class="category">Style</h4>
-      <li>TRANSITIONAL</li>
-      <li>CONTEMPORARY</li>
-      <li>CLASSIC</li>
-      <li>ETHNIC</li>
-      <li>LUXE</li>
-    </div>
-    <div class="dropdownColumn">
-      <h4 class="category">Color</h4>
-      <li>BLUES</li>
-      <li>NEUTRALS</li>
-      <li>GREENS</li>
-      <li>GREYS</li>
-      <li>WHITES</li>
-      <li>METALLICS</li>
-      <li>MULTICOLOR</li>
-      <li>MORE ...</li>
-    </div>
-    <div class="dropdownColumn dropdownColumn-special">
-      <li>NEW ARRIVALS</li>
-      <li>COLLECTIONS</li>
-      <br><br><br><br><br><br>
-      <button class="dropdownButton">SHOP TRIM</button>
-    </div>
-  </ul>
-</div>
 
-  <div class="row">
-    <ul class="dropdown furniture">
-      <div class="dropdownColumn">
-        <h4 class="category">Type</h4>
-        <li>ANTIQUES</li>
-        <li>ACCENT CHAIRS</li>
-        <li>UPHOLSTERED CHAIRS</li>
-        <li>DINING & SIDE CHAIRS</li>
-        <li>SOFAS & LOVESEATS</li>
-        <li>OTTOMANS & BENCHES</li>
-        <li>TABLES</li>
-        <li>LIGHTING</li>
-        <br>
-        <button class="dropdownButton">SHOP FURNITURE</button>
+    <div class="row">
+      <ul class="dropdown services">
+        <div class="dropdownColumn" style="width: 350px; padding-right: 20px;">
+          <p>Schumacher is proud to offer a range of services including paperbacking.</p>
+          <p>To learn more please call us at 1-800-572-0032.</p>
+        </div>
+      </ul>
+    </div>
+
+    <div class="row home">
+      <div class="row">
+        <div class="large-12 columns">
+          <img src="assets/slideshow_1.jpg" width="100%" />
+        </div>
       </div>
-    </ul>
-  </div>
-
-  <div class="row">
-    <ul class="dropdown rugs-carpets">
-      <div class="dropdownColumn text-center" style="width: 300px; padding-right: 20px;">
-        <h4 class="category">Our Sister Brand</h4>
-        <img src="assets/logo.png" width="200px"/>
-        <img src="http://www.pattersonflynnmartin.com/wp-content/uploads/2015/10/PFM-LOGO.jpg" />
-        <br><br>
-        <p>A leading source of luxury floor coverings, Patterson Flynn Martin's offerings include exclusive Tibetan, Wilton, hand-tufted, and hand-knotted rugs, and the ability to fulfill the custom wishes of even the most discerning clients.</p>
-        <button class="dropdownButton">VISIT PATTERSON FLYNN MARTIN</button>
+      <div class="row section-title">
+        <span>start <em>scheming</em></span>
       </div>
-    </ul>
-  </div>
-
-  <div class="row">
-    <ul class="dropdown custom-contract" style="padding-bottom: 0;">
-      <div class="dropdownColumn" style="width: 200px; padding-right: 20px;">
-        <h4 class="category">Make it your own.</h4>
-        <p>Schumacher is the premier source of luxury fabrics, wallcoverings, and trim for the contract market, custom residential projects, and historic reproductions.</p>
-        <p>To learn more please call us at 1-800-572-0032.</p>
+      <div class="row">
+        <div class="large-6 columns">
+          <img src="assets/Prints in Fabric_edited.png" width="100%" />
+        </div>
+        <div class="large-6 columns">
+          <img src="assets/Perfect Basics_edited.png" width="100%" />
+        </div>
       </div>
-      <div class="dropdownColumn dropdownColumn-special" style="width: 270px;">
-        <img src="assets/custom-contract.jpg">
+      <div class="row">
+        <div class="large-4 columns">
+          <img src="assets/Sheers_edited.png" width="100%" />
+        </div>
+        <div class="large-4 columns">
+          <img src="assets/Animal Patterns_edited.png" width="100%" />
+        </div>
+        <div class="large-4 columns">
+          <img src="assets/Grasscloths_edited.png" width="100%" />
+        </div>
       </div>
-    </ul>
-  </div>
-
-  <div class="row">
-    <ul class="dropdown services">
-      <div class="dropdownColumn" style="width: 350px; padding-right: 20px;">
-        <p>Schumacher is proud to offer a range of services including paperbacking.</p>
-        <p>To learn more please call us at 1-800-572-0032.</p>
+      <div class="row">
+        <div class="large-6 columns">
+          <img src="assets/Indoor Outdoor_edited.png" width="100%" />
+        </div>
+        <div class="large-6 columns">
+          <img src="assets/Velvets_edited.png" width="100%" />
+        </div>
       </div>
-    </ul>
-  </div>
+      <div class="row section-title">
+        <span>shop the <em>look</em></span>
+      </div>
+      <div class="row">
+        <div class="large-12 columns">
+          <img src="assets/Inspiration.png" width="100%" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-12 columns">
+          <img src="assets/Swatches_TwoRows_pearlpin.png" width="100%" />
+        </div>
+      </div>
+      <div class="row section-title">
+        <span>get <em>inspired</em></span>
+      </div>
+      <div class="row">
+        <div class="large-12 columns">
+          <img src="assets/blog.jpg" width="100%" />
+        </div>
+      </div>
 
-  <div class="row placeholder">
-    <img src="assets/placeholder.png" width="100%" />
+      <div class="row footer">
+        <img src="assets/footer.png" width="100%" />
+      </div>
+    </div>
+
   </div>
 
   <script src="dropdown.js" type="text/javascript"></script>

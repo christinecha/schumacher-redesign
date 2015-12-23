@@ -1,5 +1,5 @@
-$(document).ready(function(){
-
+$('.navigation').load('nav.html', function() {
+  
   var dropdownPosition = function(_this, dropdownClass){
     var menuOffset = $('.header').offset();
     var selectorOffset = $(_this).offset();
@@ -60,9 +60,5 @@ $(document).ready(function(){
     $('.dropdown').hide();
     $(this).removeClass('selected');
   });
-
-
-
-
 
 });

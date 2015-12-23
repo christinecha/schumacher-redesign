@@ -2,9 +2,13 @@ body {
   color: #555759;
 }
 
-.content {
+.content, .navigation {
   max-width: 1300px;
   margin: 0 auto;
+}
+
+.content {
+  margin-top: 10px;
 }
 
 .home .columns {

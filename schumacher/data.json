@@ -1,0 +1,22 @@
+{
+  "navigation_options": {
+    "fabric": {
+      "type": ["prints", "wovens", "sheers", "embroideries", "basics", "solids", "textures", "velvets"],
+      "style": ["transitional", "contemporary", "classic", "ethnic", "luxe"],
+      "color": ["blues", "neutrals", "greens", "greys", "whites", "metallics", "multicolor"]
+    },
+    "wallpaper": {
+      "type": ["prints", "block prints", "plain grasscloths", "embellished grasscloths", "vinyls", "faux finishes", "textures", "murals & panels", "paperbacked fabrics", "specialty"],
+      "style": ["transitional", "contemporary", "classic", "ethnic", "luxe", "childrens", "asian"],
+      "color": ["blues", "neutrals", "greens", "greys", "whites", "metallics", "multicolor"]
+    },
+    "trim": {
+      "type": ["fringe", "tapes", "cords", "braids", "gumps", "applique", "ruches", "beaded"],
+      "style": ["transitional", "contemporary", "classic", "ethnic", "luxe"],
+      "color": ["blues", "neutrals", "greens", "greys", "whites", "metallics", "multicolor"]
+    },
+    "furniture": {
+      "type": ["antiques", "accent chairs", "upholstered chairs", "dining & side chairs", "sofas & loveseats", "ottomans & benches", "tables", "lighting"]
+    }
+  }
+}

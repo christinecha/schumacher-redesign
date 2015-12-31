@@ -55,7 +55,7 @@
 }
 
 .top-nav li, .top-nav p { display: inline-block; }
-#shopping-bag { width: 50px; text-align: right; }
+#shopping-bag { width: 55px; text-align: right; }
 .shopping-bag { width: 300px; }
 .shopping-bag--itemPhoto { width: 80px; display: inline-block; }
 .shopping-bag--itemInfo { display: inline-block; width: 150px; float: right;}
@@ -81,10 +81,9 @@
   position: absolute;
   background-color: white;
   list-style: none;
-  margin-left: 0;
-  padding: 15px 25px;
+  padding: 25px 10px;
   border: 1px solid #eee;
-  margin-top: -1px;
+  margin: -1px -20px;
   height: 350px;
   display: none;
 }
@@ -92,7 +91,7 @@
 .dropdownColumn {
   vertical-align: top;
   display: inline-block;
-  width: 160px;
+  margin: 0 20px;
 }
 
 .dropdownColumn-special {
@@ -100,15 +99,18 @@
   padding-left: 20px;
   font-weight: bold;
 }
-.dropdownColumn-special li:hover { font-weight: bold; color: #888; }
 
+.dropdown h4 { text-transform: capitalize; }
 .dropdown li {
   font-family: 'Gotham';
   font-size: 11px;
   margin: 5px 0;
   cursor: pointer;
+  text-transform: uppercase;
 }
 
+.dropdownColumn-special li:hover { font-weight: bold; color: #888; }
+.dropdown li span { vertical-align: middle; }
 .dropdown p { font-family: 'Gotham'; font-size: 13px; }
 .dropdownColumn li:hover { font-weight: bold; }
 
@@ -125,8 +127,7 @@
   font-size: 11px;
   background-color: #404040;
   padding: 10px 15px;
-  margin: 0;
-  width: 100%;
+  min-width: 150px;
   -webkit-transition: background 0s;
 }
 

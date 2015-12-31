@@ -19,77 +19,109 @@
   <div class="navigation">
   </div>
 
-  <div class="content row catalog">
-    <hr>
-    <div class="side-filter large-2 columns">
-      <ul class="main-category">
-        <li class="main-category-title">FABRIC <span class="caret">&#9660;</span></li>
-        <ul class="sub-category">
-          <li class="sub-category-title">TYPE <span class="caret">&#9660;</span></li>
-          <li>Embroidered</li>
-          <li>Prints</li>
-          <li>Sheers</li>
-          <li>Solids</li>
-          <li>Textures</li>
-          <li>Velvets</li>
-          <li>Warp Prints</li>
-          <li>Woven</li>
+  <div class="content catalog">
+    <div class="row">
+      <hr>
+      <div class="side-filter large-2 columns">
+        <ul class="main-category">
+          <li class="main-category-title">FABRIC <span class="caret">&#9660;</span></li>
+          <ul class="sub-category">
+            <li class="sub-category-title">TYPE <span class="caret">&#9660;</span></li>
+            <li>Embroidered</li>
+            <li>Prints</li>
+            <li>Sheers</li>
+            <li>Solids</li>
+            <li>Textures</li>
+            <li>Velvets</li>
+            <li>Warp Prints</li>
+            <li>Woven</li>
+          </ul>
+          <ul class="sub-category">
+            <li class="sub-category-title">APPLICATION <span class="caret">&#9660;</span></li>
+            <li>Multi-purpose</li>
+            <li>Upholstery</li>
+            <li>Curtains</li>
+            <li>Indoor + Outdoor</li>
+            <li>High-Performance</li>
+          </ul>
+          <ul class="sub-category">
+            <li class="sub-category-title">COLLECTIONS <span class="caret">&#9660;</span></li>
+          </ul>
         </ul>
-        <ul class="sub-category">
-          <li class="sub-category-title">APPLICATION <span class="caret">&#9660;</span></li>
-          <li>Multi-purpose</li>
-          <li>Upholstery</li>
-          <li>Curtains</li>
-          <li>Indoor + Outdoor</li>
-          <li>High-Performance</li>
-        </ul>
-        <ul class="sub-category">
-          <li class="sub-category-title">COLLECTIONS <span class="caret">&#9660;</span></li>
-        </ul>
-      </ul>
-    </div>
+      </div>
 
-    <div class="large-10 columns search-results">
-      <div class="selected-filters">
-        <span>SELECTED FILTERS: </span>
-        <span class="selected-filter">BLUE <span class="remove">x</span></span>
-      </div>
-      <div class="sort-by">
-        <span>(250 results)</span>
-        <span class="filter-title">SORT BY <span class="caret">&#9660;</span></span>
-        <img src="assets/catalog--list-view.svg" />
-        <img src="assets/catalog--grid-view.svg" />
-      </div>
-      <div class="filter-options">
-        <div class="filter-title">COLOR <span class="caret">&#9660;</span></div>
-        <div class="filter-title">STYLE <span class="caret">&#9660;</span></div>
-        <div class="filter-title">PATTERN <span class="caret">&#9660;</span></div>
-        <div class="filter-title">SCALE <span class="caret">&#9660;</span></div>
-        <div class="filter-title">CONTENT <span class="caret">&#9660;</span></div>
-        <div class="filter-title">PRICE <span class="caret">&#9660;</span></div>
-        <div class="filter-title">ABRASION <span class="caret">&#9660;</span></div>
-        <div class="filter-title">AVAILABILITY <span class="caret">&#9660;</span></div>
-        <div class="filter-title">MATCHING WP <span class="caret">&#9660;</span></div>
-        <div class="filter-title">EXTRA WIDE <span class="caret">&#9660;</span></div>
-      </div>
-      <div class="product-list">
-        <div class="product-preview large-4 columns">
-          <div class="product-thumb"></div>
-          <div class="product-options">
-            <span class="quickshop">QUICKSHOP</span>
-            <img class="favorite" src="assets/favorite-icon.svg" />
+      <div class="large-10 columns search-results">
+        <div class="selected-filters">
+          <span>SELECTED FILTERS: </span>
+          <span class="selected-filter">BLUE <span class="remove">x</span></span>
+        </div>
+        <div class="sort-by">
+          <span>(250 results)</span>
+          <span class="filter-title">SORT BY <span class="caret">&#9660;</span></span>
+          <img src="assets/catalog--list-view.svg" />
+          <img src="assets/catalog--grid-view.svg" />
+        </div>
+        <div class="filter-options">
+          <div class="filter-title dropdown-selector" id="color">COLOR <span class="caret">&#9660;</span></div>
+          <div class="filter-title">STYLE <span class="caret">&#9660;</span></div>
+          <div class="filter-title">PATTERN <span class="caret">&#9660;</span></div>
+          <div class="filter-title">SCALE <span class="caret">&#9660;</span></div>
+          <div class="filter-title">CONTENT <span class="caret">&#9660;</span></div>
+          <div class="filter-title">PRICE <span class="caret">&#9660;</span></div>
+          <div class="filter-title">ABRASION <span class="caret">&#9660;</span></div>
+          <div class="filter-title">AVAILABILITY <span class="caret">&#9660;</span></div>
+          <div class="filter-title">MATCHING WP <span class="caret">&#9660;</span></div>
+          <div class="filter-title">EXTRA WIDE <span class="caret">&#9660;</span></div>
+        </div>
+
+        <div class="product-list">
+          <div class="product-preview large-4 columns">
+            <div class="product-thumb"></div>
+            <div class="product-options">
+              <span class="quickshop">QUICKSHOP</span>
+              <img class="favorite" src="assets/favorite-icon.svg" />
+            </div>
+            <div class="product-type">FABRIC</div>
+            <div class="product-name">CHIANG MAI DRAGON</div>
+            <div class="product-id">
+              <span class="product-sku">173270</span>
+              <span class="product-color">AQUAMARINE</span>
+            </div>
+            <div class="product-price">$118 US</div>
           </div>
-          <div class="product-type">FABRIC</div>
-          <div class="product-name">CHIANG MAI DRAGON</div>
-          <div class="product-id">
-            <span class="product-sku">173270</span>
-            <span class="product-color">AQUAMARINE</span>
-          </div>
-          <div class="product-price">$118 US</div>
         </div>
       </div>
     </div>
+
+    <!-- dropdowns -->
+    <div class="row">
+      <ul class="dropdown color" data-dropdownId="color" style="height:300px;">
+        <div class="dropdownColumn">
+          <li><span class="color--thumbnail" style="background-color: #000000;"></span><span>BLACKS</span></li>
+          <li><span class="color--thumbnail" style="background-color: #eeeeee;"></span><span>BLACK + WHITES</span></li>
+          <li><span class="color--thumbnail" style="background-color: #73bad0;"></span><span>BLUES</span></li>
+          <li><span class="color--thumbnail" style="background-color: #412a0b;"></span><span>BROWNS</span></li>
+          <li><span class="color--thumbnail" style="background-color: #84b550;"></span><span>GREENS</span></li>
+          <li><span class="color--thumbnail" style="background-color: #c3c6c6;"></span><span>GREYS</span></li>
+          <li><span class="color--thumbnail" style="background-color: #cc3d42;"></span><span>REDS</span></li>
+          <li><span class="color--thumbnail" style="background-color: #ffe663;"></span><span>YELLOWS</span></li>
+        </div>
+        <div class="dropdownColumn">
+          <li><span class="color--thumbnail" style="background-color: #000000;"></span><span>BLACKS</span></li>
+          <li><span class="color--thumbnail" style="background-color: #eeeeee;"></span><span>BLACK + WHITES</span></li>
+          <li><span class="color--thumbnail" style="background-color: #73bad0;"></span><span>BLUES</span></li>
+          <li><span class="color--thumbnail" style="background-color: #412a0b;"></span><span>BROWNS</span></li>
+          <li><span class="color--thumbnail" style="background-color: #84b550;"></span><span>GREENS</span></li>
+          <li><span class="color--thumbnail" style="background-color: #c3c6c6;"></span><span>GREYS</span></li>
+          <li><span class="color--thumbnail" style="background-color: #cc3d42;"></span><span>REDS</span></li>
+          <li><span class="color--thumbnail" style="background-color: #ffe663;"></span><span>YELLOWS</span></li>
+        </div>
+        <br><br>
+        <button class="dropdownButton">APPLY</button>
+      </ul>
+    </div>
   </div>
+  <!-- end dropdowns -->
 
   <script src="dropdown.js" type="text/javascript"></script>
   <script src="catalog.js" type="text/javascript"></script>

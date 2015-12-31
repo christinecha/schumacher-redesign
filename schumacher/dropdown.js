@@ -1,18 +1,22 @@
 $('.navigation').load('nav.html', function() {
-  
+
   var dropdownPosition = function(_this, dropdownClass){
-    var menuOffset = $('.header').offset();
     var selectorOffset = $(_this).offset();
-    var dropdownWidth = $(dropdownClass).css('width');
-    var selectorWidth = $(_this).css('width');
-    var dropdownOffset = selectorOffset.left - menuOffset.left;
-    // if the selector is too far to the right (dropdown will open beyond window)
-    if ((dropdownOffset + parseInt(dropdownWidth)) >= $('.header').width()) {
+    var dropdownWidth = parseInt($(dropdownClass).css('width'));
+    var selectorWidth = parseInt($(_this).css('width'));
+    var selectorHeight = parseInt($(_this).css('height'));
+    var dropdownOffset = {
+      left: selectorOffset.left,
+      top: selectorOffset.top + selectorHeight,
+    }
+    // if the selector is too far to the right (that dropdown will open beyond window)
+    if ((dropdownOffset.left + dropdownWidth) >= $('.navigation').width()) {
       //position to the right instead
-      dropdownOffset-= parseInt(dropdownWidth);
-      dropdownOffset+= parseInt(selectorWidth);
+      dropdownOffset.left-= dropdownWidth;
+      dropdownOffset.left+= selectorWidth;
     };
-    $(dropdownClass).css('margin-left', dropdownOffset);
+    $(dropdownClass).css('left', dropdownOffset.left);
+    $(dropdownClass).css('top', dropdownOffset.top);
   };
 
   var showDropdown = function(_this, dropdownId){
@@ -25,7 +29,7 @@ $('.navigation').load('nav.html', function() {
     $(_this).hide();
   };
 
-  $('.main-nav').children('li').hover(function(){
+  $('.dropdown-selector').hover(function(){
     $(this).addClass('selected');
     var dropdownId = $(this).attr('id');
     dropdownClass = '.' + dropdownId;
@@ -36,26 +40,6 @@ $('.navigation').load('nav.html', function() {
     }, function(){
       hideDropdown(this, dropdownId);
     });
-  }, function(){
-    $('.dropdown').hide();
-    $(this).removeClass('selected');
-  });
-
-  $('.top-nav').children('li').hover(function(){
-    if ($(this).attr('id') == null){
-      //do nothing
-    } else {
-      $(this).addClass('selected');
-      var dropdownId = $(this).attr('id');
-      dropdownClass = '.' + dropdownId;
-      $(dropdownClass).show();
-      dropdownPosition(this, dropdownClass);
-      $(dropdownClass).hover(function(){
-        showDropdown(this, dropdownId);
-      }, function(){
-        hideDropdown(this, dropdownId);
-      });
-    };
   }, function(){
     $('.dropdown').hide();
     $(this).removeClass('selected');

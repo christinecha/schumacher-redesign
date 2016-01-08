@@ -1,22 +1,41 @@
 {
   "navigation_options": {
+    "new_arrivals": {
+      "latest collections": ["ikats", "miles reed", "understated luxury", "perfect basics: chenille", "perfect basics: linen", "perfect basics: union", "drawn from nature"]
+    },
     "fabric": {
-      "type": ["prints", "wovens", "sheers", "embroideries", "basics", "solids", "textures", "velvets"],
+      "color": ["blues", "neutrals", "greens", "greys", "whites", "metallics", "multicolor"],
       "style": ["transitional", "contemporary", "classic", "ethnic", "luxe"],
-      "color": ["blues", "neutrals", "greens", "greys", "whites", "metallics", "multicolor"]
+      "type": ["prints", "wovens", "sheers", "embroideries", "basics", "solids", "textures", "velvets"]
     },
     "wallpaper": {
-      "type": ["prints", "block prints", "plain grasscloths", "embellished grasscloths", "vinyls", "faux finishes", "textures", "murals & panels", "paperbacked fabrics", "specialty"],
+      "color": ["blues", "neutrals", "greens", "greys", "whites", "metallics", "multicolor"],
       "style": ["transitional", "contemporary", "classic", "ethnic", "luxe", "childrens", "asian"],
-      "color": ["blues", "neutrals", "greens", "greys", "whites", "metallics", "multicolor"]
+      "type": ["prints", "block prints", "plain grasscloths", "embellished grasscloths", "vinyls", "faux finishes", "textures", "murals & panels", "paperbacked fabrics", "specialty"]
     },
     "trim": {
-      "type": ["fringe", "tapes", "cords", "braids", "gumps", "applique", "ruches", "beaded"],
+      "color": ["blues", "neutrals", "greens", "greys", "whites", "metallics", "multicolor"],
       "style": ["transitional", "contemporary", "classic", "ethnic", "luxe"],
-      "color": ["blues", "neutrals", "greens", "greys", "whites", "metallics", "multicolor"]
+      "type": ["fringe", "tapes", "cords", "braids", "gumps", "applique", "ruches", "beaded"]
     },
     "furniture": {
       "type": ["antiques", "accent chairs", "upholstered chairs", "dining & side chairs", "sofas & loveseats", "ottomans & benches", "tables", "lighting"]
     }
-  }
+  },
+
+  "filter_options": {
+    "color": ["Blacks", "Black + White", "Blues", "Browns", "Greens", "Greys", "Metallics", "Multicolor", "Neutrals", "Oranges", "Pinks", "Purples", "Reds", "Whites", "Yellows"],
+    "color_advanced": ["Aubergine", "Aqua", "Beige", "Chartreuse", "Medium Blue", "Dark Blue", "Pale Blue", "Blue + White", "Spice", "Camel", "Coral", "Taupe"],
+    "style": ["Transitional", "Contemporary", "Classic", "Eclectic ", "Ethnic", "Luxe", "Kids", "Asian Inspired", "Schumacher Signature"],
+    "pattern": ["Animal Skin", "Animals", "Birds", "Botanicals", "Checks", "Chevron", "Chinoiserie", "Damask", "Dots ", "Flamestitch", "Floral", "Geometric", "Greek Key ", "Herringbone", "Houndstooth", "Ikat", "Matelassé", "Moire", "Paisley", "Plaid", "Scrollwork", "Specialty ", "Stripe + Strie ", "Toile", "Tree of Life", "Trellis", "Whimsical"],
+    "style": ["Small", "Medium", "Large", "Extra Large"],
+    "content": ["Burlap", "Chenille", "Cotton", "Cotton + Linen Blend", "Hair on Hide", "Jute ", "Leather", "Linen", "Mohair ", "Natural Blends", "Raffia ", "Silk", "Synthetic", "Synthetic + Natural Blends", "Trevira ", "Ultraleather", "Ultrasuede", "Velvet", "Wool"],
+    "price": ["Under $60", "$60-$100", "$100-$150", "$150-$200", "$200-$250", "$250 -$250"],
+    "abrasion": ["5-10 Wyzenbeek (5-10 Martindale) (Light)", "10-15 Wyzenbeek (10-20 Martindale) (Medium)", "15-30 Wyzenbeek (20-40 Martindale) (Heavy)", "30 + Wyzenbeek (40+ Martindale) Contract Standard)"],
+    "availability": ["Not dyelot specific"],
+    "matching_wp": ["yes", "no"],
+    "extra_wide": ["yes", "no"]
+  },
+
+  "selected_filters": []
 }

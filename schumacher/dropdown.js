@@ -32,7 +32,7 @@ $('.navigation').load('nav.html', function() {
   $('.dropdown-selector').hover(function(){
     $(this).addClass('selected');
     var dropdownId = $(this).attr('id');
-    dropdownClass = '.' + dropdownId;
+    dropdownClass = '.dropdowns .' + dropdownId;
     $(dropdownClass).show();
     dropdownPosition(this, dropdownClass);
     $(dropdownClass).hover(function(){

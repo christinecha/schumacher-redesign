@@ -1,10 +1,6 @@
 // this array will contain the search query.
 var selected_filters = [];
 
-// get first search param from url
-var product = window.location.href.slice(window.location.href.indexOf('?') + 1)
-$('.dropdown-selector#' + product).addClass('selected-force')
-
 //populate filter dropdowns (replace with API)
 $.get("data.json", function(data) {
   $.each(data.filter_options, function(filter_category, data) { // for each filter category

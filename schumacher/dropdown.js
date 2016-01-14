@@ -1,3 +1,7 @@
+$('.footer').load('footer.html', function() {
+  
+})
+
 $('.navigation').load('nav.html', function() {
 
   var dropdownPosition = function(_this, dropdownClass){

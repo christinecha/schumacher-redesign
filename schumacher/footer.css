@@ -1,0 +1,59 @@
+.footer-list {
+  list-style: none;
+  padding-right: 40px;
+  margin: 0 0 0 0;
+}
+
+.footer-list h4 { text-transform: capitalize; }
+.footer-list li {
+  font-family: 'Gotham';
+  font-size: 11px;
+  margin: 5px 0;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.footer-list li span { vertical-align: middle; }
+.footer-list p { font-family: 'Gotham'; font-size: 13px; }
+.listColumn li:hover { font-weight: bold; }
+
+.footer-list .category {
+  font-family: 'Chronicle';
+  font-style: italic;
+  font-size: 18px;
+  margin-bottom: 14px;
+  color: #555759;
+}
+
+.social-bar {
+  margin: 20px 0 10px;
+  background-color: #f1f1f2;
+  padding: 10px 20px;
+}
+
+.social-bar .category { margin-right: 50px; }
+.social-bar .footersocialicon { margin-right: 20px; }
+#newsletter-signup {
+  float: right;
+  font-family: 'Gotham', sans-serif;
+  text-transform: uppercase;
+  font-size: 13px;
+  margin-top: 5px; 
+}
+
+
+.listButton {
+  font-family: 'Gotham';
+  font-size: 11px;
+  background-color: #404040;
+  padding: 8px 15px 5px 15px;
+  min-width: 150px;
+  margin: 10px 0 0 0;
+  -webkit-transition: background 0s;
+}
+
+.listButton:hover {
+  background-color: #ffea00;
+  color: #404040;
+  -webkit-transition: background 0s;
+}

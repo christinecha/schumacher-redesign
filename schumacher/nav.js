@@ -25,7 +25,7 @@ $(function() {
     console.log('err: ', message);
   });
 
-  $('.navigation').on('click', 'li', function() {
+  $('.navigation').on('click', '.dropdownColumn li', function() {
     location.href = "catalog.html";
   });
 

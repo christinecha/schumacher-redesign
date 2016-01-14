@@ -1,13 +1,14 @@
-body, * {
+body, *, a, a:hover {
   color: #555759;
   letter-spacing: .05em;
+  outline: none;
 }
 
 p {
   margin-bottom: 5px;
 }
 
-.home .columns {
+.columns {
   padding: 0.375rem;
 }
 

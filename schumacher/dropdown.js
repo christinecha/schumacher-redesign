@@ -4,11 +4,13 @@ $('.footer').load('footer.html', function() {
 
 $('.navigation').load('nav.html', function() {
   // check if page is selected
-  var page = window.location.href.slice(window.location.href.indexOf('?') + 1)
-  if ($('#' + page)) {
-    $('#' + page).addClass('selected-force')
+  if (window.location.href.indexOf('?') >= 0) {
+    var page = window.location.href.slice(window.location.href.indexOf('?') + 1)
+    if ($('#' + page)) {
+      $('#' + page).addClass('selected-force')
+    }
   }
-
+  
   var dropdownPosition = function(_this, dropdownClass){
     var selectorOffset = $(_this).offset();
     var dropdownWidth = parseInt($(dropdownClass).css('width'));

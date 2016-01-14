@@ -1,8 +1,11 @@
 $('.footer').load('footer.html', function() {
-  
+
 })
 
 $('.navigation').load('nav.html', function() {
+  // get first search param from url
+  var product = window.location.href.slice(window.location.href.indexOf('?') + 1)
+  $('.dropdown-selector#' + product).addClass('selected-force')
 
   var dropdownPosition = function(_this, dropdownClass){
     var selectorOffset = $(_this).offset();

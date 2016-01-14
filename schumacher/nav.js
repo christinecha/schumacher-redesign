@@ -26,7 +26,7 @@ $(function() {
   });
 
   $('.navigation').on('click', '.dropdownColumn li', function() {
-    location.href = "catalog.html";
+    location.href = "catalog.html?fabric";
   });
 
 

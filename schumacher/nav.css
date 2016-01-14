@@ -57,6 +57,8 @@
 .navigation .separator { font-size: 80%; margin: 0 5px; }
 
 .top-nav li, .top-nav p { display: inline-block; }
+.shopping-bag li:hover { font-weight: normal !important; opacity: .7; }
+.shopping-bag--item-list { height: 250px; overflow: scroll; }
 .shopping-bag--item { margin-bottom: 15px !important; }
 .shopping-bag--item:last-of-type { margin-bottom: 0; }
 .shopping-bag--itemPhoto { width: 80px; display: inline-block; vertical-align: top; }
@@ -65,10 +67,11 @@
 .shopping-bag--itemCost { float: right; }
 
 .top-nav li.selected,
-.main-nav li.selected {
+.main-nav li.selected,
+.selected-force {
   font-weight: bold;
   margin-top: -1px;
-  border-bottom: 2px solid #404040;
+  border-bottom: 2px solid #404040 !important;
 }
 
 .top-nav li:hover {
@@ -142,7 +145,8 @@
 
 .dropdownColumn-special li:hover { font-weight: bold; color: #888; }
 .dropdown li span { vertical-align: middle; }
-.dropdown p { font-family: 'Gotham'; font-size: 13px; }
+.dropdown p:first-of-type { margin-bottom: 10px; }
+.dropdown p { font-family: 'Gotham'; font-size: 12.5px; }
 .dropdownColumn li:hover { font-weight: bold; }
 
 .dropdown .category {

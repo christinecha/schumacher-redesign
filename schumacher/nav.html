@@ -55,37 +55,39 @@
 
 <!-- this is where all the dropdowns are stored; positioning is absolute via dropdown.js -->
 <div class="dropdowns">
-  <ul class="dropdown my-schumacher" style="height: 150px; ">
+  <ul class="dropdown my-schumacher" style="height: 150px;">
     <div class="dropdownColumn">
       <li>MY ORDERS</li>
       <li>MY PROFILE</li>
       <li>MY FAVORITES</li>
-      <button class="dropdownButton">SIGN OUT</button>
+      <button class="dropdownButton" style="min-width: 100px;">SIGN OUT</button>
     </div>
   </ul>
 
   <ul class="dropdown shopping-bag" style="height: inherit;" >
     <div class="dropdownColumn">
-      <li class="shopping-bag--item">
-        <img class="shopping-bag--itemPhoto" src="https://www.fschumacher.com/s3/schumacher-webassets/5007534.jpg?width=600&height=600&mode=crop&scale=both&quality=100">
-        <div class="shopping-bag--itemInfo">
-          <h5 class="shopping-bag--itemTitle">PRODUCT NAME</h5>
-          <span class="shopping-bag--itemCode">66600 DELFT</span><br>
-          <span class="shopping-bag--itemMemo">MEMO</span><br>
-          <span class="shopping-bag--itemQty">QTY: 1.0</span>
-          <span class="shopping-bag--itemCost">$0.00</span>
-        </div>
-      </li>
-      <li class="shopping-bag--item">
-        <img class="shopping-bag--itemPhoto" src="https://www.fschumacher.com/s3/schumacher-webassets/5007534.jpg?width=600&height=600&mode=crop&scale=both&quality=100">
-        <div class="shopping-bag--itemInfo">
-          <h5 class="shopping-bag--itemTitle">PRODUCT NAME</h5>
-          <span class="shopping-bag--itemCode">66600 DELFT</span><br>
-          <span class="shopping-bag--itemMemo">MEMO</span><br>
-          <span class="shopping-bag--itemQty">QTY: 1.0</span>
-          <span class="shopping-bag--itemCost">$0.00</span>
-        </div>
-      </li>
+      <div class="shopping-bag--item-list">
+        <li class="shopping-bag--item">
+          <img class="shopping-bag--itemPhoto" src="https://www.fschumacher.com/s3/schumacher-webassets/5007534.jpg?width=600&height=600&mode=crop&scale=both&quality=100">
+          <div class="shopping-bag--itemInfo">
+            <h5 class="shopping-bag--itemTitle">PRODUCT NAME</h5>
+            <span class="shopping-bag--itemCode">66600 DELFT</span><br>
+            <span class="shopping-bag--itemMemo">MEMO</span><br>
+            <span class="shopping-bag--itemQty">QTY: 1.0</span>
+            <span class="shopping-bag--itemCost">$0.00</span>
+          </div>
+        </li>
+        <li class="shopping-bag--item">
+          <img class="shopping-bag--itemPhoto" src="https://www.fschumacher.com/s3/schumacher-webassets/5007534.jpg?width=600&height=600&mode=crop&scale=both&quality=100">
+          <div class="shopping-bag--itemInfo">
+            <h5 class="shopping-bag--itemTitle">PRODUCT NAME</h5>
+            <span class="shopping-bag--itemCode">66600 DELFT</span><br>
+            <span class="shopping-bag--itemMemo">MEMO</span><br>
+            <span class="shopping-bag--itemQty">QTY: 1.0</span>
+            <span class="shopping-bag--itemCost">$0.00</span>
+          </div>
+        </li>
+      </div>
       <button class="dropdownButton" style="width: 100%;">PROCEED TO CHECKOUT</button>
     </div>
   </ul>

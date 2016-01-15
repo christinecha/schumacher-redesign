@@ -49,3 +49,32 @@ p {
   -webkit-transition: opacity .1s ease-in-out;
 }
 .homepage-tile:hover { opacity: .7; }
+
+.pinboard {
+  background: url('assets/linen-texture.png');
+  background-size: cover;
+  padding: 20px;
+}
+
+.featured-product {
+  display: inline-block;
+}
+
+.featured-product--thumb {
+  background: url('assets/linen-texture.png') #fff;
+  background-size: cover;
+  width: 180px;
+  height: 180px;
+  box-shadow: 0 0 2px;
+  margin: 10px;
+}
+
+.featured-product--info {
+  font-family: 'Gotham', sans-serif;
+  text-align: center;
+  font-size: 12px;
+}
+
+.featured-product--color {
+  font-weight: bold;
+}

@@ -24,17 +24,17 @@
   },
 
   "filter_options": {
-    "color": ["Blacks", "Black + White", "Blues", "Browns", "Greens", "Greys", "Metallics", "Multicolor", "Neutrals", "Oranges", "Pinks", "Purples", "Reds", "Whites", "Yellows"],
-    "color_advanced": ["Aubergine", "Aqua", "Beige", "Chartreuse", "Medium Blue", "Dark Blue", "Pale Blue", "Blue + White", "Spice", "Camel", "Coral", "Taupe"],
+    "type": ["embroidered", "prints", "sheers", "solids", "textures", "velvets", "warp prints", "woven"],
+    "color": ["Blacks", "Black + White", "Blues", "Browns", "Greens", "Greys", "Metallics", "Multicolor", "Neutrals", "Oranges", "Pinks", "Purples", "Reds", "Whites", "Yellows", "Aubergine", "Aqua", "Beige", "Chartreuse", "Medium Blue", "Dark Blue", "Pale Blue", "Blue + White", "Spice", "Camel", "Coral", "Taupe"],
     "style": ["Transitional", "Contemporary", "Classic", "Eclectic ", "Ethnic", "Luxe", "Kids", "Asian Inspired", "Schumacher Signature"],
     "pattern": ["Animal Skin", "Animals", "Birds", "Botanicals", "Checks", "Chevron", "Chinoiserie", "Damask", "Dots ", "Flamestitch", "Floral", "Geometric", "Greek Key ", "Herringbone", "Houndstooth", "Ikat", "Matelassé", "Moire", "Paisley", "Plaid", "Scrollwork", "Specialty ", "Stripe + Strie ", "Toile", "Tree of Life", "Trellis", "Whimsical"],
-    "style": ["Small", "Medium", "Large", "Extra Large"],
+    "scale": ["Small", "Medium", "Large", "Extra Large"],
     "content": ["Burlap", "Chenille", "Cotton", "Cotton + Linen Blend", "Hair on Hide", "Jute ", "Leather", "Linen", "Mohair ", "Natural Blends", "Raffia ", "Silk", "Synthetic", "Synthetic + Natural Blends", "Trevira ", "Ultraleather", "Ultrasuede", "Velvet", "Wool"],
     "price": ["Under $60", "$60-$100", "$100-$150", "$150-$200", "$200-$250", "$250 -$250"],
     "abrasion": ["5-10 Wyzenbeek (5-10 Martindale) (Light)", "10-15 Wyzenbeek (10-20 Martindale) (Medium)", "15-30 Wyzenbeek (20-40 Martindale) (Heavy)", "30 + Wyzenbeek (40+ Martindale) Contract Standard)"],
     "availability": ["Not dyelot specific"],
-    "matching_wp": ["yes", "no"],
-    "extra_wide": ["yes", "no"]
+    "matching_wp": ["matching wallpaper"],
+    "extra_wide": ["extra wide"]
   },
 
   "selected_filters": []

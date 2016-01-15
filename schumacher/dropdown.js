@@ -3,14 +3,19 @@ $('.footer').load('footer.html', function() {
 })
 
 $('.navigation').load('nav.html', function() {
-  // check if page is selected
+  var productQuery = window.location.href.indexOf('?product=')
+  var filterQuery = window.location.href.indexOf('&filter=')
   if (window.location.href.indexOf('?') >= 0) {
-    var page = window.location.href.slice(window.location.href.indexOf('?') + 1)
-    if ($('#' + page)) {
-      $('#' + page).addClass('selected-force')
+    if (filterQuery < productQuery) {
+      var product = window.location.href.slice(productQuery + 9)
+    } else {
+      var product = window.location.href.slice(productQuery + 9, filterQuery)
+    }
+    if ($('#' + product)) {
+      $('#' + product).addClass('selected-force')
     }
   }
-  
+
   var dropdownPosition = function(_this, dropdownClass){
     var selectorOffset = $(_this).offset();
     var dropdownWidth = parseInt($(dropdownClass).css('width'));
@@ -40,20 +45,29 @@ $('.navigation').load('nav.html', function() {
     $(_this).hide();
   };
 
-  $('.dropdown-selector').hover(function(){
+  $(document).on('mouseenter', '.dropdown-selector', function(){
     $(this).addClass('selected');
     var dropdownId = $(this).attr('id');
     dropdownClass = '.dropdowns .' + dropdownId;
     $(dropdownClass).show();
     dropdownPosition(this, dropdownClass);
-    $(dropdownClass).hover(function(){
-      showDropdown(this, dropdownId);
-    }, function(){
-      hideDropdown(this, dropdownId);
-    });
-  }, function(){
+  }).on('mouseleave', '.dropdown-selector', function(){
+    var dropdownId = $(this).attr('id');
     $('.dropdown').hide();
     $(this).removeClass('selected');
   });
 
+  $(document).on('mouseover', '.dropdown', function(){
+    var dropdownId = $(this).attr('')
+    $('.dropdown').hide();
+    showDropdown(this, dropdownId);
+  }).on('mouseleave', '.dropdown', function(){
+    var dropdownId = $(this).attr('')
+    $('.dropdown').hide();
+    hideDropdown(this, dropdownId);
+  });
+
+
 });
+
+$('.navigation .dropdown-selector').click()

@@ -34,7 +34,7 @@
     <nav class="top-bar" data-topbar role="navigation" data-options="sticky_on: large">
       <section class="top-bar-section">
       <ul class="left main-nav">
-        <li class="dropdown-selector catalog-link" id="new_arrivals">NEW ARRIVALS</li>
+        <li class="dropdown-selector" id="new_arrivals">NEW ARRIVALS</li>
         <li class="dropdown-selector catalog-link" id="fabric">FABRIC</li>
         <li class="dropdown-selector catalog-link" id="wallpaper">WALLPAPER</li>
         <li class="dropdown-selector catalog-link" id="trim">TRIM</li>
@@ -93,17 +93,25 @@
   </ul>
 
   <ul class="dropdown new_arrivals">
-    <br>
-    <button class="dropdownButton">SHOP COLLECTIONS</button>
+    <div class="dropdownColumn">
+      <li>ikats</li>
+      <li>miles reed</li>
+      <li>understated luxury</li>
+      <li>perfect basics: chenille</li>
+      <li>perfect basics: linen</li>
+      <li>perfect basics: union</li>
+      <li>drawn from nature</li>
+      <button class="dropdownButton">SHOP COLLECTIONS</button>
+    </div>
   </ul>
 
   <ul class="dropdown fabric">
     <div class="dropdownColumn dropdownColumn-special">
-      <li>NEW ARRIVALS</li>
-      <li>INDOOR + OUTDOOR</li>
-      <li>PERFECT BASICS</li>
-      <li>LOOKBOOKS</li>
-      <li>COLLECTIONS</li>
+      <li data-product="Fabrics" data-filter="Collection" data-option="New Arrivals">NEW ARRIVALS</li>
+      <li data-product="Fabrics" data-filter="EndUse" data-option="Indoor Outdoor">INDOOR + OUTDOOR</li>
+      <li data-product="Fabrics" data-filter="Collection" data-option="Perfect Basics">PERFECT BASICS</li>
+      <a href="/fabrics/lookbooks"><li>LOOKBOOKS</li></a>
+      <a href="/fabrics/collections"><li>COLLECTIONS</li></a>
       <br>
       <br>
       <button class="dropdownButton">SHOP FABRICS</button>

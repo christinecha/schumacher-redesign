@@ -1,47 +1,73 @@
+"use strict"
+
+// API urls
+let navDepartments = [
+  {departmentName: 'Fabrics', departmentNameFormatted: 'fabric'},
+  {departmentName: 'Wallpaper', departmentNameFormatted: 'wallpaper'},
+  {departmentName: 'Trim', departmentNameFormatted: 'trim'},
+  {departmentName: 'Furniture', departmentNameFormatted: 'furniture'}
+]
+
+let navFilterCategories = [
+  { categoryFormatted: "Color",
+    category: "ColorFamily",
+    url: "//104.130.216.8/v8.1/api/Filter/GetColorFamilyFilter"
+  },
+  { categoryFormatted: "Style",
+    category: "Style",
+    url: "//104.130.216.8/v8.1/api/Filter/GetStyleFilter"
+  },
+  { categoryFormatted: "Type",
+    category: "Type",
+    url: "//104.130.216.8/v8.1/api/Filter/GetTypeFilter"
+  }
+]
+
+
 $(function() {
 
-  // $.ajax({
-  //   type: "POST",
-  //   dataType: "jsonp",
-  //   url: "http://104.130.216.8/api/Product/GetProducts",
-  //   success: function(data) {
-  //     console.log(data)
-  //     if (err) {
-  //       console.log(err.message)
-  //     }
-  //   }
-  // }).fail(function(err) {
-  //   console.log(err)
-  // });
-
   // populate navigation dropdowns
+  function dropdownOptions(departmentName, departmentNameFormatted, category, categoryFormatted, url) {
+    $.post(
+      url,
+      { Department: departmentName },
+      function(dropdowns, status) {
 
-  // replace with API call
-  $.get("data.json", function(data) {
-    // for each dropdown
-    $.each(data.navigation_options, function(dropdown_category, data) {
-      // for each dropdown sub-category
-      for (var option in data) {
-        if (data.hasOwnProperty(option)) {
-          var $dropdownColumn = $('<div>').addClass('dropdownColumn');
-          var $heading = $('<h4>').addClass('category').text(option);
-          $dropdownColumn = $dropdownColumn.append($heading);
+        var $dropdownColumn = $('<div>').addClass('dropdownColumn')
+        var $heading = $('<h4>').addClass('category').html(categoryFormatted)
+        $dropdownColumn = $dropdownColumn.append($heading)
+        let dropdownCount = 0
 
-          for (var i = 0; i < data[option].length; i++) {
+        for (let i = 0; i < dropdowns.length; i++) {
+          if (dropdownCount < 8 && dropdowns[i].DepartmentName == departmentName) {
             var $option = $('<li>')
-              .html(data[option][i])
-              .attr('data-product', dropdown_category)
-              .attr('data-filter', option)
-              .attr('data-option', data[option][i]);
-            $dropdownColumn = $dropdownColumn.append($option);
-          };
-          $('.dropdown.' + dropdown_category).prepend($dropdownColumn);
-        };
-      };
-    });
-  }).fail(function(err, message) {
-    console.log('err: ', message);
-  });
+              .html(dropdowns[i][category])
+              .attr('data-product', departmentName)
+              .attr('data-filter', category)
+              .attr('data-option', dropdowns[i][category])
+            $dropdownColumn = $dropdownColumn.append($option)
+            dropdownCount += 1
+          }
+        }
+        if (dropdownCount > 0) {
+          $('.dropdown.' + departmentNameFormatted).prepend($dropdownColumn)
+        }
+      }
+    )
+  }
+
+  $.each(navDepartments, function() {
+    for (let i = 0; i < navFilterCategories.length; i++) {
+      // console.log('getting ', navFilterCategories[i].category, ' of ', this.departmentName)
+      dropdownOptions(
+        this.departmentName,
+        this.departmentNameFormatted,
+        navFilterCategories[i].category,
+        navFilterCategories[i].categoryFormatted,
+        navFilterCategories[i].url
+      )
+    }
+  })
 
   // direct to catalog with correct query
   $('.navigation').on('click', '.dropdownColumn li', function() {

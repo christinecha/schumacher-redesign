@@ -6,7 +6,7 @@ let collectionName = 'ALL PRODUCTS'
 let collection
 if (collectionQuery >= 0) {
   collection = window.location.href.slice(collectionQuery + 12)
-  collectionName = collection.replace('%20', ' ')
+  collectionName = collection.replace(/%20/g, ' ')
 }
 $('.main-category-title').html(collectionName)
 

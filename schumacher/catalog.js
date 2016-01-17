@@ -1,7 +1,14 @@
 "use strict"
 
-// API urls
+// table of contents
+// 1 - API urls array for dropdowns
+// 2 - create initial search query from url params
+// 3 - dropdownOptions(): populate dropdowns with API data
+// 4 - function get Products with search query
+// 5 - trigger dropdownOptions()
 
+
+// 1 - API urls //////////////////////////////////////////////////////////////////////////////////////////
 let dropdownFilters = [
   { categoryFormatted: "Type", category: "Type", url: "//104.130.216.8/v8.1/api/Filter/GetTypeFilter"},
   { categoryFormatted: "Color", category: "ColorFamily", url: "//104.130.216.8/v8.1/api/Filter/GetColorFamilyFilter"},
@@ -12,8 +19,9 @@ let dropdownFilters = [
   { categoryFormatted: "Abrasion", category: "Abrasion", url: "//104.130.216.8/v8.1/api/Filter/GetAbrasionFilter"}
 ]
 
+// 2 - initial search query from url params //////////////////////////////////////////////////////////////////////////////////////////
 var selected_product = 'All Products'
-var selected_filters = []; // this array will contain the search query.
+var selected_filters = {}; // this object will contain all the selected filters for search
 
 // check if product page is selected
 var productQuery = window.location.href.indexOf('?product=')
@@ -31,17 +39,14 @@ if (window.location.href.indexOf('?') >= 0) {
     $('#' + product).addClass('selected-force')
     selected_product = product
     if (option) {
-      selected_filters.push({
-        filter: filter,
-        option: option
-      })
+      selected_filters[filter] = option
     }
   }
 }
 $('.main-category-title').html(selected_product)
 displaySelectedFilters(selected_filters)
 
-
+// 3 - populate dropdowns with API data //////////////////////////////////////////////////////////////////////////////////////////
 function dropdownOptions(departmentName, category, categoryFormatted, url) {
   $.post(
     url,
@@ -73,7 +78,6 @@ function dropdownOptions(departmentName, category, categoryFormatted, url) {
 
           // if the filter category is color, we need to add thumbnails
           if (category == 'ColorFamily') {
-            console.log($option)
             var $colorThumb = $('<div>')
               .addClass('color--thumbnail')
               .css('background-image', 'assets/color_thumbnails' + dropdowns[i][category] + '.png');
@@ -108,6 +112,7 @@ function dropdownOptions(departmentName, category, categoryFormatted, url) {
 
       var $applyButton = $('<button>')
         .addClass('dropdownButton')
+        .addClass('submitSearch')
         .css('width', '100%')
         .html('APPLY');
       $dropdown.append($applyButton)
@@ -117,6 +122,43 @@ function dropdownOptions(departmentName, category, categoryFormatted, url) {
   )
 }
 
+// 4 - function get Products with search query //////////////////////////////////////////////////////////////////////////////////////////
+function getProducts() {
+  $('.product-list').empty()
+  let query = { Department: selected_product }
+  for (filter in selected_filters) {
+    query[filter] = selected_filters[filter]
+  }
+  $.post(
+    "//104.130.216.8/v8.1/api/Product/GetProducts",
+    query,
+    function(data, status) {
+      let products = data.GetProducts
+      console.log(products)
+      $('.numOfResults').html(products.length)
+      for (let i = 0; i < products.length; i++) {
+        let $productPreview = $('<div>').addClass('product-preview large-4 columns')
+        let $productThumb = $('<div>').addClass('product-thumb').css('background-image', `url('${products[i].Item_Image_URL_400}')`)
+        let $favorite = $('<img>').addClass('favorite').attr('src', 'assets/favorite-icon.svg')
+        let $productInfo = $('<div>').addClass('product-info')
+        let $quickshop = $('<div>').addClass('quickshop').html('QUICKSHOP')
+        let $productType = $('<div>').addClass('product-type').html(products[i].Department)
+        let $productName = $('<div>').addClass('product-name').html(products[i].Item_Name)
+        let $productId = $('<div>').addClass('product-id')
+        let $productSku = $('<span>').addClass('product-sku').html(products[i].ItemSku)
+        let $productColor = $('<span>').addClass('product-color').html(products[i].Item_Color)
+        let $productPrice = $('<div>').addClass('product-price').html(products[i].Selling_Price_USD)
+        $productId.append($productColor, ' ', $productSku)
+        $productInfo.append($quickshop, $productType, $productName, $productId, $productPrice)
+        $productPreview.append($productThumb, $favorite, $productInfo)
+        $('.product-list').append($productPreview)
+      }
+    }
+  )
+}
+getProducts()
+
+// 5 - trigger dropdownOptions() //////////////////////////////////////////////////////////////////////////////////////////
 $.each(dropdownFilters, function() {
   console.log('getting ', this.category)
   dropdownOptions(
@@ -127,10 +169,10 @@ $.each(dropdownFilters, function() {
   )
 })
 
-
-
-var thumbnailWidth = $('.product-thumb').css('width');
-$('.product-thumb').css('height', thumbnailWidth);
+// 6 - trigger getProducts(query) //////////////////////////////////////////////////////////////////////////////////////////
+$(document).on('click', '.submitSearch', function() {
+  getProducts()
+})
 
 // if you click a side filter, the page refreshes with the new query string
 $('.sub-category').on('click', 'li', function() {
@@ -139,30 +181,28 @@ $('.sub-category').on('click', 'li', function() {
   location.href = "catalog.html?product=" + selected_product + "&filter=" + filter + "&option=" + option;
 });
 
-// mark main filter options as selected/unselected
+// add/remove filter options to selected_filters array
 $('.filter-dropdowns').on('click', 'li', function(){
   var filter = $(this).attr('data-filter');
   var option = $(this).attr('data-option');
 
   // check if already added to query
-  function alreadyAdded() {
-    for (var i = 0; i < selected_filters.length; i++) {
-      if (selected_filters[i].filter == filter && selected_filters[i].option == option) {
-        return true
+  if (selected_filters[filter]) {
+    let filterOptions = selected_filters[filter].split(',')
+    for (var i = 0; i < filterOptions.length; i++) {
+      if (filterOptions[i] == option) {
+        $(this).removeClass('selected')
+        filterOptions.splice(i, 1)
+        selected_filters[filter] = filterOptions.join(',')
+        return false
       }
     }
-    return false
-  }
-
-  if (alreadyAdded() == true) {
-    $(this).removeClass('selected')
-    selected_filters.splice(index, 1)
+    $(this).addClass('selected')
+    filterOptions.push(option)
+    selected_filters[filter] = filterOptions.join(',')
   } else {
     $(this).addClass('selected')
-    selected_filters.push({
-      filter: filter,
-      option: option
-    })
+    selected_filters[filter] = option
   }
 
   displaySelectedFilters(selected_filters)
@@ -172,9 +212,17 @@ $('.filter-dropdowns').on('click', 'li', function(){
 $('.selected-filters').on('click', '.selected-filter', function() {
   var filter = $(this).attr('data-filter');
   var option = $(this).attr('data-option');
-  for (var i = 0; i < selected_filters.length; i++) {
-    if (selected_filters[i].filter == filter && selected_filters[i].option == option) {
-      selected_filters.splice(i, 1)
+
+  let filterOptions = selected_filters[filter].split(',')
+  for (var i = 0; i < filterOptions.length; i++) {
+    if (filterOptions[i] == option) {
+      $(this).removeClass('selected')
+      filterOptions.splice(i, 1)
+      if (filterOptions.lenght > 0) {
+        selected_filters[filter] = filterOptions.join(',')
+      } else {
+        delete selected_filters[filter]
+      }
     }
   }
   displaySelectedFilters(selected_filters)
@@ -184,16 +232,21 @@ $('.selected-filters').on('click', '.selected-filter', function() {
 function displaySelectedFilters(selected_filters) {
   $('.selected-filter').remove();
   $('.filter-title').removeClass('in-use');
-  for (var i = 0; i < selected_filters.length; i++) {
-    var $selected_filter = $('<div>')
-      .addClass('selected-filter')
-      .html(selected_filters[i].option)
-      .attr('data-filter', selected_filters[i].filter)
-      .attr('data-option', selected_filters[i].option)
-      .append('<span class="remove">x</span>');
-    $('.selected-filters').append($selected_filter);
-    $('.filter-title #' + selected_filters[i].filter).addClass('in-use');
-  };
+
+  for (filter in selected_filters) {
+    let filterOptions = selected_filters[filter].split(',')
+
+    for (var i = 0; i < filterOptions.length; i++) {
+      var $selected_filter = $('<div>')
+        .addClass('selected-filter')
+        .html(filterOptions[i])
+        .attr('data-filter', filter)
+        .attr('data-option', filterOptions[i])
+        .append('<span class="remove">x</span>');
+      $('.selected-filters').append($selected_filter);
+      $('.filter-title #' + filter).addClass('in-use');
+    }
+  }
 }
 
 // toggle collapse side filters
@@ -206,4 +259,4 @@ $('.sub-category-title').on('click', function() {
   } else {
     $(this).children('.caret').html('&#9660;');
   }
-});
+})

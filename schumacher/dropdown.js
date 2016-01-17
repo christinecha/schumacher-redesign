@@ -5,7 +5,7 @@ $('.footer').load('footer.html', function() {
 $('.navigation').load('nav.html', function() {
   var productQuery = window.location.href.indexOf('?product=')
   var filterQuery = window.location.href.indexOf('&filter=')
-  if (window.location.href.indexOf('?') >= 0) {
+  if (productQuery >= 0) {
     if (filterQuery < productQuery) {
       var product = window.location.href.slice(productQuery + 9)
     } else {

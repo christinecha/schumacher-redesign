@@ -31,6 +31,7 @@
   border-left: 1px solid #ddd;
   padding-right: 0;
   padding-left: 30px;
+  min-height: 500px; 
 }
 
 .selected-filters {
@@ -96,7 +97,8 @@
   vertical-align: middle;
 }
 
-.product-list { margin: 0 -0.9375rem; }
+.product-list { min-height: 100%; }
+.product-preview:last-child { float: left !important; }
 
 .product-thumb {
   width: 100%;
@@ -107,11 +109,11 @@
 
 .product-type { font-size: 10px; color: #999; }
 .product-name { font-weight: bold; font-size: 14px; }
+.product-name:hover { opacity: .7; }
 
 .favorite { width: 16px; float: right; margin-top: 10px; }
 
 .product-info { padding-bottom: 10px; cursor: pointer; margin-top: -10px; }
-.product-info:hover { border-bottom: 4px solid #ccc; }
 
 .quickshop {
   font-weight: bold;

@@ -1,0 +1,102 @@
+@font-face {
+    font-family: 'Gotham';
+    src: url("../fonts/Gotham-Light.ttf");
+}
+
+@font-face {
+    font-family: 'Gotham';
+    src: url("../fonts/Gotham-Bold.ttf");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Chronicle';
+    src: url("../fonts/ChronicleTextG1/ChronicleTextG1-Roman1.ttf");
+}
+
+@font-face {
+    font-family: 'Chronicle';
+    src: url("../fonts/ChronicleTextG1/ChronicleTextG1-Italic1.ttf");
+    font-style: italic;
+}
+
+body, *, a, a:hover {
+  color: #555759;
+  letter-spacing: .05em;
+  outline: none;
+}
+
+p {
+  margin-bottom: 5px;
+}
+
+.columns {
+  padding: 0.375rem;
+}
+
+.section-title {
+  margin-top: 30px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  font-family: 'Gotham', sans-serif;
+  font-size: 18px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  text-align: center;
+  border-bottom: 1px solid #aaa;
+}
+
+/*.section-title .line {
+  content: "";
+  height: 5px;
+  border-bottom: 1px solid #888;
+  top: 25px;
+  width: 600px;
+}*/
+
+.section-title span:before {
+  right: 100%;
+  margin-right: 15px;
+}
+.section-title span:after {
+  left: 100%;
+  margin-left: 15px;
+}
+
+.homepage-tile {
+  opacity: 1;
+  cursor: pointer;
+  transition: opacity .1s ease-in-out;
+  -moz-transition: opacity .1s ease-in-out;
+  -webkit-transition: opacity .1s ease-in-out;
+}
+.homepage-tile:hover { opacity: .7; }
+
+.pinboard {
+  background: url('../assets/linen-texture.png');
+  background-size: cover;
+  padding: 20px;
+}
+
+.featured-product {
+  display: inline-block;
+}
+
+.featured-product--thumb {
+  background: url('../assets/linen-texture.png') #fff;
+  background-size: cover;
+  width: 180px;
+  height: 180px;
+  box-shadow: 0 0 2px;
+  margin: 10px;
+}
+
+.featured-product--info {
+  font-family: 'Gotham', sans-serif;
+  text-align: center;
+  font-size: 12px;
+}
+
+.featured-product--color {
+  font-weight: bold;
+}

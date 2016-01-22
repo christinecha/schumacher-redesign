@@ -11,6 +11,7 @@ let product_props = [
 
 function getProduct(sku) {
   $('.quickshop-modal').empty()
+  console.log(sku)
   $.post(
     "//104.130.216.8/v8.1/api/Product/GetProduct",
     { ItemSku: sku },
@@ -66,6 +67,9 @@ function getProduct(sku) {
       )
       $productPreview.append($productThumb)
       $('.quickshop-modal').append($productPreview, $productInfo)
+
+      $('.quickshop-overlay').show()
+      $('body').css('overflow', 'hidden')
     }
   )
 }
@@ -74,8 +78,6 @@ function getProduct(sku) {
 $('.catalog').on('click', '.quickshop', function() {
   let sku = $(this).attr('data-sku')
   getProduct(sku)
-  $('.quickshop-overlay').show()
-  $('body').css('overflow', 'hidden')
 })
 
 $('.quickshop-overlay').on('click', '.exit-quickshop', function() {

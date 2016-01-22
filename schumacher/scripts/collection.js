@@ -23,7 +23,10 @@ $('.main-category-title').html(collectionName)
 
 function getProducts(key, value, url) {
   $('.product-list').empty()
-  let query = {}
+  let query = {
+    Rows_per_page: 9,
+    Page_number: 1
+  }
   query[key] = value
   console.log(query)
   $.post(
@@ -34,19 +37,21 @@ function getProducts(key, value, url) {
       let departments = []
       $('.numOfResults').html(products.length)
       for (let i = 0; i < products.length; i++) {
-        // for (let i = 0; i < departments.length; i++) {
-        //   if (departments[i] == products[i].Department) {
-        //     // do nothing
-        //   } else {
-        //     departments.push(products[i].Department)
-        //   }
-        // }
-        // console.log(departments)
+        let alreadyListedDepartment = false
+        for (let i = 0; i < departments.length; i++) {
+          if (departments[i] == products[i].Department) {
+            alreadyListedDepartment = true
+          }
+        }
+        if (alreadyListedDepartment == false) {
+          departments.push(products[i].Department)
+        }
+        console.log(departments)
         let $productPreview = $('<div>').addClass('product-preview large-4 columns')
         let $productThumb = $('<div>').addClass('product-thumb').css('background-image', `url('${products[i].Item_Image_URL_400}')`)
         let $favorite = $('<img>').addClass('favorite').attr('src', '../assets/favorite-icon.svg')
         let $productInfo = $('<div>').addClass('product-info')
-        let $quickshop = $('<div>').addClass('quickshop').html('QUICKSHOP')
+        let $quickshop = $('<div>').addClass('quickshop').html('QUICKSHOP').attr('data-sku', products[i].ItemSku)
         let $productType = $('<div>').addClass('product-type').html(products[i].Department)
         let $productName = $('<div>').addClass('product-name').html(products[i].Item_Name)
         let $productId = $('<div>').addClass('product-id')
@@ -57,6 +62,13 @@ function getProducts(key, value, url) {
         $productInfo.append($quickshop, $productType, $productName, $productId, $productPrice)
         $productPreview.append($productThumb, $favorite, $productInfo)
         $('.product-list').append($productPreview)
+      }
+      for (let i = 0; i < departments.length; i++) {
+        let url = '/html/catalog.html?product=' + departments[i] + '&filter=Collection&option=' + collection
+        let $option = $('<a>').attr('href', url)
+        let $optionText = $('<li>').html(departments[i])
+        $option.append($optionText)
+        $('.sub-category.product').append($option)
       }
     }
   )
@@ -72,6 +84,7 @@ $('.sub-category').on('click', 'li', function() {
 // toggle collapse side filters
 $('.sub-category-title').on('click', function() {
   $(this).siblings('li').toggle();
+  $(this).siblings('a').toggle();
   $(this).toggleClass('collapsed');
 
   if ($(this).hasClass('collapsed') == true) {

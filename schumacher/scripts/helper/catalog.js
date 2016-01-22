@@ -156,9 +156,9 @@ function getProducts() {
         $productPreview.append($productThumb, $favorite, $productInfo)
         $('.product-list').append($productPreview)
       }
+      makeSquareThumbnails()
     }
   )
-  makeSquareThumbnails()
 }
 getProducts()
 

@@ -81,13 +81,15 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
               if (category == 'ColorFamily') {
                 var $colorThumb = $('<div>')
                   .addClass('color--thumbnail')
-                  .css('background-image', '../assetscolor_thumbnails' + dropdowns[i][category] + '.png');
+                  .css('background-image', '../assetscolor_thumbnails' + dropdowns[i][category] + '.png')
                 $option = $option.prepend($colorThumb);
               }
 
               // if the filter category is type, we also need to add them to the side-bar filters
               if (category == 'Type') {
-                $('.sub-category.type').append($option.clone())
+                let filteredUrl = window.location.pathname + '?product=' + departmentName + '&filter=' + category + '&option=' + dropdowns[i][category]
+                let $sideBarOption = $('<a>').attr('href', filteredUrl).append($option.clone())
+                $('.sub-category.type').append($sideBarOption)
               }
 
               // if the filter category has more than 8 options, we need to split it into columns
@@ -226,16 +228,23 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
       $('.filter-dropdowns').on('mousemove', '.dropdown.Price', function(e){
         if (priceSliderActivated == true) {
           let newX = e.pageX - originalX
-          if (newX >=185) {
+          let scale = scaleMax / 185
+          let max = Math.ceil((newX * scale) / increment) * increment
+
+          if (newX <= 0) {
+            newX = 0
+            max = increment
+            priceCaption = 'NO LIMIT'
+          } else if (newX >=185) {
             newX = 185
+            max = scaleMax
             delete selected_filters.PriceTo
             priceCaption = 'NO LIMIT'
-          } else {
-            let scale = scaleMax / 185
-            let max = Math.ceil((newX * scale) / increment) * increment
-            selected_filters.PriceTo = max
-            priceCaption = '$0 - $' + max
           }
+
+          selected_filters.PriceTo = max
+          priceCaption = '$0 - $' + max
+
           $(this).children('.slider-handle').css('margin-left', newX + 'px')
           $('.price-display').html(priceCaption)
         }

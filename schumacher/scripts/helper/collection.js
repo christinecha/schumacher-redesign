@@ -13,7 +13,7 @@ if (collectionQuery >= 0) {
 if (collection == 'favorites') {
   collectionName = 'My Favorites'
   getProducts('UserId', 1, "//104.130.216.8/v8.1/api/Favorite/GetFavorites")
-} else if (collection.length > 0) {
+} else if ((collection) && collection.length > 0) {
   getProducts('Collection', collectionName, "//104.130.216.8/v8.1/api/Product/GetProducts")
 } else {
   // do nothing

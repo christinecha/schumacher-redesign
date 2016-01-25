@@ -32,6 +32,7 @@
   padding-right: 0;
   padding-left: 30px;
   min-height: 500px;
+  margin-bottom: 50px;
 }
 
 .selected-filters {
@@ -67,14 +68,13 @@
   display: inline-block;
 }
 
-.filter-options { margin: 10px 0 20px 0; }
+.filter-options { margin-top: 10px; }
+.filter-options .secondary { margin: 0 -3px; }
 .filter-options .filter-title { width: 15%; min-width: 130px; }
 .filter-options .filter-title.in-use { background-color: #eee; }
 
-.filter-options .caret {
-  float: right;
-  margin-top: 5px;
-}
+.filter-options .caret { float: right; margin-top: 5px; }
+.filter-options .checkbox { float: right; margin-top: 2px; margin-bottom: 0; }
 
 .filter-options .filter-title:hover,
 .filter-options .filter-title.filter-selected { background-color: #eee; }
@@ -82,6 +82,19 @@
 .filter-dropdowns .dropdown { height: inherit; }
 .catalog .dropdown li.selected { font-weight: bold; }
 .filter-dropdowns .dropdownButton { margin: 10px 0; display: block; }
+
+.pricing-slider { width: 200px; height: 5px; background-color: #eee; overflow: visible; cursor: pointer; }
+.pricing-slider .slider-handle {
+  height: 15px;
+  width: 15px;
+  background-color: #fff;
+  border: 2px solid #555759;
+  border-radius: 100%;
+  position: relative;
+  top: -5px;
+  margin-left: 185px;
+}
+.price-display { margin: 10px 0 5px 0; text-align: center; }
 
 .color .toggleColors {
   margin-top: 10px;
@@ -98,6 +111,10 @@
 }
 
 /*product preview*/
+.pagination { text-align: right; }
+.page-number { text-decoration: underline; margin: 0 5px; cursor: pointer; }
+.page-number.selected { font-weight: bold; text-decoration: none;}
+
 .product-list { min-height: 100%; }
 .product-preview:last-child { float: left !important; }
 

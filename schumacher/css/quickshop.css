@@ -69,3 +69,15 @@
   display: inline-block;
   margin-right: 10px;
 }
+
+.quickshop-modal .product-shop--ordertypes {
+  width: 180px;
+  margin-left: 15px;
+  display: inline-block;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.quickshop-modal .addToBag {
+  width: 340px;
+}

@@ -16,9 +16,22 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
       }
     }
 
-    $('.main-category-title').html(selected_product)
-    displaySelectedFilters(selected_filters)
-
+    if (url_params.path.indexOf('catalog') >= 0) {
+      $('.main-category-title').html(selected_product)
+      displaySelectedFilters(selected_filters)
+      getProducts()
+      $.each(catalogFilters(), function() {
+        console.log('getting ', this.category)
+        if (!this.onlyShowFor || this.onlyShowFor == selected_product) {
+          getFilterDropdowns(
+            selected_product,
+            this.category,
+            this.categoryFormatted,
+            this.url
+          )
+        }
+      })
+    }
 
     function getFilterDropdowns(departmentName, category, categoryFormatted, url) {
       let $caret = $('<span>').html('&#9660;').addClass('caret');
@@ -172,19 +185,6 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
         makeSquareThumbnails()
       })
     }
-    getProducts()
-
-    $.each(catalogFilters(), function() {
-      console.log('getting ', this.category)
-      if (!this.onlyShowFor || this.onlyShowFor == selected_product) {
-        getFilterDropdowns(
-          selected_product,
-          this.category,
-          this.categoryFormatted,
-          this.url
-        )
-      }
-    })
 
     // trigger getProducts on different events
     $(document).on('click', '.submitSearch', function() {
@@ -215,8 +215,10 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
     let priceSliderActivated = false
     let priceCaption = 'NO LIMIT'
     let scaleMax = 300
+    let increment = 10
     if (selected_product == "Furniture") {
       scaleMax = 4000
+      increment = 100
     }
     $('.filter-dropdowns').on('mousedown', '.pricing-slider', function(e){
       priceSliderActivated = true
@@ -230,7 +232,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
             priceCaption = 'NO LIMIT'
           } else {
             let scale = scaleMax / 185
-            let max = Math.ceil((newX * scale) / 10) * 10
+            let max = Math.ceil((newX * scale) / increment) * increment
             selected_filters.PriceTo = max
             priceCaption = '$0 - $' + max
           }

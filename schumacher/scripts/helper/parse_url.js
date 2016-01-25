@@ -8,7 +8,7 @@ function parseUrl() {
     option: window.location.href.indexOf('&option='),
   }
 
-  let url_params = {}
+  let url_params = { path: window.location.pathname }
 
   let parsedUrl = ''
   let startOfParams = window.location.href.indexOf('?') + 1

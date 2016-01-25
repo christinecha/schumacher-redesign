@@ -21,7 +21,6 @@ if (collection == 'favorites') {
 
 $('.main-category-title').html(collectionName)
 
-let retryCount = 0
 function getProducts(key, value, url) {
   $('.product-list').empty()
   let query = {
@@ -72,14 +71,7 @@ function getProducts(key, value, url) {
         $('.sub-category.product').append($option)
       }
     }
-  ).fail(function(key, value, url) {
-    while (retryCount < 10) {
-      console.log('trying again')
-      getProducts(key, value, url)
-      retryCount++
-    }
-    console.log('retry limit reached.')
-  })
+  )
 }
 
 // if you click a side filter, the page refreshes with the new query string

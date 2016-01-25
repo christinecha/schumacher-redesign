@@ -48,11 +48,15 @@ function getProduct(sku) {
       let $productShopForm = $('<div>').addClass('product-shop')
       let $quantity = $('<input>').addClass('product-shop--quantity').attr('type', 'number').attr('min', 1).attr('step', 1).val(1)
       let $units = $('<span>').html(productInfo.UnitOfMeasure)
+      let $orderTypes = $('<select>')
+                          .addClass('product-shop--ordertypes')
+                          .append($('<option>').html('Product Order'))
+                          .append($('<option>').html('Reserve'))
+                          .append($('<option>').html('Reserve with Cfa'))
+                          .append($('<option>').html('Memo'))
+      let $addToBag = $('<button>').addClass('addToBag').addClass('dropdownButton').html('ADD TO SHOPPING BAG')
 
-      $productShopForm.append(
-        $quantity,
-        $units
-      )
+      $productShopForm.append($quantity, $units, $orderTypes, $addToBag)
 
       $productInfo.append(
         $productName,

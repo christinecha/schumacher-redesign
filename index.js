@@ -17,7 +17,7 @@ $(() => {
           let $slide = $('<div>')
             .css('display', 'inline-block')
           let $image = $('<div>')
-            .css('background-image', 'url(' + slide + ')')
+            .css('background-image', 'url(' + slide.image + ')')
             .css('background-size', 'cover')
             .css('width', '300px')
             .css('height', '150px')
@@ -31,7 +31,24 @@ $(() => {
             .append('<span class="back"><</span>')
             .append('&nbsp;&nbsp;&nbsp;')
             .append('<span class="forward">></span>')
-          $slide.append($image, $arrows)
+
+          let $linkUrlInput = $('<input>')
+            .attr('type', 'text')
+            .addClass('linkUrlInput')
+            .css('width', '60%')
+            .css('display', 'inline-block')
+            .val(slide.link)
+          let $linkUrlButton = $('<button>')
+            .css('width', '35%')
+            .css('padding', '10px')
+            .css('float', 'right')
+            .html('update link')
+          let $linkUrlForm = $('<form>')
+            .attr('data-index', i)
+            .addClass('linkUrlForm')
+            .append($linkUrlInput, $linkUrlButton)
+
+          $slide.append($image, $arrows, $linkUrlForm)
           $('.slideshow').append($slide)
         })
       }
@@ -72,10 +89,10 @@ $(() => {
               let $image = $('<div>')
                 .attr('data-index', j)
                 .append('<span class="delete">X</span>')
-                .css('background-image', 'url(' + imageURL + ')')
+                .css('background-image', 'url(' + imageURL.image + ')')
                 .css('background-size', 'cover')
-                .css('width', '200px')
-                .css('height', '250px')
+                .css('width', '300px')
+                .css('height', '350px')
                 .css('margin', '0 2.5px')
               let $arrows = $('<div>')
                 .attr('data-rowindex', i)
@@ -85,7 +102,23 @@ $(() => {
                 .append('&nbsp;&nbsp;&nbsp;')
                 .append('<span class="forward">></span>')
 
-              $imageContainer.append($image, $arrows)
+              let $linkUrlInput = $('<input>')
+                .attr('type', 'text')
+                .css('width', '60%')
+                .css('display', 'inline-block')
+                .val(imageURL.link)
+              let $linkUrlButton = $('<button>')
+                .css('width', '35%')
+                .css('padding', '10px')
+                .css('float', 'right')
+                .html('update link')
+              let $linkUrlForm = $('<form>')
+                .addClass('linkUrlForm')
+                .attr('data-rowindex', i)
+                .attr('data-index', j)
+                .append($linkUrlInput, $linkUrlButton)
+
+              $imageContainer.append($image, $linkUrlForm, $arrows)
               $row.append($imageContainer)
             })
 
@@ -152,6 +185,18 @@ $(() => {
   $('.slideshow').on('click', '.delete', function() {
     let slideNum = parseInt($(this).parent().attr('data-index'))
     ref.child("home").child("slideshow").child(slideNum).remove(loadData())
+  })
+
+  $('.slideshow').on('submit', '.linkUrlForm', function(e) {
+    e.preventDefault()
+    let slideNum = parseInt($(this).attr('data-index'))
+    let imageURL = $(this).children('.linkUrlInput').val()
+    if (imageURL.indexOf('http') < 0) {
+      imageURL = 'http://' + imageURL
+    }
+    ref.child("home").child("slideshow").child(slideNum).update({
+      link: imageURL
+    })
   })
 
   $('#slideshowForm').submit(function(e) {

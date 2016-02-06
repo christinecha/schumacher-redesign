@@ -214,6 +214,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
           selected_filters[filter] = false
         }
       }
+      $(this).parent('.dropdown').hide()
       getProducts()
     })
 

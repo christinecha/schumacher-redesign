@@ -94,6 +94,10 @@
   top: -5px;
   margin-left: 185px;
 }
+.pricing-slider .slider-handle-min { margin-left: 0; }
+.pricing-slider .slider-handle-max { margin-top: -15px; }
+
+
 .price-display { margin: 10px 0 5px 0; text-align: center; }
 
 .color .toggleColors {

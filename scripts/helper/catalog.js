@@ -6,6 +6,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
   requirejs(["../scripts/helper/api_calls.js"], function() {
 
     let selected_product = 'All Products'
+    let selected_collection = 'All Products'
     let selected_filters = {}; // this object will contain all the selected filters for search
 
     if (url_params.product && $('#' + url_params.product)) {
@@ -14,6 +15,9 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
       if (url_params.filter && url_params.option) {
         selected_filters[url_params.filter] = url_params.option
       }
+    } else if (url_params.collection) {
+      selected_collection = url_params.collection
+      selected_filters['collection'] = selected_collection
     }
 
     if (url_params.path.indexOf('catalog') >= 0) {
@@ -31,6 +35,10 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
           )
         }
       })
+    } else if (url_params.path.indexOf('collection') >= 0) {
+      $('.main-category-title').html(selected_product)
+      displaySelectedFilters(selected_filters)
+      getProducts()
     }
 
     function getFilterDropdowns(departmentName, category, categoryFormatted, url) {

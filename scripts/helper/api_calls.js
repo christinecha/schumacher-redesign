@@ -13,6 +13,7 @@ function getData(request, url, fn) {
 function catalogFilters() {
   return [
     { categoryFormatted: "Type", category: "Type", url: "//104.130.216.8/v8.1/api/Filter/GetTypeFilter"},
+    { categoryFormatted: "Motif", category: "Motif", url: "//104.130.216.8/v8.1/api/Filter/GetMotifFilter"},
     { categoryFormatted: "Color", category: "ColorFamily", url: "//104.130.216.8/v8.1/api/Filter/GetColorFamilyFilter"},
     { categoryFormatted: "Style", category: "Style", url: "//104.130.216.8/v8.1/api/Filter/GetStyleFilter"},
     { categoryFormatted: "Application", category: "EndUse", url: "//104.130.216.8/v8.1/api/Filter/GetEndUseFilter"},

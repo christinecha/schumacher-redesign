@@ -51,7 +51,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
         .attr('id', categoryFormatted)
       let $dropdown = $('<div>')
         .addClass('dropdown')
-        .addClass(categoryFormatted)
+        .addClass(category)
       let $applyButton = $('<button>')
         .addClass('dropdownButton')
         .addClass('submitSearch')
@@ -115,6 +115,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
           for (var i in $dropdownColumns) {
             $dropdown.prepend($dropdownColumns[i]);
           };
+          console.log($dropdownColumns)
 
           $dropdown.append($applyButton)
 
@@ -128,7 +129,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
       pageNumber = !pageNumber ? 1 : pageNumber
       let query = {
         Department: selected_product,
-        Rows_per_page: 9,
+        Rows_per_page: 30,
         Page_number: pageNumber
       }
       for (var filter in selected_filters) {
@@ -140,7 +141,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
         $('.pagination').empty()
         let products = data.GetProducts
         let productCount = data.Count
-        let pageCount = Math.ceil(data.Count / 9)
+        let pageCount = Math.ceil(data.Count / 30)
         let currentPage = parseInt(query.Page_number)
 
         $('.numOfResults').html(productCount)
@@ -198,6 +199,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
 
     // trigger getProducts on different events
     $(document).on('click', '.submitSearch', function() {
+      displaySelectedFilters(selected_filters)
       if ($(this).attr('type') == 'checkbox') {
         let filter = $(this).parent().attr('id')
         if (!selected_filters[filter] || selected_filters[filter] == false) {
@@ -291,7 +293,6 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
         $(this).addClass('selected')
         selected_filters[filter] = option
       }
-      displaySelectedFilters(selected_filters)
     });
 
     // remove selected filter by clicking on it
@@ -302,7 +303,8 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
       let filterOptions = selected_filters[filter].split(',')
       for (var i = 0; i < filterOptions.length; i++) {
         if (filterOptions[i] == option) {
-          $(this).removeClass('selected')
+          console.log($('.dropdown.' + filter + ' .dropdownColumn li[data-option="' + option + '"]'))
+          $('.dropdown.' + filter + ' .dropdownColumn li[data-option="' + option + '"]').removeClass('selected')
           filterOptions.splice(i, 1)
           if (filterOptions.length > 0) {
             selected_filters[filter] = filterOptions.join(',')

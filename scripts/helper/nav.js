@@ -81,8 +81,12 @@ $(function() {
   // direct to catalog with correct query
   $('.navigation').on('click', 'li.catalog-link', function() {
     console.log('clicked')
-    var product = $(this).attr('id').replace('-', '');
-    location.href = "catalog.html?product=" + product;
+    if ($(this).attr('data-department')) {
+      var department = $(this).attr('data-department')
+    } else {
+      var department = $(this).attr('id').replace('-', '');
+    }
+    location.href = "catalog.html?product=" + department;
   });
 
 

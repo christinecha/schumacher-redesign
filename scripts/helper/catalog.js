@@ -48,7 +48,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
         .addClass('filter-title')
         .addClass('dropdown-selector')
         .html(categoryFormatted)
-        .attr('id', categoryFormatted)
+        .attr('id', category)
       let $dropdown = $('<div>')
         .addClass('dropdown')
         .addClass(category)
@@ -115,17 +115,23 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
           for (var i in $dropdownColumns) {
             $dropdown.prepend($dropdownColumns[i]);
           };
-          console.log($dropdownColumns)
 
-          $dropdown.append($applyButton)
+          if ($dropdown.children('.dropdownColumn')[0].childNodes.length <= 0) {
+            // $('#' + category).hide()
+          } else {
+            $dropdown.append($applyButton)
+            $('.filter-dropdowns').append($dropdown)
+          }
 
-          $('.filter-dropdowns').append($dropdown)
+
         })
       }
     }
 
     // 4 - function get Products with search query //////////////////////////////////////////////////////////////////////////////////////////
     function getProducts(pageNumber) {
+      $('.product-list').html('<br>loading results...')
+
       pageNumber = !pageNumber ? 1 : pageNumber
       let query = {
         Department: selected_product,

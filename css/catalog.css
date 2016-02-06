@@ -68,7 +68,7 @@
   display: inline-block;
 }
 
-.filter-options { margin-top: 10px; }
+.filter-options { margin: 10px -3px; }
 .filter-options .secondary { margin: 0 -3px; }
 .filter-options .filter-title { width: 15%; min-width: 130px; }
 .filter-options .filter-title.in-use { background-color: #eee; }

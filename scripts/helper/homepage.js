@@ -8,9 +8,9 @@ $(() => {
     let homepageData = snapshot.val()
 
     if (homepageData.slideshow) {
-      homepageData.slideshow.forEach((i) => {
+      homepageData.slideshow.forEach((slide, i) => {
         let $slide = $('<img>')
-          .attr('src', i)
+          .attr('src', slide.image)
           .attr('width', '100%')
         $('.slideshow').append($slide)
       })
@@ -25,26 +25,26 @@ $(() => {
     }
 
     if (homepageData.rows) {
-      homepageData.rows.forEach((i) => {
+      homepageData.rows.forEach((row, i) => {
 
-        if (i.title) {
+        if (row.title) {
           let $sectionTitle = $('<div>')
             .addClass('row section-title homepage-tile')
-            .append('<span>' + i.title + '</span>')
+            .append('<span>' + row.title + '</span>')
           $('.home-dynamic').append($sectionTitle)
         }
 
-        if (i.images) {
-          let columnWidth = 12 / i.images.length
+        if (row.images) {
+          let columnWidth = 12 / row.images.length
           console.log(columnWidth)
           let $row = $('<div>')
             .addClass('row')
 
-          i.images.forEach((j) => {
+          row.images.forEach((image, j) => {
             let $imageContainer = $('<div>')
               .addClass('medium-' + columnWidth + ' large-' + columnWidth + ' columns homepage-tile')
             let $image = $('<img>')
-              .attr('src', j)
+              .attr('src', image.image)
               .attr('width', '100%')
 
             $imageContainer.append($image)

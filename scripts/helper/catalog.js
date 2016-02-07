@@ -58,7 +58,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
           query[filter] = selected_filters[filter]
         }
 
-        getData(query, "//104.130.216.8/v8.1/api/Product/GetProducts", function(data) {
+        getData(query, "//104.130.216.8/v10/api/Product/GetProducts", function(data) {
           $('.product-list').empty()
           $('.pagination').empty()
           let products = data.GetProducts

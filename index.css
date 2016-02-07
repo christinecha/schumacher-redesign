@@ -1,3 +1,13 @@
+input, button {
+  font-size: 12px !important;
+  padding: 10px !important;
+  height: 35px !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  margin: 0 0 0 0 !important;
+}
+
 .delete {
   background-color: #fff;
   padding: 5px;
@@ -7,4 +17,30 @@
 
 .delete:hover {
   opacity: 1;
+}
+
+.arrowsContainer {
+  margin-top: -30px;
+  background-color: rgba(255,255,255,.8);
+  font-size: 20px;
+  color: #616162;
+}
+
+.arrow:hover {
+  color: #00aaef;
+}
+
+.linkUrlForm {
+  background-color: #323233;
+  padding: 5px;
+}
+
+.check {
+  margin-left: -30px;
+  color: #55aa00;
+}
+
+#slideshowForm {
+  background-color: #f1f1f2;
+  padding: 5px;
 }

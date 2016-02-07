@@ -4,6 +4,36 @@ $(() => {
 
   let ref = new Firebase("https://schumacher.firebaseio.com/")
 
+  // create JQUERY object skeletons
+  let $slide = $('<div>')
+    .css('display', 'inline-block')
+    .css('border', '2px solid white')
+  let $image = $('<div>')
+    .css('background-size', 'cover')
+    .css('width', '300px')
+    .css('height', '150px')
+    .css('vertical-align', 'top')
+    .append('<span class="delete">X</span>')
+  let $arrows = $('<div>')
+    .addClass('arrowsContainer')
+    .css('text-align', 'center')
+    .append('<i class="back arrow fa fa-arrow-circle-o-left"></i>')
+    .append('&nbsp;&nbsp;&nbsp;')
+    .append('<i class="forward arrow fa fa-arrow-circle-o-right"></i>')
+  let $linkUrlInput = $('<input>')
+    .attr('type', 'text')
+    .addClass('linkUrlInput')
+    .css('width', '60%')
+    .css('display', 'inline-block')
+  let $linkUrlButton = $('<button>')
+    .css('width', '35%')
+    .css('padding', '10px')
+    .css('float', 'right')
+    .html('update link')
+  let $linkUrlForm = $('<form>')
+    .addClass('linkUrlForm')
+
+  // load data from Firebase
   const loadData = () => {
 
     ref.child("home").once("value", (snapshot) => {
@@ -13,43 +43,18 @@ $(() => {
         $('.slideshow').empty()
 
         homepageData.slideshow.forEach((slide, i) => {
-          let index = homepageData.slideshow.indexOf(slide)
-          let $slide = $('<div>')
-            .css('display', 'inline-block')
-          let $image = $('<div>')
+          let $slideClone = $slide.clone()
+          let $imageClone = $image.clone()
             .css('background-image', 'url(' + slide.image + ')')
-            .css('background-size', 'cover')
-            .css('width', '300px')
-            .css('height', '150px')
-            .css('border', '2px solid white')
-            .css('vertical-align', 'top')
             .attr('data-index', i)
-            .append('<span class="delete">X</span>')
-          let $arrows = $('<div>')
-            .attr('data-index', i)
-            .css('text-align', 'center')
-            .append('<span class="back"><</span>')
-            .append('&nbsp;&nbsp;&nbsp;')
-            .append('<span class="forward">></span>')
+          let $arrowsClone = $arrows.clone().attr('data-index', i)
+          let $linkUrlFormClone = $linkUrlForm.clone()
+            .append($linkUrlInput.clone().val(slide.link))
+            .append('<i class="check fa fa-check-circle-o"></i>')
+            .append($linkUrlButton.clone().attr('data-index', i))
 
-          let $linkUrlInput = $('<input>')
-            .attr('type', 'text')
-            .addClass('linkUrlInput')
-            .css('width', '60%')
-            .css('display', 'inline-block')
-            .val(slide.link)
-          let $linkUrlButton = $('<button>')
-            .css('width', '35%')
-            .css('padding', '10px')
-            .css('float', 'right')
-            .html('update link')
-          let $linkUrlForm = $('<form>')
-            .attr('data-index', i)
-            .addClass('linkUrlForm')
-            .append($linkUrlInput, $linkUrlButton)
-
-          $slide.append($image, $arrows, $linkUrlForm)
-          $('.slideshow').append($slide)
+          $slideClone.append($imageClone, $arrowsClone, $linkUrlFormClone)
+          $('.slideshow').append($slideClone)
         })
       }
 
@@ -57,7 +62,6 @@ $(() => {
         $('.home-dynamic').empty()
 
         homepageData.rows.forEach((row, i) => {
-
           if (row.images) {
             let columnWidth = 12 / row.images.length
             let $row = $('<div>')
@@ -80,46 +84,33 @@ $(() => {
               .css('width', '30%')
               .css('padding', '10px')
               .css('float', 'right')
-            $sectionTitleContainer.append($sectionTitle, $updateButton)
-            $row.append($sectionTitleContainer)
+            $sectionTitleContainer.append(
+              $sectionTitle,
+              '<i class="check fa fa-check-circle-o"></i>',
+              $updateButton
+            )
+            $row.append($sectionTitleContainer, '<br>')
 
-            row.images.forEach((imageURL, j) => {
-              let $imageContainer = $('<div>')
-                .css('display', 'inline-block')
-              let $image = $('<div>')
-                .attr('data-index', j)
-                .append('<span class="delete">X</span>')
-                .css('background-image', 'url(' + imageURL.image + ')')
-                .css('background-size', 'cover')
-                .css('width', '300px')
-                .css('height', '350px')
-                .css('margin', '0 2.5px')
-              let $arrows = $('<div>')
+            row.images.forEach((image, j) => {
+              let $slideClone = $slide.clone()
                 .attr('data-rowindex', i)
                 .attr('data-index', j)
-                .css('text-align', 'center')
-                .append('<span class="back"><</span>')
-                .append('&nbsp;&nbsp;&nbsp;')
-                .append('<span class="forward">></span>')
-
-              let $linkUrlInput = $('<input>')
-                .attr('type', 'text')
-                .css('width', '60%')
-                .css('display', 'inline-block')
-                .val(imageURL.link)
-              let $linkUrlButton = $('<button>')
-                .css('width', '35%')
-                .css('padding', '10px')
-                .css('float', 'right')
-                .html('update link')
-              let $linkUrlForm = $('<form>')
-                .addClass('linkUrlForm')
+              let $imageClone = $image.clone()
+                .css('background-image', 'url(' + image.image + ')')
                 .attr('data-rowindex', i)
                 .attr('data-index', j)
-                .append($linkUrlInput, $linkUrlButton)
+              let $arrowsClone = $arrows.clone()
+                .attr('data-rowindex', i)
+                .attr('data-index', j)
+              let $linkUrlFormClone = $linkUrlForm.clone()
+                .attr('data-rowindex', i)
+                .attr('data-index', j)
+                .append($linkUrlInput.clone().val(image.link))
+                .append('<i class="check fa fa-check-circle-o"></i>')
+                .append($linkUrlButton.clone())
 
-              $imageContainer.append($image, $linkUrlForm, $arrows)
-              $row.append($imageContainer)
+              $slideClone.append($imageClone, $arrowsClone, $linkUrlFormClone)
+              $row.append($slideClone)
             })
 
             let $imageRowForm = $('<form>')
@@ -138,6 +129,7 @@ $(() => {
   }
 
   const repositionImage = (array, id, move) => {
+    console.log(array)
     let imageArray = array.slice()
     let originalSlide = imageArray[id]
     imageArray.splice(id, 1)
@@ -187,16 +179,18 @@ $(() => {
     ref.child("home").child("slideshow").child(slideNum).remove(loadData())
   })
 
+  $('.slideshow').on('keydown', '.linkUrlInput', function(e) {
+    $(this).siblings('.check').remove()
+  })
+
   $('.slideshow').on('submit', '.linkUrlForm', function(e) {
     e.preventDefault()
     let slideNum = parseInt($(this).attr('data-index'))
     let imageURL = $(this).children('.linkUrlInput').val()
-    if (imageURL.indexOf('http') < 0) {
-      imageURL = 'http://' + imageURL
-    }
+
     ref.child("home").child("slideshow").child(slideNum).update({
       link: imageURL
-    })
+    }, loadData())
   })
 
   $('#slideshowForm').submit(function(e) {
@@ -226,20 +220,19 @@ $('.home-dynamic').on('submit', '.sectionTitleForm', function(e) {
 
   ref.child("home").child("rows").child(rowId).update({
     title: rowTitle
-  })
+  }, loadData())
 })
 
 $('.home-dynamic').on('submit', '.imageRowForm', function(e) {
   e.preventDefault()
   let rowId = $(this).attr('data-rowindex')
   let imageURL = $(this).children('.imageURL').val()
-  if (imageURL.indexOf('http') < 0) {
-    imageURL = 'http://' + imageURL
-  }
 
   ref.child("home").child("rows").child(rowId).once("value", (snapshot) => {
     let newArray = snapshot.val().images.slice()
-    newArray.push(imageURL)
+    newArray.push({
+      image: imageURL,
+    })
 
     ref.child("home").child("rows").child(rowId).update({
       images: newArray
@@ -248,14 +241,16 @@ $('.home-dynamic').on('submit', '.imageRowForm', function(e) {
 })
 
 $('.home-dynamic').on('click', '.delete', function() {
-  let rowNum = parseInt($(this).parent().parent().attr('data-rowindex'))
+  let rowNum = parseInt($(this).parent().attr('data-rowindex'))
   let slideNum = parseInt($(this).parent().attr('data-index'))
+  console.log(rowNum, slideNum)
   ref.child("home").child("rows").child(rowNum).child("images").child(slideNum).remove(loadData())
 })
 
 $('.home-dynamic').on('click', '.back', function() {
   let rowNum = parseInt($(this).parent().attr('data-rowindex'))
   let slideNum = parseInt($(this).parent().attr('data-index'))
+  console.log(rowNum, slideNum)
 
   if (slideNum > 0) {
     ref.child("home").child("rows").child(rowNum).child("images").once("value", (snapshot) => {
@@ -283,6 +278,20 @@ $('.home-dynamic').on('click', '.forward', function() {
   })
 })
 
+$('.home-dynamic').on('keydown', 'input', function(e) {
+  $(this).siblings('.check').remove()
+})
+
+$('.home-dynamic').on('submit', '.linkUrlForm', function(e) {
+  e.preventDefault()
+  let rowNum = parseInt($(this).attr('data-rowindex'))
+  let slideNum = parseInt($(this).attr('data-index'))
+
+  let imageURL = $(this).children('.linkUrlInput').val()
+  ref.child("home").child("rows").child(rowNum).child("images").child(slideNum).update({
+    link: imageURL
+  }, loadData())
+})
 
 
 

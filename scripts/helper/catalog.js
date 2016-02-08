@@ -74,72 +74,80 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
       function displayProducts(data) {
         console.log('fetched: ', data)
         $('.product-list').empty()
-        $('.pagination').empty()
-        let products = data.GetProducts
 
+        let products = data.GetProducts
         if (!products && data.Favorites) {
           products = data.Favorites
         }
+
         let productCount = data.Count
-        let pageCount = Math.ceil(data.Count / 30)
-        let currentPage = parseInt(selected_filters.Page_number)
 
-        $('.numOfResults').html(productCount)
+        if (productCount <= 0) {
+          $('.product-list').html('none found')
+        } else {
+          let pageCount = Math.ceil(data.Count / 30)
+          let currentPage = parseInt(selected_filters.Page_number)
 
-        for (let i = 0; i < 10; i++) {
-          let pageNumber = i + currentPage
-          if (pageNumber <= pageCount) {
-            let $pageNumber = $('<span>')
-                                .addClass('page-number')
-                                .html(pageNumber)
-                                .attr('data-page', pageNumber)
-            if (i == 0) {
-              $pageNumber.addClass('selected')
+          $('.resultsCount').show()
+          $('.numOfResults').html(productCount)
+
+          for (let i = 0; i < 10; i++) {
+            let pageNumber = i + currentPage
+            if (pageNumber <= pageCount) {
+              let $pageNumber = $('<span>')
+                                  .addClass('page-number')
+                                  .html(pageNumber)
+                                  .attr('data-page', pageNumber)
+              if (i == 0) {
+                $pageNumber.addClass('selected')
+              }
+              $('.pagination').append($pageNumber)
             }
-            $('.pagination').append($pageNumber)
           }
-        }
 
-        if (currentPage > 1) {
-          let $prevArrow = $('<span>')
-                            .addClass('page-number')
-                            .html('<<')
-                            .attr('data-page', currentPage - 1)
-          $('.pagination').prepend($prevArrow)
-        }
+          if (currentPage > 1) {
+            let $prevArrow = $('<span>')
+                              .addClass('page-number')
+                              .html('<<')
+                              .attr('data-page', currentPage - 1)
+            $('.pagination').prepend($prevArrow)
+          }
 
-        if (pageCount > currentPage + 10) {
-          let $nextArrow = $('<span>')
-                            .addClass('page-number')
-                            .html('>>')
-                            .attr('data-page', currentPage + 10)
-          $('.pagination').append($nextArrow)
-        }
+          if (pageCount > currentPage + 10) {
+            let $nextArrow = $('<span>')
+                              .addClass('page-number')
+                              .html('>>')
+                              .attr('data-page', currentPage + 10)
+            $('.pagination').append($nextArrow)
+          }
 
-        for (let i = 0; i < products.length; i++) {
-          let $productPreview = $('<div>').addClass('product-preview large-4 columns')
-          let $productThumb = $('<div>').addClass('product-thumb').css('background-image', `url('${products[i].Item_Image_URL_400}')`)
-          let $favorite = $('<img>').addClass('favorite').attr('src', '../assets/favorite-icon.svg')
-          let $productInfo = $('<div>').addClass('product-info')
-          let $quickshop = $('<div>').addClass('quickshop').html('QUICKSHOP').attr('data-sku', products[i].ItemSku)
-          let $productType = $('<div>').addClass('product-type').html(products[i].Department)
-          let $productName = $('<div>').addClass('product-name').html(products[i].Item_Name)
-          let $productId = $('<div>').addClass('product-id')
-          let $productSku = $('<span>').addClass('product-sku').html(products[i].ItemSku)
-          let $productColor = $('<span>').addClass('product-color').html(products[i].Item_Color)
-          let $productPrice = $('<div>').addClass('product-price').html(products[i].Selling_Price_USD)
-          $productId.append($productColor, ' ', $productSku)
-          $productInfo.append($quickshop, $productType, $productName, $productId, $productPrice)
-          $productPreview.append($productThumb, $favorite, $productInfo)
-                         .addClass(products[i].Department + '-department')
-          $('.product-list').append($productPreview)
+          for (let i = 0; i < products.length; i++) {
+            let $productPreview = $('<div>').addClass('product-preview large-4 columns')
+            let $productThumb = $('<div>').addClass('product-thumb').css('background-image', `url('${products[i].Item_Image_URL_400}')`)
+            let $favorite = $('<img>').addClass('favorite').attr('src', '../assets/favorite-icon.svg')
+            let $productInfo = $('<div>').addClass('product-info')
+            let $quickshop = $('<div>').addClass('quickshop').html('QUICKSHOP').attr('data-sku', products[i].ItemSku)
+            let $productType = $('<div>').addClass('product-type').html(products[i].Department)
+            let $productName = $('<div>').addClass('product-name').html(products[i].Item_Name)
+            let $productId = $('<div>').addClass('product-id')
+            let $productSku = $('<span>').addClass('product-sku').html(products[i].ItemSku)
+            let $productColor = $('<span>').addClass('product-color').html(products[i].Item_Color)
+            let $productPrice = $('<div>').addClass('product-price').html(products[i].Selling_Price_USD)
+            $productId.append($productColor, ' ', $productSku)
+            $productInfo.append($quickshop, $productType, $productName, $productId, $productPrice)
+            $productPreview.append($productThumb, $favorite, $productInfo)
+                           .addClass(products[i].Department + '-department')
+            $('.product-list').append($productPreview)
+          }
+          makeSquareThumbnails()
         }
-        makeSquareThumbnails()
       }
 
 
       function getProducts(pageNumber) {
+        $('.resultsCount').hide()
         $('.product-list').html('<br>loading results...')
+        $('.pagination').empty()
 
         pageNumber = !pageNumber ? 1 : pageNumber
         let query = {

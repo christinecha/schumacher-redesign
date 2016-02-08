@@ -12,14 +12,14 @@ function getData(request, url, fn) {
 
 function catalogFilters() {
   return [
-    { categoryFormatted: "Type", category: "Type", url: "//104.130.216.8/v8.1/api/Filter/GetTypeFilter"},
-    { categoryFormatted: "Motif", category: "Motif", url: "//104.130.216.8/v8.1/api/Filter/GetMotifFilter"},
-    { categoryFormatted: "Color", category: "ColorFamily", url: "//104.130.216.8/v8.1/api/Filter/GetColorFamilyFilter"},
-    { categoryFormatted: "Style", category: "Style", url: "//104.130.216.8/v8.1/api/Filter/GetStyleFilter"},
-    { categoryFormatted: "Application", category: "EndUse", url: "//104.130.216.8/v8.1/api/Filter/GetEndUseFilter"},
-    { categoryFormatted: "Scale", category: "Scale", url: "//104.130.216.8/v8.1/api/Filter/GetScaleFilter"},
-    { categoryFormatted: "Content", category: "Content", url: "//104.130.216.8/v8.1/api/Filter/GetContentFilter"},
-    { categoryFormatted: "Abrasion", category: "Abrasion", url: "//104.130.216.8/v8.1/api/Filter/GetAbrasionFilter"},
+    { categoryFormatted: "Type", category: "Type", url: "//104.130.216.8/v10/api/Filter/GetTypeFilter"},
+    { categoryFormatted: "Motif", category: "Motif", url: "//104.130.216.8/v10/api/Filter/GetMotifFilter"},
+    { categoryFormatted: "Color", category: "ColorFamily", url: "//104.130.216.8/v10/api/Filter/GetColorFamilyFilter"},
+    { categoryFormatted: "Style", category: "Style", url: "//104.130.216.8/v10/api/Filter/GetStyleFilter"},
+    { categoryFormatted: "Application", category: "EndUse", url: "//104.130.216.8/v10/api/Filter/GetEndUseFilter"},
+    { categoryFormatted: "Scale", category: "Scale", url: "//104.130.216.8/v10/api/Filter/GetScaleFilter"},
+    { categoryFormatted: "Content", category: "Content", url: "//104.130.216.8/v10/api/Filter/GetContentFilter"},
+    { categoryFormatted: "Abrasion", category: "Abrasion", url: "//104.130.216.8/v10/api/Filter/GetAbrasionFilter"},
     { categoryFormatted: "Extra Wide", category: "Extrawide", onlyShowFor: "Fabrics"},
     { categoryFormatted: "Matching WP", category: "WC_Available", onlyShowFor: "Fabrics"},
     { categoryFormatted: "Matching Fabric", category: "FAB_Available", onlyShowFor: "Wallpaper"},
@@ -31,6 +31,6 @@ function catalogFilters() {
 //   $('.quickshop-modal').empty()
 //   console.log(sku)
 //   $.post(
-//     "//104.130.216.8/v8.1/api/Product/GetProduct",
+//     "//104.130.216.8/v10/api/Product/GetProduct",
 //     { ItemSku: sku },
 //     function(data, status) {

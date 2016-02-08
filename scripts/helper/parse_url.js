@@ -2,10 +2,10 @@
 
 function parseUrl() {
   let url_queries = {
-    collection: window.location.href.indexOf('?collection='),
-    product: window.location.href.indexOf('?product='),
-    filter: window.location.href.indexOf('&filter='),
-    option: window.location.href.indexOf('&option='),
+    collection: window.location.href.indexOf('collection='),
+    product: window.location.href.indexOf('product='),
+    filter: window.location.href.indexOf('filter='),
+    option: window.location.href.indexOf('option='),
   }
 
   let url_params = { path: window.location.pathname }

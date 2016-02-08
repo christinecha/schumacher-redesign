@@ -8,6 +8,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
 
       let selected_product = 'All Products'
       let selected_collection = 'All Products'
+      let favoritesOnly = false
       let selected_filters = {
         PriceFrom: 0
       }; // this object will contain all the selected filters for search
@@ -15,12 +16,15 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
       if (url_params.product && $('#' + url_params.product)) {
         $('#' + url_params.product).addClass('selected-force')
         selected_product = url_params.product
+        selected_filters.Department = selected_product
         if (url_params.filter && url_params.option) {
           selected_filters[url_params.filter] = url_params.option
         }
-      } else if (url_params.collection) {
+      }
+
+      if (url_params.collection) {
         selected_collection = url_params.collection
-        selected_filters['collection'] = selected_collection
+        selected_filters.Collection = selected_collection
       }
 
       if (url_params.path.indexOf('catalog') >= 0) {
@@ -39,9 +43,98 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
           }
         })
       } else if (url_params.path.indexOf('collection') >= 0) {
-        $('.main-category-title').html(selected_product)
-        displaySelectedFilters(selected_filters)
-        getProducts()
+        $('.main-category-title').html(selected_collection)
+
+        if (url_params.collection == 'favorites') {
+          getData(
+            {UserId: 115593},
+            "//104.130.216.8/v10/api/Favorite/GetFavorites",
+            (data) => {
+              displayProducts(data)
+              let collectionDepartments = {}
+              for (let i = 0; i < data.Favorites.length; i++) {
+                let department = data.Favorites[i].Department
+                collectionDepartments[department] = true
+              }
+              for (let i in collectionDepartments) {
+                var $option = $('<li>')
+                  .html(i)
+                let filteredUrl = window.location.pathname + '?product=' + i
+                let $sideBarOption = $('<a>').attr('href', filteredUrl).append($option)
+                $('.sub-category.product').append($sideBarOption)
+              }
+            }
+          )
+        } else {
+          console.log(selected_filters)
+          getProducts()
+        }
+      }
+
+      function displayProducts(data) {
+        console.log('fetched: ', data)
+        $('.product-list').empty()
+        $('.pagination').empty()
+        let products = data.GetProducts
+
+        if (!products && data.Favorites) {
+          products = data.Favorites
+        }
+        let productCount = data.Count
+        let pageCount = Math.ceil(data.Count / 30)
+        let currentPage = parseInt(selected_filters.Page_number)
+
+        $('.numOfResults').html(productCount)
+
+        for (let i = 0; i < 10; i++) {
+          let pageNumber = i + currentPage
+          if (pageNumber <= pageCount) {
+            let $pageNumber = $('<span>')
+                                .addClass('page-number')
+                                .html(pageNumber)
+                                .attr('data-page', pageNumber)
+            if (i == 0) {
+              $pageNumber.addClass('selected')
+            }
+            $('.pagination').append($pageNumber)
+          }
+        }
+
+        if (currentPage > 1) {
+          let $prevArrow = $('<span>')
+                            .addClass('page-number')
+                            .html('<<')
+                            .attr('data-page', currentPage - 1)
+          $('.pagination').prepend($prevArrow)
+        }
+
+        if (pageCount > currentPage + 10) {
+          let $nextArrow = $('<span>')
+                            .addClass('page-number')
+                            .html('>>')
+                            .attr('data-page', currentPage + 10)
+          $('.pagination').append($nextArrow)
+        }
+
+        for (let i = 0; i < products.length; i++) {
+          let $productPreview = $('<div>').addClass('product-preview large-4 columns')
+          let $productThumb = $('<div>').addClass('product-thumb').css('background-image', `url('${products[i].Item_Image_URL_400}')`)
+          let $favorite = $('<img>').addClass('favorite').attr('src', '../assets/favorite-icon.svg')
+          let $productInfo = $('<div>').addClass('product-info')
+          let $quickshop = $('<div>').addClass('quickshop').html('QUICKSHOP').attr('data-sku', products[i].ItemSku)
+          let $productType = $('<div>').addClass('product-type').html(products[i].Department)
+          let $productName = $('<div>').addClass('product-name').html(products[i].Item_Name)
+          let $productId = $('<div>').addClass('product-id')
+          let $productSku = $('<span>').addClass('product-sku').html(products[i].ItemSku)
+          let $productColor = $('<span>').addClass('product-color').html(products[i].Item_Color)
+          let $productPrice = $('<div>').addClass('product-price').html(products[i].Selling_Price_USD)
+          $productId.append($productColor, ' ', $productSku)
+          $productInfo.append($quickshop, $productType, $productName, $productId, $productPrice)
+          $productPreview.append($productThumb, $favorite, $productInfo)
+                         .addClass(products[i].Department + '-department')
+          $('.product-list').append($productPreview)
+        }
+        makeSquareThumbnails()
       }
 
 
@@ -50,7 +143,6 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
 
         pageNumber = !pageNumber ? 1 : pageNumber
         let query = {
-          Department: selected_product,
           Rows_per_page: 30,
           Page_number: pageNumber
         }
@@ -58,64 +150,8 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
           query[filter] = selected_filters[filter]
         }
 
-        getData(query, "//104.130.216.8/v10/api/Product/GetProducts", function(data) {
-          $('.product-list').empty()
-          $('.pagination').empty()
-          let products = data.GetProducts
-          let productCount = data.Count
-          let pageCount = Math.ceil(data.Count / 30)
-          let currentPage = parseInt(query.Page_number)
-
-          $('.numOfResults').html(productCount)
-
-          for (let i = 0; i < 10; i++) {
-            let pageNumber = i + currentPage
-            if (pageNumber <= pageCount) {
-              let $pageNumber = $('<span>')
-                                  .addClass('page-number')
-                                  .html(pageNumber)
-                                  .attr('data-page', pageNumber)
-              if (i == 0) {
-                $pageNumber.addClass('selected')
-              }
-              $('.pagination').append($pageNumber)
-            }
-          }
-
-          if (currentPage > 1) {
-            let $prevArrow = $('<span>')
-                              .addClass('page-number')
-                              .html('<<')
-                              .attr('data-page', currentPage - 1)
-            $('.pagination').prepend($prevArrow)
-          }
-
-          if (pageCount > currentPage + 10) {
-            let $nextArrow = $('<span>')
-                              .addClass('page-number')
-                              .html('>>')
-                              .attr('data-page', currentPage + 10)
-            $('.pagination').append($nextArrow)
-          }
-
-          for (let i = 0; i < products.length; i++) {
-            let $productPreview = $('<div>').addClass('product-preview large-4 columns')
-            let $productThumb = $('<div>').addClass('product-thumb').css('background-image', `url('${products[i].Item_Image_URL_400}')`)
-            let $favorite = $('<img>').addClass('favorite').attr('src', '../assets/favorite-icon.svg')
-            let $productInfo = $('<div>').addClass('product-info')
-            let $quickshop = $('<div>').addClass('quickshop').html('QUICKSHOP').attr('data-sku', products[i].ItemSku)
-            let $productType = $('<div>').addClass('product-type').html(products[i].Department)
-            let $productName = $('<div>').addClass('product-name').html(products[i].Item_Name)
-            let $productId = $('<div>').addClass('product-id')
-            let $productSku = $('<span>').addClass('product-sku').html(products[i].ItemSku)
-            let $productColor = $('<span>').addClass('product-color').html(products[i].Item_Color)
-            let $productPrice = $('<div>').addClass('product-price').html(products[i].Selling_Price_USD)
-            $productId.append($productColor, ' ', $productSku)
-            $productInfo.append($quickshop, $productType, $productName, $productId, $productPrice)
-            $productPreview.append($productThumb, $favorite, $productInfo)
-            $('.product-list').append($productPreview)
-          }
-          makeSquareThumbnails()
+        getData(query, "//104.130.216.8/v10/api/Product/GetProducts", function(data, query) {
+          displayProducts(data, query)
         })
       }
 
@@ -141,8 +177,8 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
 
       // if you click a side filter, the page refreshes with the new query string
       $('.sub-category').on('click', 'li', function() {
-        var filter = $(this).attr('data-filter');
-        var option = $(this).attr('data-option');
+        var filter = $(this).attr('data-filter')
+        var option = $(this).attr('data-option')
         location.href = "catalog.html?product=" + selected_product + "&filter=" + filter + "&option=" + option;
       });
 
@@ -283,14 +319,16 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
           }
 
           for (var i = 0; i < filterOptions.length; i++) {
-            var $selected_filter = $('<div>')
-              .addClass('selected-filter')
-              .html(filterOptions[i])
-              .attr('data-filter', filter)
-              .attr('data-option', filterOptions[i])
-              .append('<span class="remove">x</span>');
-            $('.selected-filters').append($selected_filter);
-            $('.filter-title #' + filter).addClass('in-use');
+            if (filter != 'Department') {
+              var $selected_filter = $('<div>')
+                .addClass('selected-filter')
+                .html(filterOptions[i])
+                .attr('data-filter', filter)
+                .attr('data-option', filterOptions[i])
+                .append('<span class="remove">x</span>')
+              $('.selected-filters').append($selected_filter)
+              $('.filter-title #' + filter).addClass('in-use')
+            }
           }
         }
       }

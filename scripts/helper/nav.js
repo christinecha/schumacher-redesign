@@ -11,15 +11,15 @@ let navDepartments = [
 let navFilterCategories = [
   { categoryFormatted: "Color",
     category: "ColorFamily",
-    url: "//104.130.216.8/v8.1/api/Filter/GetColorFamilyFilter"
+    url: "//104.130.216.8/v10/api/Filter/GetColorFamilyFilter"
   },
   { categoryFormatted: "Style",
     category: "Style",
-    url: "//104.130.216.8/v8.1/api/Filter/GetStyleFilter"
+    url: "//104.130.216.8/v10/api/Filter/GetStyleFilter"
   },
   { categoryFormatted: "Type",
     category: "Type",
-    url: "//104.130.216.8/v8.1/api/Filter/GetTypeFilter"
+    url: "//104.130.216.8/v10/api/Filter/GetTypeFilter"
   }
 ]
 

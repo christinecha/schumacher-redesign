@@ -49,7 +49,7 @@ function getFilterDropdowns(departmentName, category, categoryFormatted, url) {
           var $option = $('<li>')
             .html(dropdowns[i][category])
             .attr('data-filter', category)
-            .attr('data-option', dropdowns[i][category].replace(/,/g, ''));
+            .attr('data-option', dropdowns[i][category].replace(/,/g, ''))
 
           // if the filter category is color, we need to add thumbnails
           if (category == 'ColorFamily') {
@@ -83,7 +83,7 @@ function getFilterDropdowns(departmentName, category, categoryFormatted, url) {
       };
 
       if ($dropdown.children('.dropdownColumn')[0].childNodes.length <= 0) {
-        // $('#' + category).hide()
+        $('#' + category).hide()
       } else {
         $dropdown.append($applyButton)
         $('.filter-dropdowns').append($dropdown)

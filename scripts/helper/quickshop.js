@@ -13,7 +13,7 @@ function getProduct(sku) {
   $('.quickshop-modal').empty()
   console.log(sku)
   $.post(
-    "//104.130.216.8/v8.1/api/Product/GetProduct",
+    "//104.130.216.8/v10/api/Product/GetProduct",
     { ItemSku: sku },
     function(data, status) {
       let productInfo = data.Description

@@ -71,8 +71,8 @@ $('.navigation').load('nav.html', function() {
 
   $(document).on('click', '.filter-options .dropdown-selector', function(){
     $('.dropdown').hide()
-    $('.dropdown-selector').removeClass('selected')
-    
+    $(this).siblings('.dropdown-selector').removeClass('selected')
+
     if ($(this).hasClass('selected')) {
       $(this).removeClass('selected')
       var dropdownId = $(this).attr('id')

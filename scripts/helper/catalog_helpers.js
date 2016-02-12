@@ -62,11 +62,11 @@ function getFilterDropdowns(departmentName, category, categoryFormatted, url) {
             }
 
             // if the filter category is type, we also need to add them to the side-bar filters
-            if (category == 'Type') {
-              let filteredUrl = window.location.pathname + '?product=' + departmentName + '&filter=' + category + '&option=' + dropdowns[i][category]
-              let $sideBarOption = $('<a>').attr('href', filteredUrl).append($option.clone())
-              $('.sub-category.type').append($sideBarOption)
-            }
+            // if (category == 'Type') {
+            //   let filteredUrl = window.location.pathname + '?product=' + departmentName + '&filter=' + category + '&option=' + dropdowns[i][category]
+            //   let $sideBarOption = $('<a>').attr('href', filteredUrl).append($option.clone())
+            //   $('.sub-category.type').append($sideBarOption)
+            // }
 
             // if the filter category has more than 8 options, we need to split it into columns
             if ($dropdownColumn.children('li').length >= 8) {

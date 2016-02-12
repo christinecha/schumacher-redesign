@@ -19,7 +19,7 @@ function parseUrl() {
     for (let i = 0; i < parsedUrl.length; i++) {
       let data = parsedUrl[i].split('=')
       if (data[1]) {
-        url_params[data[0]] = data[1].replace(/%20/g, ' ')
+        url_params[data[0]] = data[1].replace(/%20/g, ' ').replace(/%26/g, '&')
       } else {
         url_params[data[0]] = null
       }

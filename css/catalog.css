@@ -42,11 +42,12 @@
 }
 
 .selected-filter {
-  padding: 6px 8px;
+  padding: 4px 6px;
   margin: 0 10px 10px 0;
   background-color: #eee;
   cursor: pointer;
   display: inline-block;
+  font-size: 10px;
 }
 .selected-filter:first-of-type { margin-left: 10px; }
 .selected-filter .remove { margin-left: 10px; }
@@ -70,7 +71,7 @@
 
 .filter-options { margin: 10px -3px; }
 .filter-options .secondary { margin: 0 -3px; }
-.filter-options .filter-title { width: 15%; min-width: 130px; }
+.filter-options .filter-title { width: 16%; min-width: 130px; }
 .filter-options .filter-title.in-use { background-color: #eee; }
 
 .filter-options .caret { float: right; margin-top: 5px; }

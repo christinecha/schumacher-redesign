@@ -51,6 +51,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
 
         if (url_params.collection == 'favorites') {
           getFavorites(currentUserId, displayProducts)
+          $('.collection-subtitle').hide()
           console.log(favoritesById)
         } else {
           console.log(selected_filters)

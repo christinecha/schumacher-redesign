@@ -13,7 +13,7 @@ function getProduct(sku) {
   $('.quickshop-modal').empty()
   console.log(sku)
   $.post(
-    "https://www.fschumacher.com/api/v1/Product/GetProduct",
+    "https://www.fschumacher.com/api/v1/GetProduct",
     { ItemSku: sku },
     function(data, status) {
       let productInfo = data.Description
@@ -47,7 +47,7 @@ function getProduct(sku) {
 
       let $productShopForm = $('<div>').addClass('product-shop')
       let $quantity = $('<input>').addClass('product-shop--quantity').attr('type', 'number').attr('min', 1).attr('step', 1).val(1)
-      let $units = $('<span>').html(productInfo.UnitOfMeasure)
+      let $units = $('<span>').addClass('units').html(productInfo.UnitOfMeasure)
       let $orderTypes = $('<select>')
                           .addClass('product-shop--ordertypes')
                           .append($('<option>').html('Product Order'))
@@ -82,6 +82,17 @@ function getProduct(sku) {
 $('.catalog').on('click', '.quickshop', function() {
   let sku = $(this).attr('data-sku')
   getProduct(sku)
+})
+
+$('.quickshop-overlay').on('change', '.product-shop--ordertypes', function(e) {
+  console.log($('.product-shop--ordertypes').val())
+  if ($('.product-shop--ordertypes').val() == 'Memo') {
+    $('<span class="temp-units">UNITS</span>').insertAfter('.units')
+    $('.product-shop .units').hide()
+  } else {
+    $('.product-shop .temp-units').remove()
+    $('.product-shop .units').show()
+  }
 })
 
 $('.quickshop-overlay').on('click', '.exit-quickshop', function() {

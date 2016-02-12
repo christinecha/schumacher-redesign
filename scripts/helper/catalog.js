@@ -321,11 +321,16 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
         getProducts()
       });
 
+      $('.selected-filters').on('click', '.clear-all-filters', function() {
+        location.href = "catalog.html?product=" + selected_product
+      })
+
       // display selected filters + filter titles
       function displaySelectedFilters(selected_filters) {
-        $('.selected-filter').remove();
+        $('.selected-filter').remove()
         $('.filter-title').removeClass('in-use')
         $('.caret i').remove()
+        $('.clear-all-filters').remove()
 
         for (var filter in selected_filters) {
 
@@ -358,6 +363,13 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
             $(element).prepend('<i class="fa fa-check"></i>')
           }
         })
+
+        if ($('.selected-filter').length > 0) {
+          let $clearAllButton = $('<div>')
+            .addClass('clear-all-filters')
+            .html('CLEAR ALL')
+          $('.selected-filters').append($clearAllButton)
+        }
       }
 
       // toggle collapse side filters

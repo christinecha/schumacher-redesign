@@ -46,14 +46,6 @@ p {
   border-bottom: 1px solid #aaa;
 }
 
-/*.section-title .line {
-  content: "";
-  height: 5px;
-  border-bottom: 1px solid #888;
-  top: 25px;
-  width: 600px;
-}*/
-
 .section-title span:before {
   right: 100%;
   margin-right: 15px;

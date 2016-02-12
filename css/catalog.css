@@ -41,7 +41,7 @@
   width: 70%;
 }
 
-.selected-filter {
+.selected-filter, .clear-all-filters {
   padding: 4px 6px;
   margin: 0 10px 10px 0;
   background-color: #eee;
@@ -49,6 +49,10 @@
   display: inline-block;
   font-size: 10px;
 }
+
+.clear-all-filters { background-color: #555759; color: white; }
+.clear-all-filters:hover { background-color: #ffea00; color: #555759; }
+
 .selected-filter:first-of-type { margin-left: 10px; }
 .selected-filter .remove { margin-left: 10px; }
 

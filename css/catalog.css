@@ -122,12 +122,12 @@
 
 /*product preview*/
 
-.loading { background-color: #fafafb; padding: 5px; }
+.loading, .no-results-found { background-color: #fafafb; padding: 5px; }
 .pagination { text-align: right; }
 .page-number { text-decoration: underline; margin: 0 5px; cursor: pointer; }
 .page-number.selected { font-weight: bold; text-decoration: none;}
 
-.product-list { min-height: 100%; }
+.product-list { min-height: 100%; margin: 0 -0.375rem; }
 .product-preview:last-child { float: left !important; }
 
 .product-thumb {

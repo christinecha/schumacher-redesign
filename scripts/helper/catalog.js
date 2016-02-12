@@ -84,8 +84,8 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
         let productCount = data.Count
 
         if (productCount <= 0) {
-          $('.loading').html('0 results found.')
-          $('.loading').show()
+          $('.loading').hide()
+          $('.no-results-found').show()
         } else {
           let pageCount = Math.ceil(data.Count / 30)
           let currentPage = parseInt(selected_filters.Page_number)
@@ -159,6 +159,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
           }
           makeSquareThumbnails()
           $('.loading').hide()
+          $('.no-results-found').hide()
         }
       }
 
@@ -166,6 +167,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
       function getProducts(pageNumber) {
         $('.resultsCount').hide()
         $('.loading').show()
+        $('.no-results-found').hide()
         $('.product-list').css('opacity', '.5')
         $('.pagination').empty()
 

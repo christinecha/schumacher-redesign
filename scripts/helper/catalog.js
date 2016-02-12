@@ -93,35 +93,9 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
           $('.resultsCount').show()
           $('.numOfResults').html(productCount)
 
-          for (let i = 0; i < 10; i++) {
-            let pageNumber = i + currentPage
-            if (pageNumber <= pageCount) {
-              let $pageNumber = $('<span>')
-                                  .addClass('page-number')
-                                  .html(pageNumber)
-                                  .attr('data-page', pageNumber)
-              if (i == 0) {
-                $pageNumber.addClass('selected')
-              }
-              $('.pagination').append($pageNumber)
-            }
-          }
-
-          if (currentPage > 1) {
-            let $prevArrow = $('<span>')
-                              .addClass('page-number')
-                              .html('<<')
-                              .attr('data-page', currentPage - 1)
-            $('.pagination').prepend($prevArrow)
-          }
-
-          if (pageCount > currentPage + 10) {
-            let $nextArrow = $('<span>')
-                              .addClass('page-number')
-                              .html('>>')
-                              .attr('data-page', currentPage + 10)
-            $('.pagination').append($nextArrow)
-          }
+          requirejs(["../scripts/helper/pagination.js"], function() {
+            displayPagination(currentPage, pageCount)
+          })
 
           for (let i = 0; i < products.length; i++) {
             let $productPreview = $('<div>').addClass('product-preview large-4 columns')

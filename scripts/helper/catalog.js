@@ -34,6 +34,22 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
       if (url_params.path.indexOf('catalog') >= 0) {
         $('.main-category-title').html(selected_product)
         getProducts()
+
+        // get sidebar filters
+        let sidebarFilters = getSidebarFilters(selected_product)
+
+        for (let i = 0; i < sidebarFilters.length; i++) {
+          let sidebarCategory = Object.keys(sidebarFilters[i])[0]
+          let filteredUrl = window.location.pathname + '?product=' + selected_product + '&filter=' + sidebarCategory + '&option=' + sidebarFilters[i][sidebarCategory]
+
+          let $sidebarOption = $('<li>')
+            .html(sidebarFilters[i][sidebarCategory])
+            .attr('data-filter', sidebarCategory)
+            .attr('data-option', sidebarFilters[i][sidebarCategory].replace(/,/g, ''))
+          let $sidebarOptionContainer = $('<a>').attr('href', filteredUrl).append($sidebarOption)
+          $('.sub-category.type').append($sidebarOptionContainer)
+        }
+
         $.each(catalogFilters(), function() {
           console.log('getting ', this.category)
           if (!this.onlyShowFor || this.onlyShowFor == selected_product) {

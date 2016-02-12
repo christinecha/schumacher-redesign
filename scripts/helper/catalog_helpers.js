@@ -61,13 +61,6 @@ function getFilterDropdowns(departmentName, category, categoryFormatted, url) {
               $option = $option.prepend($colorThumb);
             }
 
-            // if the filter category is type, we also need to add them to the side-bar filters
-            // if (category == 'Type') {
-            //   let filteredUrl = window.location.pathname + '?product=' + departmentName + '&filter=' + category + '&option=' + dropdowns[i][category]
-            //   let $sideBarOption = $('<a>').attr('href', filteredUrl).append($option.clone())
-            //   $('.sub-category.type').append($sideBarOption)
-            // }
-
             // if the filter category has more than 8 options, we need to split it into columns
             if ($dropdownColumn.children('li').length >= 8) {
               $dropdownColumns.unshift($dropdownColumn);
@@ -95,4 +88,14 @@ function getFilterDropdowns(departmentName, category, categoryFormatted, url) {
       })
     }
   })
+}
+
+function getSidebarFilters(department) {
+  let sidebarFilters = {
+    'Fabrics': [{Collection: 'Perfect Basics'}, {Type: 'Prints'}, {Type: 'Sheers'}, {Motif: 'Animal Skin'}, {EndUse: 'Indoor & Outdoor'}, {Type: 'Velvets'}],
+    'Wallcoverings': [{Type: 'Prints'}, {Type: 'Grasscloths'}, {Type: 'Faux Finishes'}, {Motif: 'Animal Skin'}],
+    'Trim': [{Type: 'Braids & Tapes'}, {Type: 'Gimps'}, {Type: 'Cords'}, {Type: 'Cut Fringe'}],
+    'Furniture': [{Type: 'Antiques'}, {Type: 'Tables'}, {Type: 'Accent Chairs'}]
+  }
+  return sidebarFilters[department]
 }

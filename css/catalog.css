@@ -115,6 +115,8 @@
 }
 
 /*product preview*/
+
+.loading { background-color: #fafafb; padding: 5px; }
 .pagination { text-align: right; }
 .page-number { text-decoration: underline; margin: 0 5px; cursor: pointer; }
 .page-number.selected { font-weight: bold; text-decoration: none;}
@@ -127,6 +129,7 @@
   height: 330px;
   background-image: url("../assets/thumb_1.png");
   background-position: center;
+  background-size: cover;
 }
 .product-thumb:hover { opacity: .7; }
 

@@ -202,7 +202,9 @@ $(() => {
 
     ref.child("home").child("slideshow").once("value", (snapshot) => {
       let newArray = snapshot.val().slice()
-      newArray.push(imageURL)
+      newArray.push({
+        image: imageURL
+      })
 
       ref.child("home").update({
         slideshow: newArray

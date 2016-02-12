@@ -74,6 +74,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
       function displayProducts(data) {
         console.log('fetched: ', data)
         $('.product-list').empty()
+        $('.pagination').empty()
 
         let products = data.GetProducts
         if (!products && data.Favorites) {
@@ -140,19 +141,22 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
             $('.product-list').append($productPreview)
           }
           makeSquareThumbnails()
+          $('.loading').hide()
         }
       }
 
 
       function getProducts(pageNumber) {
         $('.resultsCount').hide()
-        $('.product-list').html('<br>loading results...')
+        $('.loading').show()
         $('.pagination').empty()
 
         pageNumber = !pageNumber ? 1 : pageNumber
+        selected_filters.Page_number = pageNumber
+
         let query = {
           Rows_per_page: 30,
-          Page_number: pageNumber
+          Page_number: selected_filters.Page_number
         }
         for (var filter in selected_filters) {
           query[filter] = selected_filters[filter]

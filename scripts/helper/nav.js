@@ -3,7 +3,7 @@
 // API urls
 let navDepartments = [
   {departmentName: 'Fabrics', departmentNameFormatted: 'fabric'},
-  {departmentName: 'Wallpaper', departmentNameFormatted: 'wallpaper'},
+  {departmentName: 'Wallcoverings', departmentNameFormatted: 'wallpaper'},
   {departmentName: 'Trim', departmentNameFormatted: 'trim'},
   {departmentName: 'Furniture', departmentNameFormatted: 'furniture'}
 ]

@@ -125,6 +125,14 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
           for (let i = 0; i < products.length; i++) {
             let $productPreview = $('<div>').addClass('product-preview large-4 columns')
             let $productThumb = $('<div>').addClass('product-thumb').css('background-image', `url('${products[i].Item_Image_URL_400}')`)
+            let $imgCheck = $('<img>').attr('src', `url('${products[i].Item_Image_URL_400}')`)
+            $.ajax({
+              url: products[i].Item_Image_URL_400,
+              type:'HEAD',
+              error: () => {
+                $productThumb = $productThumb.css('background-image', 'url(http://schumacher-webassets.s3.amazonaws.com/App%20Catalog2-400/Product-Image-Coming-Soon.jpg)')
+              }
+            })
             let $favorite = $('<img>').addClass('favorite').attr('src', '../assets/favorite-icon.svg')
                 if (favoritesById.indexOf(products[i].ItemId) >= 0) {
                   $favorite = $favorite.attr('src', '../assets/favorite-icon_favorited.svg')

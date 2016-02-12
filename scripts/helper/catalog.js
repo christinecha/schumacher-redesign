@@ -1,5 +1,7 @@
 "use strict"
 
+let currentUserId = 115593
+
 requirejs(["../scripts/helper/parse_url.js"], function() {
   let url_params = parseUrl()
 
@@ -9,9 +11,11 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
       let selected_product = 'All Products'
       let selected_collection = 'All Products'
       let favoritesOnly = false
-      let selected_filters = {
+      let selected_filters = { // this object will contain all the selected filters for search
         PriceFrom: 0
-      }; // this object will contain all the selected filters for search
+      };
+      let favoritesById = []
+      getFavorites(currentUserId, createFavoritesArray)
 
       if (url_params.product && $('#' + url_params.product)) {
         $('#' + url_params.product).addClass('selected-force')
@@ -46,28 +50,22 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
         $('.main-category-title').html(selected_collection)
 
         if (url_params.collection == 'favorites') {
-          getData(
-            {UserId: 115593},
-            "//104.130.216.8/v10/api/Favorite/GetFavorites",
-            (data) => {
-              displayProducts(data)
-              let collectionDepartments = {}
-              for (let i = 0; i < data.Favorites.length; i++) {
-                let department = data.Favorites[i].Department
-                collectionDepartments[department] = true
-              }
-              for (let i in collectionDepartments) {
-                var $option = $('<li>')
-                  .html(i)
-                let filteredUrl = window.location.pathname + '?product=' + i
-                let $sideBarOption = $('<a>').attr('href', filteredUrl).append($option)
-                $('.sub-category.product').append($sideBarOption)
-              }
-            }
-          )
+          getFavorites(currentUserId, displayProducts)
+          console.log(favoritesById)
         } else {
           console.log(selected_filters)
           getProducts()
+        }
+      }
+
+      function createFavoritesArray(data) {
+        favoritesById = []
+
+        if (data.Favorites) {
+          for (let i = 0; i < data.Favorites.length; i++) {
+            favoritesById.push(data.Favorites[i].ItemId)
+          }
+          console.log('favorites: ', favoritesById)
         }
       }
 
@@ -126,8 +124,16 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
             let $productPreview = $('<div>').addClass('product-preview large-4 columns')
             let $productThumb = $('<div>').addClass('product-thumb').css('background-image', `url('${products[i].Item_Image_URL_400}')`)
             let $favorite = $('<img>').addClass('favorite').attr('src', '../assets/favorite-icon.svg')
+                if (favoritesById.indexOf(products[i].ItemId) >= 0) {
+                  $favorite = $favorite.attr('src', '../assets/favorite-icon_favorited.svg')
+                }
             let $productInfo = $('<div>').addClass('product-info')
             let $quickshop = $('<div>').addClass('quickshop').html('QUICKSHOP').attr('data-sku', products[i].ItemSku)
+                if (selected_product == 'Furniture') {
+                  $quickshop = $quickshop.css('display', 'none')
+                  $favorite = $favorite.css('float', 'none')
+                  $productInfo = $productInfo.css('margin-top', '5px')
+                }
             let $productType = $('<div>').addClass('product-type').html(products[i].Department)
             let $productName = $('<div>').addClass('product-name').html(products[i].Item_Name)
             let $productId = $('<div>').addClass('product-id')
@@ -162,7 +168,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
           query[filter] = selected_filters[filter]
         }
 
-        getData(query, "//104.130.216.8/v10/api/Product/GetProducts", function(data, query) {
+        getData(query, "https://www.fschumacher.com/api/v1/GetProducts", function(data, query) {
           displayProducts(data, query)
         })
       }

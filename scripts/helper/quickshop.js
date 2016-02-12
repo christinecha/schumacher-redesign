@@ -13,7 +13,7 @@ function getProduct(sku) {
   $('.quickshop-modal').empty()
   console.log(sku)
   $.post(
-    "//104.130.216.8/v10/api/Product/GetProduct",
+    "https://www.fschumacher.com/api/v1/Product/GetProduct",
     { ItemSku: sku },
     function(data, status) {
       let productInfo = data.Description

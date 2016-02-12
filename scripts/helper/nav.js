@@ -11,15 +11,15 @@ let navDepartments = [
 let navFilterCategories = [
   { categoryFormatted: "Color",
     category: "ColorFamily",
-    url: "//104.130.216.8/v10/api/Filter/GetColorFamilyFilter"
+    url: "https://www.fschumacher.com/api/v1/GetColorFamilyFilter"
   },
   { categoryFormatted: "Style",
     category: "Style",
-    url: "//104.130.216.8/v10/api/Filter/GetStyleFilter"
+    url: "https://www.fschumacher.com/api/v1/GetStyleFilter"
   },
   { categoryFormatted: "Type",
     category: "Type",
-    url: "//104.130.216.8/v10/api/Filter/GetTypeFilter"
+    url: "https://www.fschumacher.com/api/v1/GetTypeFilter"
   }
 ]
 

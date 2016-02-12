@@ -12,14 +12,14 @@ function getData(request, url, fn) {
 
 function catalogFilters() {
   return [
-    { categoryFormatted: "Type", category: "Type", url: "//104.130.216.8/v10/api/Filter/GetTypeFilter"},
-    { categoryFormatted: "Motif", category: "Motif", url: "//104.130.216.8/v10/api/Filter/GetMotifFilter"},
-    { categoryFormatted: "Color", category: "ColorFamily", url: "//104.130.216.8/v10/api/Filter/GetColorFamilyFilter"},
-    { categoryFormatted: "Style", category: "Style", url: "//104.130.216.8/v10/api/Filter/GetStyleFilter"},
-    { categoryFormatted: "Application", category: "EndUse", url: "//104.130.216.8/v10/api/Filter/GetEndUseFilter"},
-    { categoryFormatted: "Scale", category: "Scale", url: "//104.130.216.8/v10/api/Filter/GetScaleFilter"},
-    { categoryFormatted: "Content", category: "Content", url: "//104.130.216.8/v10/api/Filter/GetContentFilter"},
-    { categoryFormatted: "Abrasion", category: "Abrasion", url: "//104.130.216.8/v10/api/Filter/GetAbrasionFilter"},
+    { categoryFormatted: "Type", category: "Type", url: "https://www.fschumacher.com/api/v1/GetTypeFilter"},
+    { categoryFormatted: "Motif", category: "Motif", url: "https://www.fschumacher.com/api/v1/GetMotifFilter"},
+    { categoryFormatted: "Color", category: "ColorFamily", url: "https://www.fschumacher.com/api/v1/GetColorFamilyFilter"},
+    { categoryFormatted: "Style", category: "Style", url: "https://www.fschumacher.com/api/v1/GetStyleFilter"},
+    { categoryFormatted: "Application", category: "EndUse", url: "https://www.fschumacher.com/api/v1/GetEndUseFilter"},
+    { categoryFormatted: "Scale", category: "Scale", url: "https://www.fschumacher.com/api/v1/GetScaleFilter"},
+    { categoryFormatted: "Content", category: "Content", url: "https://www.fschumacher.com/api/v1/GetContentFilter"},
+    { categoryFormatted: "Abrasion", category: "Abrasion", url: "https://www.fschumacher.com/api/v1/GetAbrasionFilter"},
     { categoryFormatted: "Extra Wide", category: "Extrawide", onlyShowFor: "Fabrics"},
     { categoryFormatted: "Matching WP", category: "WC_Available", onlyShowFor: "Fabrics"},
     { categoryFormatted: "Matching Fabric", category: "FAB_Available", onlyShowFor: "Wallpaper"},
@@ -27,10 +27,12 @@ function catalogFilters() {
   ]
 }
 
-// function getProduct(sku) {
-//   $('.quickshop-modal').empty()
-//   console.log(sku)
-//   $.post(
-//     "//104.130.216.8/v10/api/Product/GetProduct",
-//     { ItemSku: sku },
-//     function(data, status) {
+function getFavorites(userId, fn) {
+  getData(
+    {UserId: userId},
+    "https://www.fschumacher.com/api/v1/GetFavorites",
+    function(data) {
+      fn(data)
+    }
+  )
+}

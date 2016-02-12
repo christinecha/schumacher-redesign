@@ -46,6 +46,8 @@ $('.navigation').load('nav.html', function() {
   };
 
   $(document).on('mouseenter', '.navigation .dropdown-selector', function(){
+    $('.dropdown').hide()
+    $('.dropdown-selector').removeClass('selected')
     $(this).addClass('selected')
     var dropdownId = $(this).attr('id')
     dropdownClass = '.dropdowns .' + dropdownId

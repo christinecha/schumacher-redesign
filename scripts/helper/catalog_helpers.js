@@ -1,6 +1,6 @@
 "use strict"
 
-function getFilterDropdowns(departmentName, category, categoryFormatted, url) {
+function getCatalogFilters(departmentName, category, categoryFormatted, url) {
   return new Promise((resolve, reject) => {
     let $caret = $('<span>').html('&#9660;').addClass('caret');
     let $checkbox = $('<input>').attr('type', 'checkbox').addClass('checkbox').addClass('submitSearch')
@@ -37,56 +37,64 @@ function getFilterDropdowns(departmentName, category, categoryFormatted, url) {
       $dropdown.append($pricingSlider, $priceDisplay, $applyButton)
       $('.filter-dropdowns').append($dropdown)
     } else {
-      getData({ Department: departmentName }, url).then((dropdowns) => {
-        console.log('successful got filter')
-        $filterTitle.addClass('dropdown-selector').append($caret)
-        $('.filter-options .primary').append($filterTitle);
+      $filterTitle.addClass('dropdown-selector').append($caret)
+      $('.filter-options .primary').append($filterTitle)
 
-        var $dropdownColumns = [];
-        var $dropdownColumn = $('<div>').addClass('dropdownColumn');
-
-        for (let i = 0; i < dropdowns.length; i++) {
-          if (dropdowns[i].DepartmentName == departmentName) {
-            // create JQuery list element with the option
-            var $option = $('<li>')
-              .html(dropdowns[i][category])
-              .attr('data-filter', category)
-              .attr('data-option', dropdowns[i][category].replace(/,/g, ''))
-
-            // if the filter category is color, we need to add thumbnails
-            if (category == 'ColorFamily') {
-              var $colorThumb = $('<div>')
-                .addClass('color--thumbnail')
-                .css('background-image', '../assetscolor_thumbnails' + dropdowns[i][category] + '.png')
-              $option = $option.prepend($colorThumb);
-            }
-
-            // if the filter category has more than 8 options, we need to split it into columns
-            if ($dropdownColumn.children('li').length >= 8) {
-              $dropdownColumns.unshift($dropdownColumn);
-              $dropdownColumn = $('<div>').addClass('dropdownColumn');
-            }
-
-            // add the option to the filter column
-            $dropdownColumn.append($option);
-          }
-        }
-        // add dropdown Columns to the dropdown div
-        $dropdownColumns.unshift($dropdownColumn);
-        for (var i in $dropdownColumns) {
-          $dropdown.prepend($dropdownColumns[i]);
-        };
-
-        if ($dropdown.children('.dropdownColumn')[0].childNodes.length <= 0) {
-          $('#' + category).hide()
-        } else {
-          $dropdown.append($applyButton)
-          $('.filter-dropdowns').append($dropdown)
-        }
-
+      getFilterDropdowns(departmentName, category, url, $dropdown, $applyButton).then((response) => {
         resolve(true)
       })
     }
+  })
+}
+
+function getFilterDropdowns(departmentName, category, url, $dropdown, $applyButton) {
+  return new Promise((resolve, reject) => {
+    getData({ Department: departmentName }, url).then((dropdowns) => {
+
+      var $dropdownColumns = [];
+      var $dropdownColumn = $('<div>').addClass('dropdownColumn');
+
+      for (let i = 0; i < dropdowns.length; i++) {
+        if (dropdowns[i].DepartmentName == departmentName) {
+          // create JQuery list element with the option
+          var $option = $('<li>')
+            .html(dropdowns[i][category])
+            .attr('data-filter', category)
+            .attr('data-option', dropdowns[i][category].replace(/,/g, ''))
+
+          // if the filter category is color, we need to add thumbnails
+          if (category == 'ColorFamily') {
+            var $colorThumb = $('<div>')
+              .addClass('color--thumbnail')
+              .css('background-image', '../assetscolor_thumbnails' + dropdowns[i][category] + '.png')
+            $option = $option.prepend($colorThumb);
+          }
+
+          // if the filter category has more than 8 options, we need to split it into columns
+          if ($dropdownColumn.children('li').length >= 8) {
+            $dropdownColumns.unshift($dropdownColumn);
+            $dropdownColumn = $('<div>').addClass('dropdownColumn');
+          }
+
+          // add the option to the filter column
+          $dropdownColumn.append($option);
+        }
+      }
+      // add dropdown Columns to the dropdown div
+      $dropdownColumns.unshift($dropdownColumn);
+      for (var i in $dropdownColumns) {
+        $dropdown.prepend($dropdownColumns[i]);
+      };
+
+      if ($dropdown.children('.dropdownColumn')[0].childNodes.length <= 0) {
+        $('#' + category).hide()
+      } else {
+        $dropdown.append($applyButton)
+        $('.filter-dropdowns').append($dropdown)
+      }
+
+      resolve(true)
+    })
   })
 }
 

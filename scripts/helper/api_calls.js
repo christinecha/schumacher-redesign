@@ -14,18 +14,16 @@ function getData(request, url) {
 
 function catalogFilters() {
   return [
-    { categoryFormatted: "Type", category: "Type", url: "https://www.fschumacher.com/api/v1/GetTypeFilter"},
-    { categoryFormatted: "Motif", category: "Motif", url: "https://www.fschumacher.com/api/v1/GetMotifFilter"},
     { categoryFormatted: "Color", category: "ColorFamily", url: "https://www.fschumacher.com/api/v1/GetColorFamilyFilter"},
-    { categoryFormatted: "Style", category: "Style", url: "https://www.fschumacher.com/api/v1/GetStyleFilter"},
-    { categoryFormatted: "Application", category: "EndUse", url: "https://www.fschumacher.com/api/v1/GetEndUseFilter"},
+    { categoryFormatted: "Motif", category: "Motif", url: "https://www.fschumacher.com/api/v1/GetMotifFilter"},
+    { categoryFormatted: "Type", category: "Type", url: "https://www.fschumacher.com/api/v1/GetTypeFilter"},
     { categoryFormatted: "Scale", category: "Scale", url: "https://www.fschumacher.com/api/v1/GetScaleFilter"},
+    { categoryFormatted: "Style", category: "Style", url: "https://www.fschumacher.com/api/v1/GetStyleFilter"},
+    { categoryFormatted: "Price", category: "Price"},
+    { categoryFormatted: "Application", category: "EndUse", url: "https://www.fschumacher.com/api/v1/GetEndUseFilter"},
     { categoryFormatted: "Content", category: "Content", url: "https://www.fschumacher.com/api/v1/GetContentFilter"},
     { categoryFormatted: "Abrasion", category: "Abrasion", url: "https://www.fschumacher.com/api/v1/GetAbrasionFilter"},
-    { categoryFormatted: "Extra Wide", category: "Extrawide", onlyShowFor: "Fabrics"},
-    { categoryFormatted: "Matching WP", category: "WC_Available", onlyShowFor: "Fabrics"},
-    { categoryFormatted: "Matching Fabric", category: "FAB_Available", onlyShowFor: "Wallpaper"},
-    { categoryFormatted: "Price", category: "Price"}
+    { categoryFormatted: "Extra Wide", category: "Extrawide", onlyShowFor: "Fabrics"}
   ]
 }
 

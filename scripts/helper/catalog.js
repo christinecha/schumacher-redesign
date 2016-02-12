@@ -53,7 +53,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
         $.each(catalogFilters(), function() {
           console.log('getting ', this.category)
           if (!this.onlyShowFor || this.onlyShowFor == selected_product) {
-            getFilterDropdowns(
+            getCatalogFilters(
               selected_product,
               this.category,
               this.categoryFormatted,

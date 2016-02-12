@@ -33,7 +33,6 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
 
       if (url_params.path.indexOf('catalog') >= 0) {
         $('.main-category-title').html(selected_product)
-        displaySelectedFilters(selected_filters)
         getProducts()
         $.each(catalogFilters(), function() {
           console.log('getting ', this.category)
@@ -43,7 +42,9 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
               this.category,
               this.categoryFormatted,
               this.url
-            )
+            ).then(() => {
+              displaySelectedFilters(selected_filters)
+            })
           }
         })
       } else if (url_params.path.indexOf('collection') >= 0) {
@@ -169,7 +170,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
           query[filter] = selected_filters[filter]
         }
 
-        getData(query, "https://www.fschumacher.com/api/v1/GetProducts", function(data, query) {
+        getData(query, "https://www.fschumacher.com/api/v1/GetProducts").then((data, query) => {
           displayProducts(data, query)
         })
       }
@@ -286,7 +287,6 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
               } else {
                 selected_filters[filter] = filterOptions.join(',')
               }
-              displaySelectedFilters(selected_filters)
               return false
             }
           }
@@ -324,7 +324,8 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
       // display selected filters + filter titles
       function displaySelectedFilters(selected_filters) {
         $('.selected-filter').remove();
-        $('.filter-title').removeClass('in-use');
+        $('.filter-title').removeClass('in-use')
+        $('.caret i').remove()
 
         for (var filter in selected_filters) {
 
@@ -334,11 +335,12 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
             selected_filters[filter] &&
             typeof(selected_filters[filter]) == 'string' &&
             selected_filters[filter].length > 0) {
-             filterOptions = selected_filters[filter].split(',')
+              filterOptions = selected_filters[filter].split(',')
           }
 
           for (var i = 0; i < filterOptions.length; i++) {
             if (filter != 'Department') {
+              $('.dropdown.' + filter + ' li[data-option="' + filterOptions[i] + '"]').addClass('selected')
               var $selected_filter = $('<div>')
                 .addClass('selected-filter')
                 .html(filterOptions[i])
@@ -346,10 +348,16 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
                 .attr('data-option', filterOptions[i])
                 .append('<span class="remove">x</span>')
               $('.selected-filters').append($selected_filter)
-              $('.filter-title #' + filter).addClass('in-use')
+              $('.filter-title#' + filter).addClass('in-use')
             }
           }
         }
+
+        $('.in-use .caret').each((i, element) => {
+          if ($(element).children('i').length < 1) {
+            $(element).prepend('<i class="fa fa-check"></i>')
+          }
+        })
       }
 
       // toggle collapse side filters

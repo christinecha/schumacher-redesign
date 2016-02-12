@@ -1,13 +1,15 @@
 "use strict"
 
-function getData(request, url, fn) {
-  $.post(
-    url,
-    request,
-    function(data, status) {
-      fn(data)
-    }
-  )
+function getData(request, url) {
+  return new Promise((resolve, reject) => {
+    $.post(
+      url,
+      request,
+      function(data, status) {
+        resolve(data)
+      }
+    )
+  })
 }
 
 function catalogFilters() {

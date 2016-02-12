@@ -46,51 +46,42 @@ $('.navigation').load('nav.html', function() {
   };
 
   $(document).on('mouseenter', '.navigation .dropdown-selector', function(){
-    $(this).addClass('selected');
-    var dropdownId = $(this).attr('id');
-    dropdownClass = '.dropdowns .' + dropdownId;
-    $(dropdownClass).show();
-    dropdownPosition(this, dropdownClass);
+    $(this).addClass('selected')
+    var dropdownId = $(this).attr('id')
+    dropdownClass = '.dropdowns .' + dropdownId
+    $(dropdownClass).show()
+    dropdownPosition(this, dropdownClass)
   }).on('mouseleave', '.navigation .dropdown-selector', function(){
-    var dropdownId = $(this).attr('id');
-    $('.dropdown').hide();
-    $(this).removeClass('selected');
+    var dropdownId = $(this).attr('id')
+    $('.dropdown').hide()
+    $(this).removeClass('selected')
   });
 
   $(document).on('mouseover', '.navigation .dropdown', function(){
     var dropdownId = $(this).attr('')
-    $('.dropdown').hide();
-    showDropdown(this, dropdownId);
+    $('.dropdown').hide()
+    showDropdown(this, dropdownId)
   }).on('mouseleave', '.navigation .dropdown', function(){
     var dropdownId = $(this).attr('')
-    $('.dropdown').hide();
-    hideDropdown(this, dropdownId);
+    $('.dropdown').hide()
+    hideDropdown(this, dropdownId)
   });
 
   $(document).on('click', '.filter-options .dropdown-selector', function(){
     if ($(this).hasClass('selected')) {
-      $(this).removeClass('selected');
-      var dropdownId = $(this).attr('id');
-      dropdownClass = '.dropdowns .' + dropdownId;
-      $(dropdownClass).hide();
+      $(this).removeClass('selected')
+      var dropdownId = $(this).attr('id')
+      dropdownClass = '.dropdowns .' + dropdownId
+      $(dropdownClass).hide()
     } else {
-      $(this).addClass('selected');
-      var dropdownId = $(this).attr('id');
+      $(this).addClass('selected')
+      var dropdownId = $(this).attr('id')
       dropdownClass = '.dropdowns .' + dropdownId;
-      $(dropdownClass).show();
-      dropdownPosition(this, dropdownClass);
+      $(dropdownClass).show()
+      dropdownPosition(this, dropdownClass)
     }
-  });
+  })
 
-  // $(document).on('click', '.filter-options .dropdown', function(){
-  //   var dropdownId = $(this).attr('')
-  //   $('.dropdown').hide();
-  //   showDropdown(this, dropdownId);
-  // }).on('mouseleave', '.dropdown', function(){
-  //   var dropdownId = $(this).attr('')
-  //   $('.dropdown').hide();
-  //   hideDropdown(this, dropdownId);
-  // });
 
 
 });

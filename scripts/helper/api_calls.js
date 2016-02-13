@@ -27,11 +27,13 @@ function catalogFilters() {
   ]
 }
 
-function getFavorites(userId, fn) {
+function getFavorites(userId, pageNumber, fn) {
+  $('.loading').show()
   getData(
-    {UserId: userId},
+    {UserId: userId, Rows_Per_Page: 30, Page: pageNumber},
     "https://www.fschumacher.com/api/v1/GetFavorites"
   ).then((data) => {
-    fn(data)
+    $('.loading').hide()
+    fn(data, pageNumber)
   })
 }

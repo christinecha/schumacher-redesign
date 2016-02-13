@@ -52,8 +52,9 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
         $('.main-category-title').html(selected_collection)
 
         if (url_params.collection == 'favorites') {
-          getFavorites(currentUserId, (data) => { // load favorites of current user
+          getFavorites(currentUserId, 1, (data, pageNumber) => { // load favorites of current user
             createFavoritesArray(data)
+            selected_filters.Page_number = pageNumber
             displayProducts(data)
           })
           $('.collection-subtitle').hide()
@@ -204,7 +205,16 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
 
       $('.pagination').on('click', '.page-number', function() {
         let pageNumber = $(this).attr('data-page')
-        getProducts(pageNumber)
+
+        if (selected_collection == 'favorites') {
+          getFavorites(currentUserId, pageNumber, (data, pageNumber) => { // load favorites of current user
+            createFavoritesArray(data)
+            selected_filters.Page_number = pageNumber
+            displayProducts(data)
+          })
+        } else {
+          getProducts(pageNumber)
+        }
       })
 
       // if you click a side filter, the page refreshes with the new query string

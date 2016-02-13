@@ -32,6 +32,7 @@ function displayPagination(currentPage, pageCount) {
   } else if (currentPage < 10) {
     $('.pagination').append($prevArrow)
     let max = pageCount
+    let lastPageListed = currentPage
 
     if (pageCount > 10) {
       max = 10
@@ -42,14 +43,19 @@ function displayPagination(currentPage, pageCount) {
       if (i == currentPage) {
         pageNode = pageNode.addClass('selected')
       }
+      lastPageListed = i
       $('.pagination').append(pageNode)
     }
 
-    $('.pagination').append(
-      '...',
-      pageNumber(pageCount),
-      $nextArrow
-    )
+    if (lastPageListed == pageCount) {
+      // don't do anything
+    } else  {
+      $('.pagination').append(
+        '...',
+        pageNumber(pageCount),
+        $nextArrow
+      )
+    }
   } else if (currentPage >= 10 && currentPage <= pageCount - 3) {
     $('.pagination').append(
       $prevArrow,

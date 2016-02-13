@@ -199,6 +199,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
             selected_filters[filter] = false
           }
         }
+        $('.filter-options .filter-title').removeClass('selected')
         $(this).parent('.dropdown').hide()
         getProducts()
       })

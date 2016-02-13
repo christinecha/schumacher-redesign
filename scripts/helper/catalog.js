@@ -15,18 +15,6 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
         PriceFrom: 0
       };
       let favoritesById = []
-      let gettingMoreFavorites = true
-      let pageNum = 1
-
-      while (gettingMoreFavorites && pageNum < 5) {
-        getFavorites(currentUserId, pageNum, (data, pageNumber) => { // load favorites of current user
-          createFavoritesArray(data)
-          if (data.Favorites.length <= 0) {
-            gettingMoreFavorites = false
-          }
-        })
-        pageNum += 1
-      }
 
       if (url_params.product && $('#' + url_params.product)) {
         $('#' + url_params.product).addClass('selected-force')
@@ -64,7 +52,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
         $('.main-category-title').html(selected_collection)
 
         if (url_params.collection == 'favorites') {
-          getFavorites(currentUserId, 1, (data, pageNumber) => { // load favorites of current user
+          getFavorites(currentUserId, 1).then((data, pageNumber) => { // load favorites of current user
             createFavoritesArray(data)
             selected_filters.Page_number = pageNumber
             displayProducts(data)
@@ -156,26 +144,31 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
 
 
       function getProducts(pageNumber) {
-        $('.resultsCount').hide()
-        $('.loading').show()
-        $('.no-results-found').hide()
-        $('.product-list').css('opacity', '.5')
-        $('.pagination').empty()
 
-        pageNumber = !pageNumber ? 1 : pageNumber
-        selected_filters.Page_number = pageNumber
+        getFavorites(currentUserId, 'all').then((data) => {
+          createFavoritesArray(data)
 
-        let query = {
-          Rows_per_page: 30,
-          Page_number: selected_filters.Page_number
-        }
-        for (var filter in selected_filters) {
-          query[filter] = selected_filters[filter]
-        }
+          $('.resultsCount').hide()
+          $('.loading').show()
+          $('.no-results-found').hide()
+          $('.product-list').css('opacity', '.5')
+          $('.pagination').empty()
 
-        getData(query, "https://www.fschumacher.com/api/v1/GetProducts").then((data, query) => {
-          displayProducts(data, query)
-          $('.product-list').css('opacity', '1')
+          pageNumber = !pageNumber ? 1 : pageNumber
+          selected_filters.Page_number = pageNumber
+
+          let query = {
+            Rows_per_page: 30,
+            Page_number: selected_filters.Page_number
+          }
+          for (var filter in selected_filters) {
+            query[filter] = selected_filters[filter]
+          }
+
+          getData(query, "https://www.fschumacher.com/api/v1/GetProducts").then((data, query) => {
+            displayProducts(data, query)
+            $('.product-list').css('opacity', '1')
+          })
         })
       }
 
@@ -220,7 +213,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
         let pageNumber = $(this).attr('data-page')
 
         if (selected_collection == 'favorites') {
-          getFavorites(currentUserId, pageNumber, (data, pageNumber) => { // load favorites of current user
+          getFavorites(currentUserId, pageNumber).then((data, pageNumber) => { // load favorites of current user
             createFavoritesArray(data)
             selected_filters.Page_number = pageNumber
             displayProducts(data)

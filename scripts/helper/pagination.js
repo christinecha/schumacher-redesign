@@ -11,6 +11,10 @@ function displayPagination(currentPage, pageCount) {
   console.log('page count: ', pageCount)
   console.log('currentPage: ', currentPage)
 
+  if (!currentPage || typeof currentPage != "number") {
+    currentPage = 1
+  }
+
   let $prevArrow = $('<span>')
     .addClass('page-number')
     .html('<<')

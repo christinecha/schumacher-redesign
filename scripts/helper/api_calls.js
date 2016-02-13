@@ -28,11 +28,23 @@ function catalogFilters() {
 }
 
 function getFavorites(userId, pageNumber, fn) {
-  $('.loading').show()
-  getData(
-    {UserId: userId, Rows_Per_Page: 30, Page: pageNumber},
-    "https://www.fschumacher.com/api/v1/GetFavorites"
-  ).then((data) => {
-    fn(data, pageNumber)
+
+  return new Promise((resolve, reject) => {
+    let rowsPerPage = 30
+
+    if (pageNumber == 'all') {
+      rowsPerPage = 500
+      pageNumber = 1
+    }
+
+    $('.loading').show()
+    
+    getData(
+      {UserId: userId, Rows_Per_Page: rowsPerPage, Page: pageNumber},
+      "https://www.fschumacher.com/api/v1/GetFavorites"
+    ).then((data) => {
+      console.log(pageNumber)
+      resolve(data, pageNumber)
+    })
   })
 }

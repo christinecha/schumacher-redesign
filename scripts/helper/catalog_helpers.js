@@ -86,11 +86,12 @@ function getFilterDropdowns(departmentName, category, url, $dropdown, $applyButt
         $dropdown.prepend($dropdownColumns[i]);
       };
 
-      if ($dropdown.children('.dropdownColumn')[0].childNodes.length <= 0) {
-        $('#' + category).hide()
-      } else {
+      if ($dropdown.children('.dropdownColumn')[0].childNodes.length > 0) {
+        $('#' + category).css('display', 'inline-block')
         $dropdown.append($applyButton)
         $('.filter-dropdowns').append($dropdown)
+      } else {
+        // don't show
       }
 
       resolve(true)

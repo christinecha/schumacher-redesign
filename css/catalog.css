@@ -56,21 +56,24 @@
 .selected-filter:first-of-type { margin-left: 10px; }
 .selected-filter .remove { margin-left: 10px; }
 
-.sort-by {
-  float: right;
-  margin-top: -8px;
-}
-
-.sort-by img {
-  width: 22px;
-  margin-left: 5px;
-}
-
 .filter-title {
   border: 1px solid #ddd;
   padding: 6px 8px;
   margin: 3px;
   display: inline-block;
+}
+
+.primary .filter-title {
+  display: none;
+}
+
+.sort-by {
+  float: right;
+  margin-top: -8px;
+}
+
+.sort-by .filter-title {
+  display: inline-block !important;
 }
 
 .filter-options { margin: 10px -3px; }

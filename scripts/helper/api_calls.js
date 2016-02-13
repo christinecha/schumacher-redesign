@@ -33,7 +33,6 @@ function getFavorites(userId, pageNumber, fn) {
     {UserId: userId, Rows_Per_Page: 30, Page: pageNumber},
     "https://www.fschumacher.com/api/v1/GetFavorites"
   ).then((data) => {
-    $('.loading').hide()
     fn(data, pageNumber)
   })
 }

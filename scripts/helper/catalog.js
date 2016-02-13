@@ -15,6 +15,18 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
         PriceFrom: 0
       };
       let favoritesById = []
+      let gettingMoreFavorites = true
+      let pageNum = 1
+
+      while (gettingMoreFavorites && pageNum < 5) {
+        getFavorites(currentUserId, pageNum, (data, pageNumber) => { // load favorites of current user
+          createFavoritesArray(data)
+          if (data.Favorites.length <= 0) {
+            gettingMoreFavorites = false
+          }
+        })
+        pageNum += 1
+      }
 
       if (url_params.product && $('#' + url_params.product)) {
         $('#' + url_params.product).addClass('selected-force')

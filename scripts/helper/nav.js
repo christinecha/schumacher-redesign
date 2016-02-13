@@ -23,10 +23,21 @@ let navFilterCategories = [
   }
 ]
 
+function capitalized(string) {
+  let wordsArray = string.split(' ')
+  for (let i = 0; i < wordsArray.length; i++) {
+    let stringArray = wordsArray[i].split('')
+    stringArray.splice(0, 1, stringArray[0].toUpperCase())
+    wordsArray.splice(i, 1, stringArray.join(''))
+  }
+  return wordsArray.join(' ')
+}
+
 // populate navigation dropdowns
 function dropdownOptions(departmentName, departmentNameFormatted, category, categoryFormatted, url) {
   requirejs(["../scripts/data.js"], function() {
     let dropdowns = data.navigation_options[departmentName][category]
+
     if (!dropdowns) {
       dropdowns = []
     }
@@ -38,11 +49,12 @@ function dropdownOptions(departmentName, departmentNameFormatted, category, cate
 
     for (let i = 0; i < dropdowns.length; i++) {
       if (dropdownCount < 8) {
+        console.log(capitalized(dropdowns[i]))
         var $option = $('<li>')
-          .html(dropdowns[i])
+          .html(capitalized(dropdowns[i]))
           .attr('data-product', departmentName)
-          .attr('data-filter', category)
-          .attr('data-option', dropdowns[i])
+          .attr('data-filter', capitalized(category))
+          .attr('data-option', capitalized(dropdowns[i]))
         $dropdownColumn = $dropdownColumn.append($option)
         dropdownCount += 1
       }

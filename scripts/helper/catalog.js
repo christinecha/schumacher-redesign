@@ -373,6 +373,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
 
           for (var i = 0; i < filterOptions.length; i++) {
             if (filter != 'Department') {
+              console.log('x',filterOptions[i])
               $('.dropdown.' + filter + ' li[data-option="' + filterOptions[i] + '"]').addClass('selected')
               var $selected_filter = $('<div>')
                 .addClass('selected-filter')

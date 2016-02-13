@@ -105,5 +105,17 @@ function getSidebarFilters(department) {
     'Trim': [{Type: 'Braids & Tapes'}, {Type: 'Gimps'}, {Type: 'Cords'}, {Type: 'Cut Fringe'}],
     'Furniture': [{Type: 'Antiques'}, {Type: 'Tables'}, {Type: 'Accent Chairs'}]
   }
-  return sidebarFilters[department]
+  sidebarFilters = sidebarFilters[department]
+
+  for (let i = 0; i < sidebarFilters.length; i++) {
+    let sidebarCategory = Object.keys(sidebarFilters[i])[0]
+    let filteredUrl = window.location.pathname + '?product=' + department + '&filter=' + sidebarCategory + '&option=' + sidebarFilters[i][sidebarCategory]
+
+    let $sidebarOption = $('<li>')
+      .html(sidebarFilters[i][sidebarCategory])
+      .attr('data-filter', sidebarCategory)
+      .attr('data-option', sidebarFilters[i][sidebarCategory].replace(/,/g, ''))
+    let $sidebarOptionContainer = $('<a>').attr('href', filteredUrl).append($sidebarOption)
+    $('.sub-category.type').append($sidebarOptionContainer)
+  }
 }

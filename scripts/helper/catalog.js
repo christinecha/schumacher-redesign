@@ -1,6 +1,6 @@
 "use strict"
 
-let currentUserId = 115593
+let currentUserId = '115593'
 
 requirejs(["../scripts/helper/parse_url.js"], function() {
   let url_params = parseUrl()
@@ -15,7 +15,6 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
         PriceFrom: 0
       };
       let favoritesById = []
-      getFavorites(currentUserId, createFavoritesArray)
 
       if (url_params.product && $('#' + url_params.product)) {
         $('#' + url_params.product).addClass('selected-force')
@@ -32,25 +31,11 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
       }
 
       if (url_params.path.indexOf('catalog') >= 0) {
-        $('.main-category-title').html(selected_product)
-        getProducts()
+        $('.main-category-title').html(selected_product) // input title of the catalog
+        getProducts() // get products from initial on-load search query
+        getSidebarFilters(selected_product) // get sidebar filters of selected product
 
-        // get sidebar filters
-        let sidebarFilters = getSidebarFilters(selected_product)
-
-        for (let i = 0; i < sidebarFilters.length; i++) {
-          let sidebarCategory = Object.keys(sidebarFilters[i])[0]
-          let filteredUrl = window.location.pathname + '?product=' + selected_product + '&filter=' + sidebarCategory + '&option=' + sidebarFilters[i][sidebarCategory]
-
-          let $sidebarOption = $('<li>')
-            .html(sidebarFilters[i][sidebarCategory])
-            .attr('data-filter', sidebarCategory)
-            .attr('data-option', sidebarFilters[i][sidebarCategory].replace(/,/g, ''))
-          let $sidebarOptionContainer = $('<a>').attr('href', filteredUrl).append($sidebarOption)
-          $('.sub-category.type').append($sidebarOptionContainer)
-        }
-
-        $.each(catalogFilters(), function() {
+        $.each(catalogFilters(), function() { // dynamically generate the relevant filter options + dropdowns
           console.log('getting ', this.category)
           if (!this.onlyShowFor || this.onlyShowFor == selected_product) {
             getCatalogFilters(
@@ -67,23 +52,22 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
         $('.main-category-title').html(selected_collection)
 
         if (url_params.collection == 'favorites') {
-          getFavorites(currentUserId, displayProducts)
+          getFavorites(currentUserId, (data) => { // load favorites of current user
+            createFavoritesArray(data)
+            displayProducts(data)
+          })
           $('.collection-subtitle').hide()
-          console.log(favoritesById)
-        } else {
-          console.log(selected_filters)
+        } else { // otherwise it's just a normal collection (treated as a filter + option)
           getProducts()
         }
       }
 
       function createFavoritesArray(data) {
-        favoritesById = []
-
+        favoritesById = [] // re-empty the favorites every time this is called
         if (data.Favorites) {
           for (let i = 0; i < data.Favorites.length; i++) {
-            favoritesById.push(data.Favorites[i].ItemId)
+            favoritesById.push(data.Favorites[i].ItemSku)
           }
-          console.log('favorites: ', favoritesById)
         }
       }
 
@@ -93,7 +77,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
         $('.pagination').empty()
 
         let products = data.GetProducts
-        if (!products && data.Favorites) {
+        if (data.Favorites) {
           products = data.Favorites
         }
 
@@ -124,10 +108,14 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
                 $productThumb = $productThumb.css('background-image', 'url(http://schumacher-webassets.s3.amazonaws.com/App%20Catalog2-400/Product-Image-Coming-Soon.jpg)')
               }
             })
-            let $favorite = $('<img>').addClass('favorite').attr('src', '../assets/favorite-icon.svg')
-                if (favoritesById.indexOf(products[i].ItemId) >= 0) {
-                  $favorite = $favorite.attr('src', '../assets/favorite-icon_favorited.svg')
-                }
+
+            let $favorite = $('<img>')
+              .addClass('favorite')
+              .attr('data-ItemSku', products[i].ItemSku)
+              .attr('src', '../assets/favorite-icon.svg')
+              if (favoritesById.indexOf(products[i].ItemSku) >= 0) {
+                $favorite = $favorite.attr('src', '../assets/favorite-icon_favorited.svg')
+              }
             let $productInfo = $('<div>').addClass('product-info')
             let $quickshop = $('<div>').addClass('quickshop').html('QUICKSHOP').attr('data-sku', products[i].ItemSku)
                 if (selected_product == 'Furniture') {
@@ -177,6 +165,27 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
           $('.product-list').css('opacity', '1')
         })
       }
+
+      $(document).on('click', '.favorite', function() {
+        let ItemSku = $(this).attr('data-ItemSku')
+        let favoritesURL = "https://www.fschumacher.com/api/v1/RemoveFromFavorites"
+        let favoriteImage = "../assets/favorite-icon.svg"
+        if (favoritesById.indexOf(ItemSku) < 0) {
+          favoritesURL = "https://www.fschumacher.com/api/v1/AddToFavorites"
+          favoriteImage = "../assets/favorite-icon_favorited.svg"
+          favoritesById.push(ItemSku)
+        } else {
+          favoritesById.splice(favoritesById.indexOf(ItemSku), 1)
+          console.log(favoritesById)
+        }
+        console.log(favoritesURL)
+        getData(
+          {UserId: currentUserId, ItemSku: ItemSku},
+          favoritesURL
+        ).then((response) => {
+          $(this).attr('src', favoriteImage)
+        })
+      })
 
       // trigger getProducts on different events
       $(document).on('click', '.submitSearch', function() {

@@ -30,9 +30,8 @@ function catalogFilters() {
 function getFavorites(userId, fn) {
   getData(
     {UserId: userId},
-    "https://www.fschumacher.com/api/v1/GetFavorites",
-    function(data) {
-      fn(data)
-    }
-  )
+    "https://www.fschumacher.com/api/v1/GetFavorites"
+  ).then((data) => {
+    fn(data)
+  })
 }

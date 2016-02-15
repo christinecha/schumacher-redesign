@@ -69,7 +69,7 @@ $('.navigation').load('nav.html', function() {
     hideDropdown(this, dropdownId)
   });
 
-  $(document).on('click', '.filter-options .dropdown-selector', function(){
+  $(document).on('click', '.search-results .dropdown-selector', function(){
     $('.dropdown').hide()
     $(this).siblings('.dropdown-selector').removeClass('selected')
 

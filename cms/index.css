@@ -44,3 +44,42 @@ input, button {
   background-color: #f1f1f2;
   padding: 5px;
 }
+
+.pinboard {
+  background: #f1f1f2;
+  background-size: cover;
+  padding: 20px;
+}
+
+.featured-product {
+  display: inline-block;
+  margin-bottom: 20px;
+  vertical-align: top;
+}
+
+.featured-product--thumb {
+  background: url('../assets/linen-texture.png') #fff;
+  background-size: cover;
+  width: 170px;
+  height: 170px;
+  margin: 10px;
+}
+
+.featured-product--info {
+  width: 170px;
+  font-family: 'Gotham', sans-serif;
+  text-align: center;
+  font-size: 12px;
+  margin: 10px;
+}
+
+.featured-product--name {
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 5px;
+}
+
+.featured-product--sku {
+  width: 60%;
+  float: left;
+}

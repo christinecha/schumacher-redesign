@@ -31,12 +31,19 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
       }
 
       if (url_params.path.indexOf('catalog') >= 0) {
-        $('.main-category-title').html(selected_product) // input title of the catalog
+
+        // replace header text with correct catalog name
+        if (departmentDictionary[selected_product].nameFormatted) {
+          $('.main-category-title').html(departmentDictionary[selected_product].nameFormatted)
+        } else {
+          $('.main-category-title').html(selected_product)
+        }
+
         getProducts() // get products from initial on-load search query
         getSidebarFilters(selected_product) // get sidebar filters of selected product
 
         $.each(catalogFilters(), function() { // dynamically generate the relevant filter options + dropdowns
-          console.log('getting ', this.category)
+          // console.log('getting ', this.category)
           if (!this.onlyShowFor || this.onlyShowFor == selected_product) {
             getCatalogFilters(
               selected_product,
@@ -372,8 +379,9 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
           }
 
           for (var i = 0; i < filterOptions.length; i++) {
-            if (filter != 'Department') {
-              console.log('x',filterOptions[i])
+            let doNotShow = ['Department', 'PriceFrom', 'PriceTo', 'Extrawide', 'Page_number', 'Rows_Per_Page']
+            if (doNotShow.indexOf(filter) < 0) {
+              // console.log('x',filterOptions[i])
               $('.dropdown.' + filter + ' li[data-option="' + filterOptions[i] + '"]').addClass('selected')
               var $selected_filter = $('<div>')
                 .addClass('selected-filter')

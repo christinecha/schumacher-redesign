@@ -27,8 +27,8 @@ ref.child("home").once("value", (snapshot) => {
 
       if (row.title) {
         let $sectionTitle = $('<div>')
-          .addClass('row section-title homepage-tile')
-          .append('<span>' + row.title + '</span>')
+          .addClass('row section-titleContainer')
+          .append('<div class="section-title">' + row.title + '</div>')
         $('.home-dynamic').append($sectionTitle)
       }
 
@@ -51,6 +51,22 @@ ref.child("home").once("value", (snapshot) => {
 
         $('.home-dynamic').append($row)
       }
+    })
+  }
+
+  if (homepageData.featuredProducts) {
+    homepageData.featuredProducts.forEach((product, i) => {
+      let $productThumb = $('<div>')
+        .addClass('featured-product--thumb')
+        .css('background-image', 'url(' + product.image + ')')
+      let $productInfo = $('<div>')
+        .addClass('featured-product--info')
+        .append('<div class="featured-product--name">' + product.name + '</div>')
+        .append('<div class="featured-product--sku">' + product.sku + '</div>')
+      let $productContainer = $('<div>')
+        .addClass('featured-product')
+        .append($productThumb, $productInfo)
+      $('.pinboard').append($productContainer)
     })
   }
 })

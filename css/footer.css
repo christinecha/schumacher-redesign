@@ -13,6 +13,8 @@
   text-transform: uppercase;
 }
 
+.footer-list li:hover { font-weight: bold; }
+
 .footer-list li span { vertical-align: middle; }
 .footer-list p { font-family: 'Gotham'; font-size: 13px; }
 .listColumn li:hover { font-weight: bold; }
@@ -38,7 +40,7 @@
   font-family: 'Gotham', sans-serif;
   text-transform: uppercase;
   font-size: 13px;
-  margin-top: 5px; 
+  margin-top: 5px;
 }
 
 

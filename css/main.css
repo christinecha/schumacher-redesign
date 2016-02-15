@@ -30,7 +30,7 @@ p {
   margin-bottom: 5px;
 }
 
-.columns {
+.columns, .homepage-tile, .section-titleContainer, .pinboardContainer {
   padding: 0.375rem;
 }
 
@@ -64,10 +64,15 @@ p {
 }
 .homepage-tile:hover { opacity: .7; }
 
+.slideshow {
+  min-height: 300px;
+}
+
 .pinboard {
-  background: url('../assets/linen-texture.png');
+  background: #fafafb;
   background-size: cover;
   padding: 20px;
+  text-align: center;
 }
 
 .featured-product {
@@ -79,7 +84,6 @@ p {
   background-size: cover;
   width: 180px;
   height: 180px;
-  box-shadow: 0 0 2px;
   margin: 10px;
 }
 
@@ -89,6 +93,7 @@ p {
   font-size: 12px;
 }
 
-.featured-product--color {
+.featured-product--name {
   font-weight: bold;
+  text-transform: uppercase;
 }

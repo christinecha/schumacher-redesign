@@ -4,35 +4,6 @@ $(() => {
 
   let ref = new Firebase("https://schumacher.firebaseio.com/")
 
-  // create JQUERY object skeletons
-  let $slide = $('<div>')
-    .css('display', 'inline-block')
-    .css('border', '2px solid white')
-  let $image = $('<div>')
-    .css('background-size', 'cover')
-    .css('width', '300px')
-    .css('height', '150px')
-    .css('vertical-align', 'top')
-    .append('<span class="delete">X</span>')
-  let $arrows = $('<div>')
-    .addClass('arrowsContainer')
-    .css('text-align', 'center')
-    .append('<i class="back arrow fa fa-arrow-circle-o-left"></i>')
-    .append('&nbsp;&nbsp;&nbsp;')
-    .append('<i class="forward arrow fa fa-arrow-circle-o-right"></i>')
-  let $linkUrlInput = $('<input>')
-    .attr('type', 'text')
-    .addClass('linkUrlInput')
-    .css('width', '60%')
-    .css('display', 'inline-block')
-  let $linkUrlButton = $('<button>')
-    .css('width', '35%')
-    .css('padding', '10px')
-    .css('float', 'right')
-    .html('update link')
-  let $linkUrlForm = $('<form>')
-    .addClass('linkUrlForm')
-
   // load data from Firebase
   const loadData = () => {
 
@@ -125,11 +96,34 @@ $(() => {
           }
         })
       }
+
+      if (homepageData.featuredProducts) {
+        $('.pinboard').empty()
+
+        homepageData.featuredProducts.forEach((product, i) => {
+          let $arrowsClone = $arrows.clone()
+            .attr('data-index', i)
+          let $productThumb = $('<div>')
+            .addClass('featured-product--thumb')
+            .css('background-image', 'url(' + product.image + ')')
+          let $productInfo = $('<form>')
+            .append($arrowsClone)
+            .addClass('featured-product--info')
+            .attr('data-index', i)
+            .append('<div class="featured-product--name">' + product.name + '</div>')
+            .append('<input class="featured-product--sku" value="' + product.sku + '" />')
+            .append($linkUrlButton.clone())
+          let $productContainer = $('<div>')
+            .addClass('featured-product')
+            .append($productThumb, $productInfo)
+          $('.pinboard').append($productContainer)
+        })
+      }
     })
   }
 
   const repositionImage = (array, id, move) => {
-    console.log(array)
+    // console.log(array)
     let imageArray = array.slice()
     let originalSlide = imageArray[id]
     imageArray.splice(id, 1)
@@ -245,7 +239,7 @@ $('.home-dynamic').on('submit', '.imageRowForm', function(e) {
 $('.home-dynamic').on('click', '.delete', function() {
   let rowNum = parseInt($(this).parent().attr('data-rowindex'))
   let slideNum = parseInt($(this).parent().attr('data-index'))
-  console.log(rowNum, slideNum)
+  // console.log(rowNum, slideNum)
   ref.child("home").child("rows").child(rowNum).child("images").child(slideNum).remove(loadData())
 })
 
@@ -295,7 +289,81 @@ $('.home-dynamic').on('submit', '.linkUrlForm', function(e) {
   }, loadData())
 })
 
+///////////////////////////////////
 
+function getProductInfo(productSku) {
+  return new Promise((resolve, reject) => {
+    $.post(
+      "https://www.fschumacher.com/api/v1/GetProduct",
+      { ItemSku: productSku },
+      function(data, status) {
+        resolve(data.Description)
+      }
+    )
+  })
+}
+
+$('.pinboard').on('submit', '.featured-product--info', function(e) {
+  e.preventDefault()
+
+  let productId = $(this).attr('data-index')
+  let productSku = $(this).children('.featured-product--sku').val()
+
+  getProductInfo(productSku).then((data) => {
+    let productName = data.Item_Name
+    let productImage = data.Item_Image_URL_400
+
+    ref.child("home").child("featuredProducts").child(productId).update({
+      name: productName,
+      image: productImage,
+      sku: productSku
+    }, loadData())
+
+  })
+})
+
+$('.pinboard').on('click', '.back', function() {
+  let slideNum = parseInt($(this).parent().attr('data-index'))
+
+  if (slideNum > 0) {
+    ref.child("home").child("featuredProducts").once("value", (snapshot) => {
+      let newArray = repositionImage(snapshot.val(), slideNum, -1)
+
+      ref.child("home").update({
+        featuredProducts: newArray
+      }, loadData())
+    })
+  }
+})
+
+$('.pinboard').on('click', '.forward', function() {
+  let slideNum = parseInt($(this).parent().attr('data-index'))
+
+  ref.child("home").child("featuredProducts").once("value", (snapshot) => {
+    if (slideNum < snapshot.val().length - 1) {
+      let newArray = repositionImage(snapshot.val(), slideNum, 1)
+
+      ref.child("home").update({
+        featuredProducts: newArray
+      }, loadData())
+    }
+  })
+})
+
+$('.home-dynamic').on('keydown', 'input', function(e) {
+  $(this).siblings('.check').remove()
+})
+
+$('.home-dynamic').on('submit', '.linkUrlForm', function(e) {
+  e.preventDefault()
+  let rowNum = parseInt($(this).attr('data-rowindex'))
+  let slideNum = parseInt($(this).attr('data-index'))
+
+  let imageURL = $(this).children('.linkUrlInput').val()
+  ref.child("home").child("rows").child(rowNum).child("images").child(slideNum).update({
+    link: imageURL
+  }, loadData())
+})
 
 
 

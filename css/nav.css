@@ -63,8 +63,9 @@
 
 
 .search {
-  background: #e6e6e6 !important;
-  padding: 5px 10px !important;
+  background: #e6e6e6 url('../assets/search-icon.png') no-repeat right !important;
+  background-size: 18px !important;
+  padding: 6px 30px 5px 8px !important;
   height: inherit !important;
   width: 250px;
   margin-top: -5px;

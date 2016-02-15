@@ -9,13 +9,13 @@ let navDepartments = [
 ]
 
 let navFilterCategories = [
-  { categoryFormatted: "Color",
-    category: "ColorFamily",
-    url: "https://www.fschumacher.com/api/v1/GetColorFamilyFilter"
-  },
   { categoryFormatted: "Style",
     category: "Style",
     url: "https://www.fschumacher.com/api/v1/GetStyleFilter"
+  },
+  { categoryFormatted: "Color",
+    category: "ColorFamily",
+    url: "https://www.fschumacher.com/api/v1/GetColorFamilyFilter"
   },
   { categoryFormatted: "Type",
     category: "Type",
@@ -49,7 +49,7 @@ function dropdownOptions(departmentName, departmentNameFormatted, category, cate
 
     for (let i = 0; i < dropdowns.length; i++) {
       if (dropdownCount < 8) {
-        console.log(capitalized(dropdowns[i]))
+        // console.log(capitalized(dropdowns[i]))
         var $option = $('<li>')
           .html(capitalized(dropdowns[i]))
           .attr('data-product', departmentName)

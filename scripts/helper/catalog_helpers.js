@@ -1,5 +1,12 @@
 "use strict"
 
+const departmentDictionary = {
+  Fabrics: { nameFormatted: 'Fabric' },
+  Wallcoverings: { nameFormatted: 'Wallpaper' },
+  Trim: { nameFormatted: 'Trim' },
+  Furniture: { nameFormatted: 'Furniture' }
+}
+
 function getCatalogFilters(departmentName, category, categoryFormatted, url) {
   return new Promise((resolve, reject) => {
     let $caret = $('<span>').html('&#9660;').addClass('caret');
@@ -33,7 +40,10 @@ function getCatalogFilters(departmentName, category, categoryFormatted, url) {
         .addClass('slider-handle-max')
         .attr('data-type', 'max')
       let $pricingSlider = $('<div>').addClass('pricing-slider').append($sliderHandleMin, $sliderHandleMax)
-      let $priceDisplay = $('<div>').addClass('price-display').html('No Limit')
+      let $priceDisplay = $('<div>').addClass('price-display').html('$0 - $300+')
+      if (departmentName == 'Furniture') {
+        $priceDisplay = $priceDisplay.html('$0 - $4000+')
+      }
       $dropdown.append($pricingSlider, $priceDisplay, $applyButton)
       $('.filter-dropdowns').append($dropdown)
     } else {

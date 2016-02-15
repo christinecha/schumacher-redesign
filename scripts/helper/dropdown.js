@@ -91,4 +91,4 @@ $('.navigation').load('nav.html', function() {
 
 });
 
-$('.navigation .dropdown-selector').click()
+// $('.navigation .dropdown-selector').click()

@@ -72,13 +72,14 @@
   border: none;
   font-size: 11px !important;
   top: 0 !important;
+  text-transform: uppercase !important;
 }
 
-.search::-webkit-input-placeholder { color: #555759; }
-.search::-moz-placeholder { color: #555759; }
-.search:-moz-placeholder { color: #555759; }
-.search:-ms-placeholder { color: #555759; }
-.search:placeholder-shown { color: #555759; }
+.search::-webkit-input-placeholder { color: #555759; text-transform: none !important; }
+.search::-moz-placeholder { color: #555759; text-transform: none !important; }
+.search:-moz-placeholder { color: #555759; text-transform: none !important; }
+.search:-ms-placeholder { color: #555759; text-transform: none !important; }
+.search:placeholder-shown { color: #555759; text-transform: none !important; }
 
 .search-icon {
   background: #e6e6e6 !important;
@@ -140,7 +141,7 @@
   font-family: 'Gotham';
   font-size: 11px;
   background-color: #404040;
-  padding: 8px 15px 5px 15px;
+  padding: 8px 15px 6px 15px;
   min-width: 150px;
   margin: 10px 0 0 0;
   -webkit-transition: background 0s;

@@ -69,9 +69,9 @@ p {
 }
 
 .pinboard {
-  background: #fafafb;
   background-size: cover;
-  padding: 20px;
+  padding: 10px 0;
+  margin: 0 -15px;
   text-align: center;
 }
 
@@ -79,12 +79,14 @@ p {
   display: inline-block;
 }
 
+.featured-product:hover { opacity: .8; }
+
 .featured-product--thumb {
   background: url('../assets/linen-texture.png') #fff;
   background-size: cover;
-  width: 180px;
-  height: 180px;
-  margin: 10px;
+  width: 213px;
+  height: 213px;
+  margin: 15px;
 }
 
 .featured-product--info {

@@ -6,6 +6,8 @@ ref.child("home").once("value", (snapshot) => {
   let homepageData = snapshot.val()
 
   if (homepageData.slideshow) {
+    console.log('getting slideshow')
+
     homepageData.slideshow.forEach((slide, i) => {
       let $slide = $('<img>')
         .attr('src', slide.image)
@@ -24,6 +26,7 @@ ref.child("home").once("value", (snapshot) => {
 
   if (homepageData.rows) {
     homepageData.rows.forEach((row, i) => {
+      console.log('getting rows')
 
       if (row.title) {
         let $sectionTitle = $('<div>')
@@ -55,6 +58,7 @@ ref.child("home").once("value", (snapshot) => {
   }
 
   if (homepageData.featuredProducts) {
+
     homepageData.featuredProducts.forEach((product, i) => {
       let $productThumb = $('<div>')
         .addClass('featured-product--thumb')
@@ -63,10 +67,24 @@ ref.child("home").once("value", (snapshot) => {
         .addClass('featured-product--info')
         .append('<div class="featured-product--name">' + product.name + '</div>')
         .append('<div class="featured-product--sku">' + product.sku + '</div>')
-      let $productContainer = $('<div>')
+      let $productContainer = $('<a>')
         .addClass('featured-product')
+        .attr('href', '/item/' + product.sku)
         .append($productThumb, $productInfo)
       $('.pinboard').append($productContainer)
     })
+
+    movePinboard()
   }
 })
+
+function movePinboard() {
+  let $sectionTitle = $('<div>')
+    .addClass('row section-titleContainer')
+    .append('<div class="section-title">Featured Products</div>')
+    
+  let $pinboard = $('.pinboard-container').detach()
+  console.log('hi', $('.home-dynamic').children('.row'))
+  $('.home-dynamic .row').eq(7).before($pinboard)
+  $('.pinboard-container').before($sectionTitle)
+}

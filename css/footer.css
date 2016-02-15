@@ -27,20 +27,26 @@
   color: #555759;
 }
 
-.social-bar {
-  margin: 20px 0 10px;
+.footer {
   background-color: #f1f1f2;
-  padding: 10px 20px;
+  margin-top: 20px;
+  padding: 20px 0;
 }
 
-.social-bar .category { margin-right: 50px; }
-.social-bar .footersocialicon { margin-right: 20px; }
-#newsletter-signup {
-  float: right;
-  font-family: 'Gotham', sans-serif;
-  text-transform: uppercase;
-  font-size: 13px;
-  margin-top: 5px;
+.footersocialicon { font-size: 20px; margin-right: 10px; }
+
+.newsletter-signup {
+  font-family: 'Gotham' !important;
+  font-size: 11px !important;
+  border: none !important;
+  box-shadow: none !important;
+  background-color: #fdfdfe !important;
+  padding: 4px 8px !important;
+  margin-bottom: 5px !important;
+}
+
+.newsletter-signup:focus {
+  background-color: #fff !important;
 }
 
 

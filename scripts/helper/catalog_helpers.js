@@ -73,12 +73,12 @@ function getFilterDropdowns(departmentName, category, url, $dropdown, $applyButt
             .attr('data-option', dropdowns[i][category].replace(/,/g, ''))
 
           // if the filter category is color, we need to add thumbnails
-          if (category == 'ColorFamily') {
-            var $colorThumb = $('<div>')
-              .addClass('color--thumbnail')
-              .css('background-image', '../assetscolor_thumbnails' + dropdowns[i][category] + '.png')
-            $option = $option.prepend($colorThumb);
-          }
+          // if (category == 'ColorFamily') {
+          //   var $colorThumb = $('<div>')
+          //     .addClass('color--thumbnail')
+          //     .css('background-image', '../assetscolor_thumbnails' + dropdowns[i][category] + '.png')
+          //   $option = $option.prepend($colorThumb);
+          // }
 
           // if the filter category has more than 8 options, we need to split it into columns
           if ($dropdownColumn.children('li').length >= 8) {

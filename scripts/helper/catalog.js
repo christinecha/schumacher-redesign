@@ -33,7 +33,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
       if (url_params.path.indexOf('catalog') >= 0) {
 
         // replace header text with correct catalog name
-        if (departmentDictionary[selected_product].nameFormatted) {
+        if (departmentDictionary[selected_product] && departmentDictionary[selected_product].nameFormatted) {
           $('.main-category-title').html(departmentDictionary[selected_product].nameFormatted)
         } else {
           $('.main-category-title').html(selected_product)
@@ -59,6 +59,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
         $('.main-category-title').html(selected_collection)
 
         if (url_params.collection == 'favorites') {
+          $('.main-category-title').html('My Favorites')
           getFavorites(currentUserId, 1).then((data, pageNumber) => { // load favorites of current user
             createFavoritesArray(data)
             selected_filters.Page_number = pageNumber
@@ -73,7 +74,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
           })
 
           $('.main-category-title').html(url_params.query.replace('%20', ' '))
-          $('.collection-subtitle').html('searching for:')
+          $('.collection-subtitle').html('search results >')
 
         } else { // otherwise it's just a normal collection (treated as a filter + option)
           getProducts()
@@ -247,11 +248,11 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
       })
 
       // if you click a side filter, the page refreshes with the new query string
-      $('.sub-category').on('click', 'li', function() {
-        var filter = $(this).attr('data-filter')
-        var option = $(this).attr('data-option')
-        location.href = "catalog.html?product=" + selected_product + "&filter=" + filter + "&option=" + option;
-      });
+      // $('.sub-category').on('click', 'li', function() {
+      //   var filter = $(this).attr('data-filter')
+      //   var option = $(this).attr('data-option')
+      //   location.href = "catalog.html?product=" + selected_product + "&filter=" + filter + "&option=" + option;
+      // });
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // manipulate pricing slider

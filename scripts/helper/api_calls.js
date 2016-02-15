@@ -38,10 +38,24 @@ function getFavorites(userId, pageNumber, fn) {
     }
 
     $('.loading').show()
-    
+
     getData(
       {UserId: userId, Rows_Per_Page: rowsPerPage, Page: pageNumber},
       "https://www.fschumacher.com/api/v1/GetFavorites"
+    ).then((data) => {
+      console.log(pageNumber)
+      resolve(data, pageNumber)
+    })
+  })
+}
+
+function getSearchResults(userId, pageNumber, searchString, fn) {
+  return new Promise((resolve, reject) => {
+    $('.loading').show()
+
+    getData(
+      {UserId: userId, SearchString: searchString, Rows_Per_Page: 30, Page_Number: pageNumber},
+      "https://www.fschumacher.com/api/v1/SearchProducts"
     ).then((data) => {
       console.log(pageNumber)
       resolve(data, pageNumber)

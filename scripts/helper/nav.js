@@ -96,3 +96,12 @@ $('.navigation').on('click', 'li.catalog-link', function() {
   }
   location.href = "catalog.html?product=" + department;
 })
+
+//search by keyword
+$('.navigation').on('submit', '.searchByKeyword', function(e) {
+  e.preventDefault()
+
+  let keywords = $(this).children('.search').val()
+
+  location.href = "collection.html?collection=Search&query=" + keywords
+})

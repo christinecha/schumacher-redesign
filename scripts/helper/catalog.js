@@ -64,7 +64,17 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
             selected_filters.Page_number = pageNumber
             displayProducts(data)
           })
+
           $('.collection-subtitle').hide()
+        } else if (url_params.collection == 'Search') {
+          getSearchResults(currentUserId, 1, url_params.query).then((data, pageNumber) => { // load favorites of current user
+            selected_filters.Page_number = pageNumber
+            displayProducts(data)
+          })
+
+          $('.main-category-title').html(url_params.query.replace('%20', ' '))
+          $('.collection-subtitle').html('searching for:')
+
         } else { // otherwise it's just a normal collection (treated as a filter + option)
           getProducts()
         }
@@ -220,8 +230,14 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
         let pageNumber = $(this).attr('data-page')
 
         if (selected_collection == 'favorites') {
-          getFavorites(currentUserId, pageNumber).then((data, pageNumber) => { // load favorites of current user
+          getFavorites(currentUserId, pageNumber).then((data) => { // load favorites of current user
             createFavoritesArray(data)
+            selected_filters.Page_number = pageNumber
+            displayProducts(data)
+          })
+        } else if (selected_collection == 'Search') {
+          getSearchResults(currentUserId, pageNumber, url_params.query).then((data) => { // load favorites of current user
+            debugger
             selected_filters.Page_number = pageNumber
             displayProducts(data)
           })

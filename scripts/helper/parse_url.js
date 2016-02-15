@@ -6,6 +6,7 @@ function parseUrl() {
     product: window.location.href.indexOf('product='),
     filter: window.location.href.indexOf('filter='),
     option: window.location.href.indexOf('option='),
+    query: window.location.href.indexOf('query='),
   }
 
   let url_params = { path: window.location.pathname }

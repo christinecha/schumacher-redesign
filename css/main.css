@@ -26,9 +26,15 @@ body, *, a, a:hover {
   outline: none;
 }
 
+body {
+  min-width: 1270px;
+}
+
 p {
   margin-bottom: 5px;
 }
+
+.row { width: 90%; max-width: 1200px; }
 
 .columns, .homepage-tile, .section-titleContainer, .pinboardContainer {
   padding: 0.375rem;

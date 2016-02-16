@@ -18,6 +18,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
 
       if (url_params.product && $('#' + url_params.product)) {
         $('#' + url_params.product).addClass('selected-force')
+        console.log('d', $('#' + url_params.product))
         selected_product = url_params.product
         selected_filters.Department = selected_product
         if (url_params.filter && url_params.option) {
@@ -41,6 +42,8 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
 
         getProducts() // get products from initial on-load search query
         getSidebarFilters(selected_product) // get sidebar filters of selected product
+        $('.sub-category li[data-option="' + url_params.option + '"]').css('font-weight', 'bold')
+        console.log($('.sub-category #' + url_params.filter + ' li[data-option="' + url_params.option + '"]'))
 
         $.each(catalogFilters(), function() { // dynamically generate the relevant filter options + dropdowns
           // console.log('getting ', this.category)
@@ -109,9 +112,6 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
           let pageCount = Math.ceil(data.Count / 30)
           let currentPage = parseInt(selected_filters.Page_number)
 
-          $('.resultsCount').show()
-          $('.numOfResults').html(productCount)
-
           requirejs(["../scripts/helper/pagination.js"], function() {
             displayPagination(currentPage, pageCount)
           })
@@ -158,6 +158,9 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
           $('.loading').hide()
           $('.no-results-found').hide()
         }
+
+        $('.resultsCount').show()
+        $('.numOfResults').html(productCount)
       }
 
 
@@ -189,6 +192,13 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
           })
         })
       }
+
+      requirejs(["../scripts/helper/parse_url.js"], function() {
+        $('.catalog').on('click', '.quickshop', function() {
+          let sku = $(this).attr('data-sku')
+          getProduct(sku, favoritesById)
+        })
+      })
 
       $(document).on('click', '.favorite', function() {
         let ItemSku = $(this).attr('data-ItemSku')
@@ -225,6 +235,10 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
         $('.filter-options .filter-title').removeClass('selected')
         $(this).parent('.dropdown').hide()
         getProducts()
+      })
+
+      $('.main-category-title').on('click', function() {
+        location.href = "catalog.html?product=" + selected_product
       })
 
       $('.pagination').on('click', '.page-number', function() {

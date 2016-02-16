@@ -35,10 +35,10 @@
       <section class="top-bar-section">
       <ul class="left main-nav">
         <li class="dropdown-selector" id="new_arrivals">NEW ARRIVALS</li>
-        <li class="dropdown-selector catalog-link" id="fabric" data-department="Fabrics">FABRIC</li>
-        <li class="dropdown-selector catalog-link" id="wallpaper" data-department="Wallcoverings">WALLPAPER</li>
-        <li class="dropdown-selector catalog-link" id="trim" data-department="Trim">TRIM</li>
-        <li class="dropdown-selector catalog-link" id="furniture" data-department="Furniture">FURNITURE</li>
+        <li class="dropdown-selector catalog-link" id="Fabrics" data-department="Fabrics">FABRIC</li>
+        <li class="dropdown-selector catalog-link" id="Wallcoverings" data-department="Wallcoverings">WALLPAPER</li>
+        <li class="dropdown-selector catalog-link" id="Trim" data-department="Trim">TRIM</li>
+        <li class="dropdown-selector catalog-link" id="Furniture" data-department="Furniture">FURNITURE</li>
         <li class="dropdown-selector" id="rugs-carpets">RUGS &amp; CARPETS</li>
         <li class="dropdown-selector" id="custom-contract">CUSTOM &amp; CONTRACT</li>
         <li class="dropdown-selector" id="services">SERVICES</li>
@@ -47,6 +47,7 @@
         <li style="margin-top: -3px;">
           <form class="searchByKeyword">
             <input class="search" placeholder="Enter SKU, color, keyword">
+            <button class="search-submit"></button>
           </form>
         <li>
       </ul>
@@ -109,7 +110,7 @@
     </div>
   </ul>
 
-  <ul class="dropdown fabric">
+  <ul class="dropdown Fabrics" data-dropdown="Fabrics">
     <div class="dropdownColumn dropdownColumn-special">
       <li data-product="Fabrics" data-filter="Collection" data-option="New Arrivals">NEW ARRIVALS</li>
       <li data-product="Fabrics" data-filter="EndUse" data-option="Indoor Outdoor">INDOOR + OUTDOOR</li>
@@ -123,7 +124,7 @@
     </div>
   </ul>
 
-  <ul class="dropdown wallpaper">
+  <ul class="dropdown Wallcoverings" data-dropdown="Wallcoverings">
     <div class="dropdownColumn dropdownColumn-special">
       <li>NEW ARRIVALS</li>
       <li>LOOKBOOKS</li>
@@ -135,7 +136,7 @@
     </div>
   </ul>
 
-  <ul class="dropdown trim">
+  <ul class="dropdown Trim" data-dropdown="Trim">
     <div class="dropdownColumn dropdownColumn-special">
       <li>NEW ARRIVALS</li>
       <li>COLLECTIONS</li>
@@ -146,7 +147,7 @@
     </div>
   </ul>
 
-  <ul class="dropdown furniture">
+  <ul class="dropdown Furniture" data-dropdown="Furniture">
     <br>
     <a href="/html/catalog.html?product=Furniture">
       <button class="dropdownButton">SHOP FURNITURE</button>

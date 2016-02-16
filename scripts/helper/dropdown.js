@@ -60,11 +60,13 @@ $('.navigation').load('nav.html', function() {
   });
 
   $(document).on('mouseover', '.navigation .dropdown', function(){
-    var dropdownId = $(this).attr('')
+    var dropdownId = $(this).attr('data-dropdown')
+    console.log(dropdownId)
+    $('#' + dropdownId).addClass('selected')
     $('.dropdown').hide()
     showDropdown(this, dropdownId)
   }).on('mouseleave', '.navigation .dropdown', function(){
-    var dropdownId = $(this).attr('')
+    var dropdownId = $(this).attr('data-dropdown')
     $('.dropdown').hide()
     hideDropdown(this, dropdownId)
   });

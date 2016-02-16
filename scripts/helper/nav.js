@@ -2,10 +2,10 @@
 
 // API urls
 let navDepartments = [
-  {departmentName: 'Fabrics', departmentNameFormatted: 'fabric'},
-  {departmentName: 'Wallcoverings', departmentNameFormatted: 'wallpaper'},
-  {departmentName: 'Trim', departmentNameFormatted: 'trim'},
-  {departmentName: 'Furniture', departmentNameFormatted: 'furniture'}
+  {departmentName: 'Fabrics', departmentNameFormatted: 'Fabrics'},
+  {departmentName: 'Wallcoverings', departmentNameFormatted: 'Wallcoverings'},
+  {departmentName: 'Trim', departmentNameFormatted: 'Trim'},
+  {departmentName: 'Furniture', departmentNameFormatted: 'Furniture'}
 ]
 
 let navFilterCategories = [

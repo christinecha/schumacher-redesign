@@ -9,7 +9,7 @@ let product_props = [
   "Performance"
 ]
 
-function getProduct(sku) {
+function getProduct(sku, favoritesById) {
   $('.quickshop-modal').empty()
   console.log(sku)
   $.post(
@@ -23,7 +23,13 @@ function getProduct(sku) {
       let $productInfo = $('<div>').addClass('product-info')
 
       let $productName = $('<div>').addClass('product-name').html(productInfo.Item_Name)
-      let $favorite = $('<img>').addClass('favorite').attr('src', '../assets/favorite-icon.svg')
+      let $favorite = $('<img>')
+        .addClass('favorite')
+        .attr('src', '../assets/favorite-icon.svg')
+        .attr('data-ItemSku', productInfo.ItemSku)
+      if (favoritesById.indexOf(productInfo.ItemSku) >= 0) {
+        $favorite = $favorite.attr('src', '../assets/favorite-icon_favorited.svg')
+      }
       let $exitQuickshop = $('<div>').addClass('exit-quickshop').html('X')
       $productName.append($favorite, $exitQuickshop)
 
@@ -77,12 +83,6 @@ function getProduct(sku) {
     }
   )
 }
-
-
-$('.catalog').on('click', '.quickshop', function() {
-  let sku = $(this).attr('data-sku')
-  getProduct(sku)
-})
 
 $('.quickshop-overlay').on('change', '.product-shop--ordertypes', function(e) {
   console.log($('.product-shop--ordertypes').val())

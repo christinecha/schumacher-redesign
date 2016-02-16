@@ -68,11 +68,11 @@
   padding: 6px 30px 5px 8px !important;
   height: inherit !important;
   width: 250px;
-  margin-top: -5px;
   border: none;
   font-size: 11px !important;
   top: 0 !important;
   text-transform: uppercase !important;
+  vertical-align: top;
 }
 
 .search::-webkit-input-placeholder { color: #555759; text-transform: none !important; }
@@ -81,10 +81,15 @@
 .search:-ms-placeholder { color: #555759; text-transform: none !important; }
 .search:placeholder-shown { color: #555759; text-transform: none !important; }
 
-.search-icon {
-  background: #e6e6e6 !important;
-  height: 21px;
-  padding: 3px;
+.search-submit {
+  top: 0 !important;
+  background: none !important;
+  height: 30px !important;
+  width: 30px !important;
+  font-size: 0 !important;
+  margin: 0 0 0 -30px !important;
+  padding: 0 0 0 0 !important;
+  vertical-align: top;
 }
 
 .dropdown {

@@ -12,7 +12,12 @@ ref.child("home").once("value", (snapshot) => {
       let $slide = $('<img>')
         .attr('src', slide.image)
         .attr('width', '100%')
-      $('.slideshow').append($slide)
+
+      let $slideContainer = $('<a>')
+        .attr('href', slide.link)
+        .append($slide)
+
+      $('.slideshow').append($slideContainer)
     })
 
     $('.slideshow').slick({
@@ -82,7 +87,7 @@ function movePinboard() {
   let $sectionTitle = $('<div>')
     .addClass('row section-titleContainer')
     .append('<div class="section-title">Featured Products</div>')
-    
+
   let $pinboard = $('.pinboard-container').detach()
   console.log('hi', $('.home-dynamic').children('.row'))
   $('.home-dynamic .row').eq(7).before($pinboard)

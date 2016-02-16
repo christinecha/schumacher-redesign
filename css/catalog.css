@@ -11,7 +11,7 @@
 .side-filter ul li { font-size: 11px; margin-bottom: 5px; }
 .side-filter ul li:hover { font-weight: bold; }
 
-.main-category-title { font-family: 'Chronicle', serif !important; font-size: 16px !important; }
+.main-category-title { font-family: 'Chronicle', serif !important; font-size: 16px !important; cursor: pointer; }
 .sub-category-title { font-size: 11px; font-weight: bold; cursor: pointer; margin-bottom: 5px; }
 .sub-category li { cursor: pointer; }
 
@@ -103,12 +103,13 @@
   position: relative;
   top: -5px;
   margin-left: 185px;
+  cursor: pointer;
 }
 .pricing-slider .slider-handle-min { margin-left: 0; }
 .pricing-slider .slider-handle-max { margin-top: -15px; }
 
 
-.price-display { margin: 10px 0 5px 0; text-align: center; }
+.price-display { margin: 10px 0 5px 0; text-align: center; cursor: pointer; }
 
 .color .toggleColors {
   margin-top: 10px;
@@ -131,7 +132,8 @@
 .page-number { text-decoration: underline; margin: 0 5px; cursor: pointer; }
 .page-number.selected { font-weight: bold; text-decoration: none;}
 
-.product-list { min-height: 100%; margin: 0 0 !important; }
+.product-list { min-height: 100%; margin: 0 -0.375rem !important; }
+.product-preview { cursor: pointer; }
 .product-preview:last-child { float: left !important; }
 
 .product-thumb {

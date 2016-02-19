@@ -8,6 +8,10 @@ input, button {
   margin: 0 0 0 0 !important;
 }
 
+input {
+  padding: 10px 40px 10px 10px !important;
+}
+
 .delete {
   background-color: #fff;
   padding: 5px;

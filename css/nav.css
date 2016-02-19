@@ -159,3 +159,11 @@
 .placeholder {
   margin-top: 10px;
 }
+
+.sign-in input,
+.register input {
+  font-family: 'Gotham', sans-serif !important;
+  font-size: 11px !important;
+  height: 30px !important;
+  margin-bottom: 10px !important;
+}

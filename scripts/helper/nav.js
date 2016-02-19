@@ -1,5 +1,31 @@
 "use strict"
 
+//// authorization
+let currentUserId // global variable for currentUserId
+let session
+console.log('currentUserId: ', currentUserId)
+
+function validated() {
+  // some login validation function
+  return true
+}
+
+if (session) {
+  // set currentUserId to session's login Id
+}
+
+if (currentUserId && validated(currentUserId)) {
+  $('.logged-in').show()
+  $('.logged-out').hide()
+} else {
+  $('.logged-in').hide()
+  $('.logged-out').show()
+}
+
+$('.signInForm').on('submit', function() {
+  // create session with login info
+})
+
 // API urls
 let navDepartments = [
   {departmentName: 'Fabrics', departmentNameFormatted: 'Fabrics'},
@@ -23,6 +49,7 @@ let navFilterCategories = [
   }
 ]
 
+// helper function for dropdown titles
 function capitalized(string) {
   let wordsArray = string.split(' ')
   for (let i = 0; i < wordsArray.length; i++) {
@@ -86,7 +113,7 @@ $('.navigation').on('click', '.dropdownColumn li', function() {
   location.href = "catalog.html?product=" + product + "&filter=" + filter + "&option=" + option;
 });
 
-// direct to catalog with correct query
+// direct to catalog with correct query: general Department catalogs
 $('.navigation').on('click', 'li.catalog-link', function() {
   console.log('clicked')
   if ($(this).attr('data-department')) {

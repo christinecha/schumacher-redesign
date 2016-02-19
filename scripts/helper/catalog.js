@@ -1,7 +1,5 @@
 "use strict"
 
-let currentUserId = '115593'
-
 requirejs(["../scripts/helper/parse_url.js"], function() {
   let url_params = parseUrl()
 

@@ -13,10 +13,15 @@
         <span class="separator">|</span>
         <li>INSPIRATION</li>
       </ul>
-      <ul class="right top-nav">
+      <ul class="right top-nav logged-in">
         <li class="dropdown-selector" id="my-schumacher">MY SCHUMACHER</li>
         <span class="separator">|</span>
         <li class="dropdown-selector" id="shopping-bag"><img width="12px" src="../assets/shopping-cart.png" style="margin-top: -2px;"> ( 10 )</li>
+      </ul>
+      <ul class="right top-nav logged-out" style="display:none;">
+        <li class="dropdown-selector" id="sign-in">SIGN IN</li>
+        <span class="separator">|</span>
+        <li class="dropdown-selector" id="register">REGISTER</li>
       </ul>
       </section>
     </nav>
@@ -64,6 +69,35 @@
       <li>MY PROFILE</li>
       <a href="/html/collection.html?collection=favorites"><li>MY FAVORITES</li></a>
       <button class="dropdownButton" style="min-width: 100px;">SIGN OUT</button>
+    </div>
+  </ul>
+
+  <ul class="dropdown sign-in" style="height: 180px;">
+    <form id="signInForm" class="dropdownColumn">
+      <input type="text" placeholder="username" />
+      <input type="password" placeholder="password" />
+      <button class="dropdownButton" style="min-width: 100px;">SIGN IN</button>
+    </form>
+  </ul>
+
+  <ul class="dropdown register">
+    <div class="dropdownColumn" style="width: 320px;">
+      <h4 class="category">Web Access</h4>
+      <p>
+        Current Schumacher Trade Account holders are invited to register for web access. As a Schumacher account holder with web access you can use the following online tools:
+      </p>
+      <li>&bull; View your shopping bag and place orders</li>
+      <li>&bull; Check stock availability</li>
+      <li>&bull; Check your order status</li>
+      <li>&bull; Download helpful files</li>
+      <button class="dropdownButton" style="min-width: 100px;">SIGN UP FOR WEB ACCESS</button>
+    </div>
+    <div class="dropdownColumn" style="width: 300px;">
+      <h4 class="category">Trade Account</h4>
+      <p>
+        Since 1889, Schumacher's exquisite products have helped design professionals create exclusive and luxurious interiors. If you are a member of the design trade interested in establishing an account with Schumacher, please click on the register button below. All applications are subject to review and approval by Schumacher.
+      </p>
+      <button class="dropdownButton" style="min-width: 100px;">APPLY FOR A TRADE ACCOUNT</button>
     </div>
   </ul>
 

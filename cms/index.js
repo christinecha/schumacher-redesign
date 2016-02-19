@@ -20,6 +20,7 @@ $(() => {
             .attr('data-index', i)
           let $arrowsClone = $arrows.clone().attr('data-index', i)
           let $linkUrlFormClone = $linkUrlForm.clone()
+            .attr('data-index', i)
             .append($linkUrlInput.clone().val(slide.link))
             .append('<i class="check fa fa-check-circle-o"></i>')
             .append($linkUrlButton.clone().attr('data-index', i))

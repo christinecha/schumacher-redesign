@@ -26,7 +26,7 @@ $('.navigation').load('nav.html', function() {
       top: selectorOffset.top + selectorHeight,
     }
     // if the selector is too far to the right (that dropdown will open beyond window)
-    if ((dropdownOffset.left + dropdownWidth) >= $('.navigation').width()) {
+    if ((dropdownOffset.left + dropdownWidth) >= $('.navigation').width() - 50) {
       //position to the right instead
       dropdownOffset.left-= dropdownWidth;
       dropdownOffset.left+= selectorWidth;

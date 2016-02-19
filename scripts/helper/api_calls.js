@@ -39,13 +39,18 @@ function getFavorites(userId, pageNumber, fn) {
 
     $('.loading').show()
 
-    getData(
-      {UserId: userId, Rows_Per_Page: rowsPerPage, Page: pageNumber},
-      "https://www.fschumacher.com/api/v1/GetFavorites"
-    ).then((data) => {
-      console.log(pageNumber)
-      resolve(data, pageNumber)
-    })
+    if (userId) {
+      getData(
+        {UserId: userId, Rows_Per_Page: rowsPerPage, Page: pageNumber},
+        "https://www.fschumacher.com/api/v1/GetFavorites"
+      ).then((data) => {
+        console.log(pageNumber)
+        resolve(data, pageNumber)
+      })
+    } else {
+      resolve(false)
+    }
+
   })
 }
 

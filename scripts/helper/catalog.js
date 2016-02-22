@@ -1,18 +1,18 @@
 "use strict"
 
 requirejs(["../scripts/helper/parse_url.js"], function() {
-  let url_params = parseUrl()
+  var url_params = parseUrl()
 
   requirejs(["../scripts/helper/api_calls.js"], function() {
     requirejs(["../scripts/helper/catalog_helpers.js"], function() {
 
-      let selected_product = 'All Products'
-      let selected_collection = 'All Products'
-      let favoritesOnly = false
-      let selected_filters = { // this object will contain all the selected filters for search
+      var selected_product = 'All Products'
+      var selected_collection = 'All Products'
+      var favoritesOnly = false
+      var selected_filters = { // this object will contain all the selected filters for search
         PriceFrom: 0
       };
-      let favoritesById = []
+      var favoritesById = []
 
       if (url_params.product && $('#' + url_params.product)) {
         $('#' + url_params.product).addClass('selected-force')
@@ -51,7 +51,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
               this.category,
               this.categoryFormatted,
               this.url
-            ).then(() => {
+            ).then(function() {
               displaySelectedFilters(selected_filters)
             })
           }
@@ -61,7 +61,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
 
         if (url_params.collection == 'favorites') {
           $('.main-category-title').html('My Favorites')
-          getFavorites(currentUserId, 1).then((data, pageNumber) => { // load favorites of current user
+          getFavorites(currentUserId, 1).then(function(data, pageNumber) { // load favorites of current user
             createFavoritesArray(data)
             selected_filters.Page_number = pageNumber
             displayProducts(data)
@@ -69,7 +69,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
 
           $('.collection-subtitle').hide()
         } else if (url_params.collection == 'Search') {
-          getSearchResults(currentUserId, 1, url_params.query).then((data, pageNumber) => { // load favorites of current user
+          getSearchResults(currentUserId, 1, url_params.query).then(function(data, pageNumber) { // load favorites of current user
             selected_filters.Page_number = pageNumber
             displayProducts(data)
           })
@@ -85,7 +85,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
       function createFavoritesArray(data) {
         favoritesById = [] // re-empty the favorites every time this is called
         if (data.Favorites) {
-          for (let i = 0; i < data.Favorites.length; i++) {
+          for (var i = 0; i < data.Favorites.length; i++) {
             favoritesById.push(data.Favorites[i].ItemSku)
           }
         }
@@ -96,56 +96,56 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
         $('.product-list').empty()
         $('.pagination').empty()
 
-        let products = data.GetProducts
+        var products = data.GetProducts
         if (data.Favorites) {
           products = data.Favorites
         }
 
-        let productCount = data.Count
+        var productCount = data.Count
 
         if (productCount <= 0) {
           $('.loading').hide()
           $('.no-results-found').show()
         } else {
-          let pageCount = Math.ceil(data.Count / 30)
-          let currentPage = parseInt(selected_filters.Page_number)
+          var pageCount = Math.ceil(data.Count / 30)
+          var currentPage = parseInt(selected_filters.Page_number)
 
           requirejs(["../scripts/helper/pagination.js"], function() {
             displayPagination(currentPage, pageCount)
           })
 
-          for (let i = 0; i < products.length; i++) {
-            let $productPreview = $('<div>').addClass('product-preview large-4 columns')
-            let $productThumb = $('<div>').addClass('product-thumb').css('background-image', `url('${products[i].Item_Image_URL_400}')`)
-            let $imgCheck = $('<img>').attr('src', `url('${products[i].Item_Image_URL_400}')`)
+          for (var i = 0; i < products.length; i++) {
+            var $productPreview = $('<div>').addClass('product-preview large-4 columns')
+            var $productThumb = $('<div>').addClass('product-thumb').css('background-image', `url('${products[i].Item_Image_URL_400}')`)
+            var $imgCheck = $('<img>').attr('src', `url('${products[i].Item_Image_URL_400}')`)
             $.ajax({
               url: products[i].Item_Image_URL_400,
               type:'HEAD',
-              error: () => {
+              error: function() {
                 $productThumb = $productThumb.css('background-image', 'url(http://schumacher-webassets.s3.amazonaws.com/App%20Catalog2-400/Product-Image-Coming-Soon.jpg)')
               }
             })
 
-            let $favorite = $('<img>')
+            var $favorite = $('<img>')
               .addClass('favorite')
               .attr('data-ItemSku', products[i].ItemSku)
               .attr('src', '../assets/favorite-icon.svg')
               if (favoritesById.indexOf(products[i].ItemSku) >= 0) {
                 $favorite = $favorite.attr('src', '../assets/favorite-icon_favorited.svg')
               }
-            let $productInfo = $('<div>').addClass('product-info')
-            let $quickshop = $('<div>').addClass('quickshop').html('QUICKSHOP').attr('data-sku', products[i].ItemSku)
+            var $productInfo = $('<div>').addClass('product-info')
+            var $quickshop = $('<div>').addClass('quickshop').html('QUICKSHOP').attr('data-sku', products[i].ItemSku)
                 if (selected_product == 'Furniture') {
                   $quickshop = $quickshop.css('display', 'none')
                   $favorite = $favorite.css('float', 'none')
                   $productInfo = $productInfo.css('margin-top', '5px')
                 }
-            let $productType = $('<div>').addClass('product-type').html(products[i].Department)
-            let $productName = $('<div>').addClass('product-name').html(products[i].Item_Name)
-            let $productId = $('<div>').addClass('product-id')
-            let $productSku = $('<span>').addClass('product-sku').html(products[i].ItemSku)
-            let $productColor = $('<span>').addClass('product-color').html(products[i].Item_Color)
-            let $productPrice = $('<div>').addClass('product-price').html(products[i].Selling_Price_USD)
+            var $productType = $('<div>').addClass('product-type').html(products[i].Department)
+            var $productName = $('<div>').addClass('product-name').html(products[i].Item_Name)
+            var $productId = $('<div>').addClass('product-id')
+            var $productSku = $('<span>').addClass('product-sku').html(products[i].ItemSku)
+            var $productColor = $('<span>').addClass('product-color').html(products[i].Item_Color)
+            var $productPrice = $('<div>').addClass('product-price').html(products[i].Selling_Price_USD)
             $productId.append($productColor, ' ', $productSku)
             $productInfo.append($quickshop, $productType, $productName, $productId, $productPrice)
             $productPreview.append($productThumb, $favorite, $productInfo)
@@ -164,7 +164,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
 
       function getProducts(pageNumber) {
 
-        getFavorites(currentUserId, 'all').then((data) => {
+        getFavorites(currentUserId, 'all').then(function(data) {
           createFavoritesArray(data)
 
           $('.resultsCount').hide()
@@ -176,7 +176,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
           pageNumber = !pageNumber ? 1 : pageNumber
           selected_filters.Page_number = pageNumber
 
-          let query = {
+          var query = {
             Rows_per_page: 30,
             Page_number: selected_filters.Page_number
           }
@@ -184,7 +184,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
             query[filter] = selected_filters[filter]
           }
 
-          getData(query, "https://www.fschumacher.com/api/v1/GetProducts").then((data, query) => {
+          getData(query, "https://www.fschumacher.com/api/v1/GetProducts").then(function(data, query) {
             displayProducts(data, query)
             $('.product-list').css('opacity', '1')
           })
@@ -193,15 +193,15 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
 
       requirejs(["../scripts/helper/parse_url.js"], function() {
         $('.catalog').on('click', '.quickshop', function() {
-          let sku = $(this).attr('data-sku')
+          var sku = $(this).attr('data-sku')
           getProduct(sku, favoritesById)
         })
       })
 
       $(document).on('click', '.favorite', function() {
-        let ItemSku = $(this).attr('data-ItemSku')
-        let favoritesURL = "https://www.fschumacher.com/api/v1/RemoveFromFavorites"
-        let favoriteImage = "../assets/favorite-icon.svg"
+        var ItemSku = $(this).attr('data-ItemSku')
+        var favoritesURL = "https://www.fschumacher.com/api/v1/RemoveFromFavorites"
+        var favoriteImage = "../assets/favorite-icon.svg"
         if (favoritesById.indexOf(ItemSku) < 0) {
           favoritesURL = "https://www.fschumacher.com/api/v1/AddToFavorites"
           favoriteImage = "../assets/favorite-icon_favorited.svg"
@@ -214,7 +214,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
         getData(
           {UserId: currentUserId, ItemSku: ItemSku},
           favoritesURL
-        ).then((response) => {
+        ).then(function(response) {
           $(this).attr('src', favoriteImage)
         })
       })
@@ -223,7 +223,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
       $(document).on('click', '.submitSearch', function() {
         displaySelectedFilters(selected_filters)
         if ($(this).attr('type') == 'checkbox') {
-          let filter = $(this).parent().attr('id')
+          var filter = $(this).parent().attr('id')
           if (!selected_filters[filter] || selected_filters[filter] == false) {
             selected_filters[filter] = true
           } else {
@@ -240,16 +240,16 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
       })
 
       $('.pagination').on('click', '.page-number', function() {
-        let pageNumber = $(this).attr('data-page')
+        var pageNumber = $(this).attr('data-page')
 
         if (selected_collection == 'favorites') {
-          getFavorites(currentUserId, pageNumber).then((data) => { // load favorites of current user
+          getFavorites(currentUserId, pageNumber).then(function(data) { // load favorites of current user
             createFavoritesArray(data)
             selected_filters.Page_number = pageNumber
             displayProducts(data)
           })
         } else if (selected_collection == 'Search') {
-          getSearchResults(currentUserId, pageNumber, url_params.query).then((data) => { // load favorites of current user
+          getSearchResults(currentUserId, pageNumber, url_params.query).then(function(data) { // load favorites of current user
             debugger
             selected_filters.Page_number = pageNumber
             displayProducts(data)
@@ -268,10 +268,10 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // manipulate pricing slider
-      let priceSliderActivated = false
-      let priceCaption = 'NO LIMIT'
-      let scaleMax = 300
-      let increment = 10
+      var priceSliderActivated = false
+      var priceCaption = 'NO LIMIT'
+      var scaleMax = 300
+      var increment = 10
       if (selected_product == "Furniture") {
         scaleMax = 4000
         increment = 100
@@ -279,12 +279,12 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
 
       $('.filter-dropdowns').on('mousedown', '.slider-handle', function(e){
         priceSliderActivated = $(this).attr('data-type')
-        let originalX = $(this).parent('.pricing-slider').offset().left
+        var originalX = $(this).parent('.pricing-slider').offset().left
         $('.filter-dropdowns').on('mousemove', '.dropdown.Price', function(e){
           if (priceSliderActivated) {
-            let newX = e.pageX - originalX
-            let scale = scaleMax / 185
-            let price = Math.ceil((newX * scale) / increment) * increment
+            var newX = e.pageX - originalX
+            var scale = scaleMax / 185
+            var price = Math.ceil((newX * scale) / increment) * increment
 
             if (newX <= 0) {
               newX = 0
@@ -296,7 +296,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
             }
 
             if (priceSliderActivated == 'min') {
-              let minMax = parseInt($('.slider-handle-max').css('margin-left')) - increment
+              var minMax = parseInt($('.slider-handle-max').css('margin-left')) - increment
               if (newX >= minMax) {
                 newX = minMax
                 price = Math.ceil((newX * scale) / increment) * increment
@@ -304,7 +304,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
               selected_filters.PriceFrom = price
               $('.slider-handle-min').css('margin-left', newX + 'px')
             } else if (priceSliderActivated == 'max') {
-              let maxMin = parseInt($('.slider-handle-min').css('margin-left')) + increment
+              var maxMin = parseInt($('.slider-handle-min').css('margin-left')) + increment
               if (newX <= maxMin) {
                 newX = maxMin
                 price = Math.ceil((newX * scale) / increment) * increment
@@ -341,7 +341,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
 
         // check if already added to query
         if (selected_filters[filter]) {
-          let filterOptions = selected_filters[filter].split(',')
+          var filterOptions = selected_filters[filter].split(',')
           for (var i = 0; i < filterOptions.length; i++) {
             if (filterOptions[i] == option) {
               $(this).removeClass('selected')
@@ -368,7 +368,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
         var filter = $(this).attr('data-filter');
         var option = $(this).attr('data-option');
 
-        let filterOptions = selected_filters[filter].split(',')
+        var filterOptions = selected_filters[filter].split(',')
         for (var i = 0; i < filterOptions.length; i++) {
           if (filterOptions[i] == option) {
             console.log($('.dropdown.' + filter + ' .dropdownColumn li[data-option="' + option + '"]'))
@@ -398,7 +398,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
 
         for (var filter in selected_filters) {
 
-          let filterOptions = []
+          var filterOptions = []
 
           if (
             selected_filters[filter] &&
@@ -408,7 +408,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
           }
 
           for (var i = 0; i < filterOptions.length; i++) {
-            let doNotShow = ['Department', 'PriceFrom', 'PriceTo', 'Extrawide', 'Page_number', 'Rows_Per_Page']
+            var doNotShow = ['Department', 'PriceFrom', 'PriceTo', 'Extrawide', 'Page_number', 'Rows_Per_Page']
             if (doNotShow.indexOf(filter) < 0) {
               // console.log('x',filterOptions[i])
               $('.dropdown.' + filter + ' li[data-option="' + filterOptions[i] + '"]').addClass('selected')
@@ -424,14 +424,14 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
           }
         }
 
-        $('.in-use .caret').each((i, element) => {
+        $('.in-use .caret').each(function(i, element) {
           if ($(element).children('i').length < 1) {
             $(element).prepend('<i class="fa fa-check"></i>')
           }
         })
 
         if ($('.selected-filter').length > 0) {
-          let $clearAllButton = $('<div>')
+          var $clearAllButton = $('<div>')
             .addClass('clear-all-filters')
             .html('CLEAR ALL')
           $('.selected-filters').append($clearAllButton)
@@ -452,7 +452,7 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
 
       // make sure product thumbnails are square, even on window resize.
       function makeSquareThumbnails() {
-        let thumbnailWidth = $('.product-thumb').css('width')
+        var thumbnailWidth = $('.product-thumb').css('width')
         $('.product-thumb').css('height', thumbnailWidth)
       }
 

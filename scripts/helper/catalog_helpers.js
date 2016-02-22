@@ -8,18 +8,18 @@ const departmentDictionary = {
 }
 
 function getCatalogFilters(departmentName, category, categoryFormatted, url) {
-  return new Promise((resolve, reject) => {
-    let $caret = $('<span>').html('&#9660;').addClass('caret');
-    let $checkbox = $('<input>').attr('type', 'checkbox').addClass('checkbox').addClass('submitSearch')
-    let $filterTitle = $('<div>')
+  return new Promise(function(resolve, reject) {
+    var $caret = $('<span>').html('&#9660;').addClass('caret');
+    var $checkbox = $('<input>').attr('type', 'checkbox').addClass('checkbox').addClass('submitSearch')
+    var $filterTitle = $('<div>')
       .addClass('filter-title')
       .addClass('dropdown-selector')
       .html(categoryFormatted)
       .attr('id', category)
-    let $dropdown = $('<div>')
+    var $dropdown = $('<div>')
       .addClass('dropdown')
       .addClass(category)
-    let $applyButton = $('<button>')
+    var $applyButton = $('<button>')
       .addClass('dropdownButton')
       .addClass('submitSearch')
       .css('width', '100%')
@@ -31,16 +31,16 @@ function getCatalogFilters(departmentName, category, categoryFormatted, url) {
     } else if (category == "Price") {
       $filterTitle.attr('id', category).append($caret)
       $('.filter-options .secondary').append($filterTitle)
-      let $sliderHandleMin = $('<div>')
+      var $sliderHandleMin = $('<div>')
         .addClass('slider-handle')
         .addClass('slider-handle-min')
         .attr('data-type', 'min')
-      let $sliderHandleMax = $('<div>')
+      var $sliderHandleMax = $('<div>')
         .addClass('slider-handle')
         .addClass('slider-handle-max')
         .attr('data-type', 'max')
-      let $pricingSlider = $('<div>').addClass('pricing-slider').append($sliderHandleMin, $sliderHandleMax)
-      let $priceDisplay = $('<div>').addClass('price-display').html('$0 - $300+')
+      var $pricingSlider = $('<div>').addClass('pricing-slider').append($sliderHandleMin, $sliderHandleMax)
+      var $priceDisplay = $('<div>').addClass('price-display').html('$0 - $300+')
       if (departmentName == 'Furniture') {
         $priceDisplay = $priceDisplay.html('$0 - $4000+')
       }
@@ -50,7 +50,7 @@ function getCatalogFilters(departmentName, category, categoryFormatted, url) {
       $filterTitle.addClass('dropdown-selector').append($caret)
       $('.filter-options .primary').append($filterTitle)
 
-      getFilterDropdowns(departmentName, category, url, $dropdown, $applyButton).then((response) => {
+      getFilterDropdowns(departmentName, category, url, $dropdown, $applyButton).then(function(response) {
         resolve(true)
       })
     }
@@ -58,13 +58,13 @@ function getCatalogFilters(departmentName, category, categoryFormatted, url) {
 }
 
 function getFilterDropdowns(departmentName, category, url, $dropdown, $applyButton) {
-  return new Promise((resolve, reject) => {
-    getData({ Department: departmentName }, url).then((dropdowns) => {
+  return new Promise(function(resolve, reject) {
+    getData({ Department: departmentName }, url).then(function(dropdowns) {
 
       var $dropdownColumns = [];
       var $dropdownColumn = $('<div>').addClass('dropdownColumn');
 
-      for (let i = 0; i < dropdowns.length; i++) {
+      for (var i = 0; i < dropdowns.length; i++) {
         if (dropdowns[i].DepartmentName == departmentName) {
           // create JQuery list element with the option
           var $option = $('<li>')
@@ -110,7 +110,7 @@ function getFilterDropdowns(departmentName, category, url, $dropdown, $applyButt
 }
 
 function getSidebarFilters(department) {
-  let sidebarFilters = {
+  var sidebarFilters = {
     'Fabrics': [{Collection: 'Perfect Basics'}, {Type: 'Prints'}, {Type: 'Sheers'}, {Motif: 'Animal Skin'}, {EndUse: 'Indoor & Outdoor'}, {Type: 'Velvets'}],
     'Wallcoverings': [{Type: 'Prints'}, {Type: 'Grasscloths'}, {Type: 'Faux Finishes'}, {Motif: 'Animal Skin'}],
     'Trim': [{Type: 'Braids & Tapes'}, {Type: 'Gimps'}, {Type: 'Cords'}, {Type: 'Cut Fringe'}],
@@ -118,15 +118,15 @@ function getSidebarFilters(department) {
   }
   sidebarFilters = sidebarFilters[department]
 
-  for (let i = 0; i < sidebarFilters.length; i++) {
-    let sidebarCategory = Object.keys(sidebarFilters[i])[0]
-    let filteredUrl = window.location.pathname + '?product=' + department + '&filter=' + sidebarCategory + '&option=' + sidebarFilters[i][sidebarCategory]
+  for (var i = 0; i < sidebarFilters.length; i++) {
+    var sidebarCategory = Object.keys(sidebarFilters[i])[0]
+    var filteredUrl = window.location.pathname + '?product=' + department + '&filter=' + sidebarCategory + '&option=' + sidebarFilters[i][sidebarCategory]
 
-    let $sidebarOption = $('<li>')
+    var $sidebarOption = $('<li>')
       .html(sidebarFilters[i][sidebarCategory])
       .attr('data-filter', sidebarCategory)
       .attr('data-option', sidebarFilters[i][sidebarCategory].replace(/,/g, ''))
-    let $sidebarOptionContainer = $('<a>').attr('href', filteredUrl).append($sidebarOption)
+    var $sidebarOptionContainer = $('<a>').attr('href', filteredUrl).append($sidebarOption)
     $('.sub-category.type').append($sidebarOptionContainer)
   }
 }

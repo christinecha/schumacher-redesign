@@ -1,25 +1,25 @@
 "use strict"
 
-$(() => {
+$(function() {
 
-  let ref = new Firebase("https://schumacher.firebaseio.com/")
+  var ref = new Firebase("https://schumacher.firebaseio.com/")
 
   // load data from Firebase
-  const loadData = () => {
+  function loadData() {
 
-    ref.child("home").once("value", (snapshot) => {
-      let homepageData = snapshot.val()
+    ref.child("home").once("value", function(snapshot) {
+      var homepageData = snapshot.val()
 
       if (homepageData.slideshow) {
         $('.slideshow').empty()
 
-        homepageData.slideshow.forEach((slide, i) => {
-          let $slideClone = $slide.clone()
-          let $imageClone = $image.clone()
+        homepageData.slideshow.forEach(function(slide, i) {
+          var $slideClone = $slide.clone()
+          var $imageClone = $image.clone()
             .css('background-image', 'url(' + slide.image + ')')
             .attr('data-index', i)
-          let $arrowsClone = $arrows.clone().attr('data-index', i)
-          let $linkUrlFormClone = $linkUrlForm.clone()
+          var $arrowsClone = $arrows.clone().attr('data-index', i)
+          var $linkUrlFormClone = $linkUrlForm.clone()
             .attr('data-index', i)
             .append($linkUrlInput.clone().val(slide.link))
             .append('<i class="check fa fa-check-circle-o"></i>')
@@ -33,25 +33,25 @@ $(() => {
       if (homepageData.rows) {
         $('.home-dynamic').empty()
 
-        homepageData.rows.forEach((row, i) => {
+        homepageData.rows.forEach(function(row, i) {
           if (row.images) {
-            let columnWidth = 12 / row.images.length
-            let $row = $('<div>')
+            var columnWidth = 12 / row.images.length
+            var $row = $('<div>')
               .css('margin', '15px 0')
               .css('padding', '15px')
               .css('background-color', '#f1f1f2')
               .attr('data-rowindex', i)
 
-            let $sectionTitleContainer = $('<form>')
+            var $sectionTitleContainer = $('<form>')
               .addClass('sectionTitleForm')
               .attr('data-rowindex', i)
-            let $sectionTitle = $('<input>')
+            var $sectionTitle = $('<input>')
               .attr('type', 'text')
               .addClass('sectionTitleInput')
               .css('width', '65%')
               .css('display', 'inline-block')
               .val(row.title)
-            let $updateButton = $('<button>')
+            var $updateButton = $('<button>')
               .html('update title')
               .css('width', '30%')
               .css('padding', '10px')
@@ -63,18 +63,18 @@ $(() => {
             )
             $row.append($sectionTitleContainer, '<br>')
 
-            row.images.forEach((image, j) => {
-              let $slideClone = $slide.clone()
+            row.images.forEach(function(image, j) {
+              var $slideClone = $slide.clone()
                 .attr('data-rowindex', i)
                 .attr('data-index', j)
-              let $imageClone = $image.clone()
+              var $imageClone = $image.clone()
                 .css('background-image', 'url(' + image.image + ')')
                 .attr('data-rowindex', i)
                 .attr('data-index', j)
-              let $arrowsClone = $arrows.clone()
+              var $arrowsClone = $arrows.clone()
                 .attr('data-rowindex', i)
                 .attr('data-index', j)
-              let $linkUrlFormClone = $linkUrlForm.clone()
+              var $linkUrlFormClone = $linkUrlForm.clone()
                 .attr('data-rowindex', i)
                 .attr('data-index', j)
                 .append($linkUrlInput.clone().val(image.link))
@@ -85,7 +85,7 @@ $(() => {
               $row.append($slideClone)
             })
 
-            let $imageRowForm = $('<form>')
+            var $imageRowForm = $('<form>')
               .attr('data-rowIndex', i)
               .addClass('imageRowForm')
               .append('<input type="text" class="imageURL" style="width: 40%; display: inline-block;" />')
@@ -101,20 +101,20 @@ $(() => {
       if (homepageData.featuredProducts) {
         $('.pinboard').empty()
 
-        homepageData.featuredProducts.forEach((product, i) => {
-          let $arrowsClone = $arrows.clone()
+        homepageData.featuredProducts.forEach(function(product, i) {
+          var $arrowsClone = $arrows.clone()
             .attr('data-index', i)
-          let $productThumb = $('<div>')
+          var $productThumb = $('<div>')
             .addClass('featured-product--thumb')
             .css('background-image', 'url(' + product.image + ')')
-          let $productInfo = $('<form>')
+          var $productInfo = $('<form>')
             .append($arrowsClone)
             .addClass('featured-product--info')
             .attr('data-index', i)
             .append('<div class="featured-product--name">' + product.name + '</div>')
             .append('<input class="featured-product--sku" value="' + product.sku + '" />')
             .append($linkUrlButton.clone())
-          let $productContainer = $('<div>')
+          var $productContainer = $('<div>')
             .addClass('featured-product')
             .append($productThumb, $productInfo)
           $('.pinboard').append($productContainer)
@@ -123,10 +123,10 @@ $(() => {
     })
   }
 
-  const repositionImage = (array, id, move) => {
+  function repositionImage(array, id, move) {
     // console.log(array)
-    let imageArray = array.slice()
-    let originalSlide = imageArray[id]
+    var imageArray = array.slice()
+    var originalSlide = imageArray[id]
     imageArray.splice(id, 1)
     imageArray.splice(id + move, 0, originalSlide)
 
@@ -142,11 +142,11 @@ $(() => {
 // slideshow update
 
   $('.slideshow').on('click', '.back', function() {
-    let slideNum = parseInt($(this).parent().attr('data-index'))
+    var slideNum = parseInt($(this).parent().attr('data-index'))
 
     if (slideNum > 0) {
-      ref.child("home").child("slideshow").once("value", (snapshot) => {
-        let newArray = repositionImage(snapshot.val(), slideNum, -1)
+      ref.child("home").child("slideshow").once("value", function(snapshot) {
+        var newArray = repositionImage(snapshot.val(), slideNum, -1)
 
         ref.child("home").update({
           slideshow: newArray
@@ -156,11 +156,11 @@ $(() => {
   })
 
   $('.slideshow').on('click', '.forward', function() {
-    let slideNum = parseInt($(this).parent().attr('data-index'))
+    var slideNum = parseInt($(this).parent().attr('data-index'))
 
-    ref.child("home").child("slideshow").once("value", (snapshot) => {
+    ref.child("home").child("slideshow").once("value", function(snapshot) {
       if (slideNum < snapshot.val().length - 1) {
-        let newArray = repositionImage(snapshot.val(), slideNum, 1)
+        var newArray = repositionImage(snapshot.val(), slideNum, 1)
 
         ref.child("home").update({
           slideshow: newArray
@@ -170,7 +170,7 @@ $(() => {
   })
 
   $('.slideshow').on('click', '.delete', function() {
-    let slideNum = parseInt($(this).parent().attr('data-index'))
+    var slideNum = parseInt($(this).parent().attr('data-index'))
     ref.child("home").child("slideshow").child(slideNum).remove(loadData())
   })
 
@@ -180,8 +180,8 @@ $(() => {
 
   $('.slideshow').on('submit', '.linkUrlForm', function(e) {
     e.preventDefault()
-    let slideNum = parseInt($(this).attr('data-index'))
-    let imageURL = $(this).children('.linkUrlInput').val()
+    var slideNum = parseInt($(this).attr('data-index'))
+    var imageURL = $(this).children('.linkUrlInput').val()
 
     ref.child("home").child("slideshow").child(slideNum).update({
       link: imageURL
@@ -190,13 +190,13 @@ $(() => {
 
   $('#slideshowForm').submit(function(e) {
     e.preventDefault()
-    let imageURL = $('#slideshowForm--imageURL').val()
+    var imageURL = $('#slideshowForm--imageURL').val()
     if (imageURL.indexOf('http') < 0) {
       imageURL = 'http://' + imageURL
     }
 
-    ref.child("home").child("slideshow").once("value", (snapshot) => {
-      let newArray = snapshot.val().slice()
+    ref.child("home").child("slideshow").once("value", function(snapshot) {
+      var newArray = snapshot.val().slice()
       newArray.push({
         image: imageURL
       })
@@ -212,8 +212,8 @@ $(() => {
 
 $('.home-dynamic').on('submit', '.sectionTitleForm', function(e) {
   e.preventDefault()
-  let rowId = $(this).attr('data-rowindex')
-  let rowTitle = $(this).children('.sectionTitleInput').val()
+  var rowId = $(this).attr('data-rowindex')
+  var rowTitle = $(this).children('.sectionTitleInput').val()
 
   ref.child("home").child("rows").child(rowId).update({
     title: rowTitle
@@ -222,11 +222,11 @@ $('.home-dynamic').on('submit', '.sectionTitleForm', function(e) {
 
 $('.home-dynamic').on('submit', '.imageRowForm', function(e) {
   e.preventDefault()
-  let rowId = $(this).attr('data-rowindex')
-  let imageURL = $(this).children('.imageURL').val()
+  var rowId = $(this).attr('data-rowindex')
+  var imageURL = $(this).children('.imageURL').val()
 
-  ref.child("home").child("rows").child(rowId).once("value", (snapshot) => {
-    let newArray = snapshot.val().images.slice()
+  ref.child("home").child("rows").child(rowId).once("value", function(snapshot) {
+    var newArray = snapshot.val().images.slice()
     newArray.push({
       image: imageURL,
     })
@@ -238,20 +238,20 @@ $('.home-dynamic').on('submit', '.imageRowForm', function(e) {
 })
 
 $('.home-dynamic').on('click', '.delete', function() {
-  let rowNum = parseInt($(this).parent().attr('data-rowindex'))
-  let slideNum = parseInt($(this).parent().attr('data-index'))
+  var rowNum = parseInt($(this).parent().attr('data-rowindex'))
+  var slideNum = parseInt($(this).parent().attr('data-index'))
   // console.log(rowNum, slideNum)
   ref.child("home").child("rows").child(rowNum).child("images").child(slideNum).remove(loadData())
 })
 
 $('.home-dynamic').on('click', '.back', function() {
-  let rowNum = parseInt($(this).parent().attr('data-rowindex'))
-  let slideNum = parseInt($(this).parent().attr('data-index'))
+  var rowNum = parseInt($(this).parent().attr('data-rowindex'))
+  var slideNum = parseInt($(this).parent().attr('data-index'))
   console.log(rowNum, slideNum)
 
   if (slideNum > 0) {
-    ref.child("home").child("rows").child(rowNum).child("images").once("value", (snapshot) => {
-      let newArray = repositionImage(snapshot.val(), slideNum, -1)
+    ref.child("home").child("rows").child(rowNum).child("images").once("value", function(snapshot) {
+      var newArray = repositionImage(snapshot.val(), slideNum, -1)
 
       ref.child("home").child("rows").child(rowNum).update({
         images: newArray
@@ -261,12 +261,12 @@ $('.home-dynamic').on('click', '.back', function() {
 })
 
 $('.home-dynamic').on('click', '.forward', function() {
-  let rowNum = parseInt($(this).parent().attr('data-rowindex'))
-  let slideNum = parseInt($(this).parent().attr('data-index'))
+  var rowNum = parseInt($(this).parent().attr('data-rowindex'))
+  var slideNum = parseInt($(this).parent().attr('data-index'))
 
-  ref.child("home").child("rows").child(rowNum).child("images").once("value", (snapshot) => {
+  ref.child("home").child("rows").child(rowNum).child("images").once("value", function(snapshot) {
     if (slideNum < snapshot.val().length - 1) {
-      let newArray = repositionImage(snapshot.val(), slideNum, 1)
+      var newArray = repositionImage(snapshot.val(), slideNum, 1)
 
       ref.child("home").child("rows").child(rowNum).update({
         images: newArray
@@ -281,10 +281,10 @@ $('.home-dynamic').on('keydown', 'input', function(e) {
 
 $('.home-dynamic').on('submit', '.linkUrlForm', function(e) {
   e.preventDefault()
-  let rowNum = parseInt($(this).attr('data-rowindex'))
-  let slideNum = parseInt($(this).attr('data-index'))
+  var rowNum = parseInt($(this).attr('data-rowindex'))
+  var slideNum = parseInt($(this).attr('data-index'))
 
-  let imageURL = $(this).children('.linkUrlInput').val()
+  var imageURL = $(this).children('.linkUrlInput').val()
   ref.child("home").child("rows").child(rowNum).child("images").child(slideNum).update({
     link: imageURL
   }, loadData())
@@ -293,7 +293,7 @@ $('.home-dynamic').on('submit', '.linkUrlForm', function(e) {
 ///////////////////////////////////
 
 function getProductInfo(productSku) {
-  return new Promise((resolve, reject) => {
+  return new Promise(function(resolve, reject) {
     $.post(
       "https://www.fschumacher.com/api/v1/GetProduct",
       { ItemSku: productSku },
@@ -307,12 +307,12 @@ function getProductInfo(productSku) {
 $('.pinboard').on('submit', '.featured-product--info', function(e) {
   e.preventDefault()
 
-  let productId = $(this).attr('data-index')
-  let productSku = $(this).children('.featured-product--sku').val()
+  var productId = $(this).attr('data-index')
+  var productSku = $(this).children('.featured-product--sku').val()
 
-  getProductInfo(productSku).then((data) => {
-    let productName = data.Item_Name
-    let productImage = data.Item_Image_URL_400
+  getProductInfo(productSku).then(function(data) {
+    var productName = data.Item_Name
+    var productImage = data.Item_Image_URL_400
 
     ref.child("home").child("featuredProducts").child(productId).update({
       name: productName,
@@ -324,11 +324,11 @@ $('.pinboard').on('submit', '.featured-product--info', function(e) {
 })
 
 $('.pinboard').on('click', '.back', function() {
-  let slideNum = parseInt($(this).parent().attr('data-index'))
+  var slideNum = parseInt($(this).parent().attr('data-index'))
 
   if (slideNum > 0) {
-    ref.child("home").child("featuredProducts").once("value", (snapshot) => {
-      let newArray = repositionImage(snapshot.val(), slideNum, -1)
+    ref.child("home").child("featuredProducts").once("value", function(snapshot) {
+      var newArray = repositionImage(snapshot.val(), slideNum, -1)
 
       ref.child("home").update({
         featuredProducts: newArray
@@ -338,11 +338,11 @@ $('.pinboard').on('click', '.back', function() {
 })
 
 $('.pinboard').on('click', '.forward', function() {
-  let slideNum = parseInt($(this).parent().attr('data-index'))
+  var slideNum = parseInt($(this).parent().attr('data-index'))
 
-  ref.child("home").child("featuredProducts").once("value", (snapshot) => {
+  ref.child("home").child("featuredProducts").once("value", function(snapshot) {
     if (slideNum < snapshot.val().length - 1) {
-      let newArray = repositionImage(snapshot.val(), slideNum, 1)
+      var newArray = repositionImage(snapshot.val(), slideNum, 1)
 
       ref.child("home").update({
         featuredProducts: newArray
@@ -357,10 +357,10 @@ $('.home-dynamic').on('keydown', 'input', function(e) {
 
 $('.home-dynamic').on('submit', '.linkUrlForm', function(e) {
   e.preventDefault()
-  let rowNum = parseInt($(this).attr('data-rowindex'))
-  let slideNum = parseInt($(this).attr('data-index'))
+  var rowNum = parseInt($(this).attr('data-rowindex'))
+  var slideNum = parseInt($(this).attr('data-index'))
 
-  let imageURL = $(this).children('.linkUrlInput').val()
+  var imageURL = $(this).children('.linkUrlInput').val()
   ref.child("home").child("rows").child(rowNum).child("images").child(slideNum).update({
     link: imageURL
   }, loadData())

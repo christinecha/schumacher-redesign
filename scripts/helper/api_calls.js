@@ -1,7 +1,7 @@
 "use strict"
 
 function getData(request, url) {
-  return new Promise((resolve, reject) => {
+  return new Promise(function(resolve, reject) {
     $.post(
       url,
       request,
@@ -29,8 +29,8 @@ function catalogFilters() {
 
 function getFavorites(userId, pageNumber, fn) {
 
-  return new Promise((resolve, reject) => {
-    let rowsPerPage = 30
+  return new Promise(function(resolve, reject) {
+    var rowsPerPage = 30
 
     if (pageNumber == 'all') {
       rowsPerPage = 500
@@ -43,7 +43,7 @@ function getFavorites(userId, pageNumber, fn) {
       getData(
         {UserId: userId, Rows_Per_Page: rowsPerPage, Page: pageNumber},
         "https://www.fschumacher.com/api/v1/GetFavorites"
-      ).then((data) => {
+      ).then(function(data) {
         console.log(pageNumber)
         resolve(data, pageNumber)
       })
@@ -55,13 +55,13 @@ function getFavorites(userId, pageNumber, fn) {
 }
 
 function getSearchResults(userId, pageNumber, searchString, fn) {
-  return new Promise((resolve, reject) => {
+  return new Promise(function(resolve, reject) {
     $('.loading').show()
 
     getData(
       {UserId: userId, SearchString: searchString, Rows_Per_Page: 30, Page_Number: pageNumber},
       "https://www.fschumacher.com/api/v1/SearchProducts"
-    ).then((data) => {
+    ).then(function(data) {
       console.log(pageNumber)
       resolve(data, pageNumber)
     })

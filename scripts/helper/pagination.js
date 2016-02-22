@@ -15,12 +15,12 @@ function displayPagination(currentPage, pageCount) {
     currentPage = 1
   }
 
-  let $prevArrow = $('<span>')
+  var $prevArrow = $('<span>')
     .addClass('page-number')
     .html('<<')
     .attr('data-page', currentPage - 1)
 
-  let $nextArrow = $('<span>')
+  var $nextArrow = $('<span>')
     .addClass('page-number')
     .html('>>')
     .attr('data-page', currentPage + 1)
@@ -35,15 +35,15 @@ function displayPagination(currentPage, pageCount) {
     // do nothing
   } else if (currentPage < 10) {
     $('.pagination').append($prevArrow)
-    let max = pageCount
-    let lastPageListed = currentPage
+    var max = pageCount
+    var lastPageListed = currentPage
 
     if (pageCount > 10) {
       max = 10
     }
 
-    for (let i = 1; i <= max; i++) {
-      let pageNode = pageNumber(i)
+    for (var i = 1; i <= max; i++) {
+      var pageNode = pageNumber(i)
       if (i == currentPage) {
         pageNode = pageNode.addClass('selected')
       }
@@ -75,8 +75,8 @@ function displayPagination(currentPage, pageCount) {
   } else {
     $('.pagination').prepend($nextArrow)
 
-    for (let i = 0; i < 10; i++) {
-      let pageNode = pageNumber(pageCount - i)
+    for (var i = 0; i < 10; i++) {
+      var pageNode = pageNumber(pageCount - i)
       if (pageCount - i == currentPage) {
         pageNode = pageNode.addClass('selected')
       }

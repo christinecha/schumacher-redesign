@@ -1,6 +1,6 @@
 "use strict"
 
-let product_props = [
+var product_props = [
   "Horizontal_Repeat",
   "Match",
   "Vertical_Repeat",
@@ -16,51 +16,51 @@ function getProduct(sku, favoritesById) {
     "https://www.fschumacher.com/api/v1/GetProduct",
     { ItemSku: sku },
     function(data, status) {
-      let productInfo = data.Description
+      var productInfo = data.Description
       console.log(productInfo)
-      let $productPreview = $('<div>').addClass('product-preview')
-      let $productThumb = $('<div>').addClass('product-thumb').css('background-image', `url('${productInfo.Item_Image_URL_400}')`)
-      let $productInfo = $('<div>').addClass('product-info')
+      var $productPreview = $('<div>').addClass('product-preview')
+      var $productThumb = $('<div>').addClass('product-thumb').css('background-image', `url('${productInfo.Item_Image_URL_400}')`)
+      var $productInfo = $('<div>').addClass('product-info')
 
-      let $productName = $('<div>').addClass('product-name').html(productInfo.Item_Name)
-      let $favorite = $('<img>')
+      var $productName = $('<div>').addClass('product-name').html(productInfo.Item_Name)
+      var $favorite = $('<img>')
         .addClass('favorite')
         .attr('src', '../assets/favorite-icon.svg')
         .attr('data-ItemSku', productInfo.ItemSku)
       if (favoritesById.indexOf(productInfo.ItemSku) >= 0) {
         $favorite = $favorite.attr('src', '../assets/favorite-icon_favorited.svg')
       }
-      let $exitQuickshop = $('<div>').addClass('exit-quickshop').html('X')
+      var $exitQuickshop = $('<div>').addClass('exit-quickshop').html('X')
       $productName.append($favorite, $exitQuickshop)
 
-      let $productType = $('<div>').addClass('product-type').html(productInfo.Department)
-      let $productSku = $('<span>').addClass('product-sku').html(productInfo.ItemSku)
-      let $productColor = $('<span>').addClass('product-color').html('COLOR: ' + productInfo.Item_Color)
-      let $productPrice = $('<div>').addClass('product-price').html(productInfo.Selling_Price_USD)
-      let $productProps = $('<div>').addClass('product-props')
+      var $productType = $('<div>').addClass('product-type').html(productInfo.Department)
+      var $productSku = $('<span>').addClass('product-sku').html(productInfo.ItemSku)
+      var $productColor = $('<span>').addClass('product-color').html('COLOR: ' + productInfo.Item_Color)
+      var $productPrice = $('<div>').addClass('product-price').html(productInfo.Selling_Price_USD)
+      var $productProps = $('<div>').addClass('product-props')
 
-      for (let i = 0; i < product_props.length; i++) {
-        let key = product_props[i]
-        let value = productInfo[key]
+      for (var i = 0; i < product_props.length; i++) {
+        var key = product_props[i]
+        var value = productInfo[key]
         if (value) {
-          let $productProp = $('<div>').addClass('product-prop')
-          let $productPropKey = $('<div>').addClass('product-prop-key').html(product_props[i].replace(/_/g, ' '))
-          let $productPropValue = $('<div>').addClass('product-prop-value').html(productInfo[product_props[i]].replace(/_/g, ' '))
+          var $productProp = $('<div>').addClass('product-prop')
+          var $productPropKey = $('<div>').addClass('product-prop-key').html(product_props[i].replace(/_/g, ' '))
+          var $productPropValue = $('<div>').addClass('product-prop-value').html(productInfo[product_props[i]].replace(/_/g, ' '))
           $productProp.append($productPropKey, $productPropValue)
           $productProps.append($productProp)
         }
       }
 
-      let $productShopForm = $('<div>').addClass('product-shop')
-      let $quantity = $('<input>').addClass('product-shop--quantity').attr('type', 'number').attr('min', 1).attr('step', 1).val(1)
-      let $units = $('<span>').addClass('units').html(productInfo.UnitOfMeasure)
-      let $orderTypes = $('<select>')
+      var $productShopForm = $('<div>').addClass('product-shop')
+      var $quantity = $('<input>').addClass('product-shop--quantity').attr('type', 'number').attr('min', 1).attr('step', 1).val(1)
+      var $units = $('<span>').addClass('units').html(productInfo.UnitOfMeasure)
+      var $orderTypes = $('<select>')
                           .addClass('product-shop--ordertypes')
                           .append($('<option>').html('Product Order'))
                           .append($('<option>').html('Reserve'))
                           .append($('<option>').html('Reserve with Cfa'))
                           .append($('<option>').html('Memo'))
-      let $addToBag = $('<button>').addClass('addToBag').addClass('dropdownButton').html('ADD TO SHOPPING BAG')
+      var $addToBag = $('<button>').addClass('addToBag').addClass('dropdownButton').html('ADD TO SHOPPING BAG')
 
       $productShopForm.append($quantity, $units, $orderTypes, $addToBag)
 

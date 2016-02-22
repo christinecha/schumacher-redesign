@@ -1,8 +1,8 @@
 "use strict"
 
 //// authorization
-let currentUserId // global variable for currentUserId
-let session
+var currentUserId // global variable for currentUserId
+var session
 console.log('currentUserId: ', currentUserId)
 
 function validated() {
@@ -27,14 +27,14 @@ $('.signInForm').on('submit', function() {
 })
 
 // API urls
-let navDepartments = [
+var navDepartments = [
   {departmentName: 'Fabrics', departmentNameFormatted: 'Fabrics'},
   {departmentName: 'Wallcoverings', departmentNameFormatted: 'Wallcoverings'},
   {departmentName: 'Trim', departmentNameFormatted: 'Trim'},
   {departmentName: 'Furniture', departmentNameFormatted: 'Furniture'}
 ]
 
-let navFilterCategories = [
+var navFilterCategories = [
   { categoryFormatted: "Style",
     category: "Style",
     url: "https://www.fschumacher.com/api/v1/GetStyleFilter"
@@ -51,9 +51,9 @@ let navFilterCategories = [
 
 // helper function for dropdown titles
 function capitalized(string) {
-  let wordsArray = string.split(' ')
-  for (let i = 0; i < wordsArray.length; i++) {
-    let stringArray = wordsArray[i].split('')
+  var wordsArray = string.split(' ')
+  for (var i = 0; i < wordsArray.length; i++) {
+    var stringArray = wordsArray[i].split('')
     stringArray.splice(0, 1, stringArray[0].toUpperCase())
     wordsArray.splice(i, 1, stringArray.join(''))
   }
@@ -63,7 +63,7 @@ function capitalized(string) {
 // populate navigation dropdowns
 function dropdownOptions(departmentName, departmentNameFormatted, category, categoryFormatted, url) {
   requirejs(["../scripts/data.js"], function() {
-    let dropdowns = data.navigation_options[departmentName][category]
+    var dropdowns = data.navigation_options[departmentName][category]
 
     if (!dropdowns) {
       dropdowns = []
@@ -72,9 +72,9 @@ function dropdownOptions(departmentName, departmentNameFormatted, category, cate
     var $dropdownColumn = $('<div>').addClass('dropdownColumn')
     var $heading = $('<h4>').addClass('category').html(categoryFormatted)
     $dropdownColumn = $dropdownColumn.append($heading)
-    let dropdownCount = 0
+    var dropdownCount = 0
 
-    for (let i = 0; i < dropdowns.length; i++) {
+    for (var i = 0; i < dropdowns.length; i++) {
       if (dropdownCount < 8) {
         // console.log(capitalized(dropdowns[i]))
         var $option = $('<li>')
@@ -93,7 +93,7 @@ function dropdownOptions(departmentName, departmentNameFormatted, category, cate
 }
 
 $.each(navDepartments, function() {
-  for (let i = 0; i < navFilterCategories.length; i++) {
+  for (var i = 0; i < navFilterCategories.length; i++) {
     // console.log('getting ', navFilterCategories[i].category, ' of ', this.departmentName)
     dropdownOptions(
       this.departmentName,
@@ -128,7 +128,7 @@ $('.navigation').on('click', 'li.catalog-link', function() {
 $('.navigation').on('submit', '.searchByKeyword', function(e) {
   e.preventDefault()
 
-  let keywords = $(this).children('.search').val()
+  var keywords = $(this).children('.search').val()
 
   location.href = "collection.html?collection=Search&query=" + keywords
 })

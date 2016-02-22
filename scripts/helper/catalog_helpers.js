@@ -1,6 +1,6 @@
 "use strict"
 
-const departmentDictionary = {
+var departmentDictionary = {
   Fabrics: { nameFormatted: 'Fabric' },
   Wallcoverings: { nameFormatted: 'Wallpaper' },
   Trim: { nameFormatted: 'Trim' },

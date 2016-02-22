@@ -1,6 +1,6 @@
 "use strict"
 
-const data =
+var data =
   {
     "navigation_options": {
       "new_arrivals": {

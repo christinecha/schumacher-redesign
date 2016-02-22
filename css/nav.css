@@ -9,7 +9,7 @@
 }
 
 .promo:hover { opacity: .7; }
-.promo p { font-size: 11px; margin-bottom: 0; color: #404040; }
+.promo a { font-size: 11px; margin-bottom: 0; color: #404040; }
 
 .top-bar {
   background-color: white;

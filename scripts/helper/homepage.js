@@ -5,6 +5,16 @@ var ref = new Firebase("https://schumacher.firebaseio.com/")
 ref.child("home").once("value", function(snapshot) {
   var homepageData = snapshot.val()
 
+  if (homepageData.promo) {
+    $('.promo a').remove()
+
+    let $promo = $('<a>')
+      .attr('href', homepageData.promo.link)
+      .html(homepageData.promo.text)
+
+    $('.promo').html($promo)
+  }
+
   if (homepageData.slideshow) {
     console.log('getting slideshow')
 

@@ -10,6 +10,32 @@ $(function() {
     ref.child("home").once("value", function(snapshot) {
       var homepageData = snapshot.val()
 
+      if (homepageData.promo) {
+        $('.promoInputs').remove()
+
+        let $promo = $('<input>')
+          .attr('id', 'promoText')
+          .attr('type', 'text')
+          .val(homepageData.promo.text)
+        let $promoLink = $('<input>')
+          .attr('id', 'promoLink')
+          .attr('type', 'text')
+          .val(homepageData.promo.link)
+
+        let $promoInputs = $('<div>')
+          .addClass('promoInputs')
+          .append(
+            $promo,
+            '<i class="check fa fa-check-circle-o"></i>',
+            '<br/>',
+            $promoLink,
+            '<i class="check fa fa-check-circle-o"></i>',
+            '<br/>'
+          )
+
+        $('.promo').prepend($promoInputs)
+      }
+
       if (homepageData.slideshow) {
         $('.slideshow').empty()
 
@@ -137,6 +163,24 @@ $(function() {
 // onload events
 
   loadData()
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// promo update
+
+$('.promo').on('keydown', 'input', function(e) {
+  $(this).siblings('.check').remove()
+})
+
+$('.promo').on('submit', function(e) {
+  e.preventDefault()
+  var promoText = $(this).find('#promoText').val()
+  var promoLink = $(this).find('#promoLink').val()
+
+  ref.child("home").child("promo").update({
+    text: promoText,
+    link: promoLink
+  }, loadData())
+})
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // slideshow update

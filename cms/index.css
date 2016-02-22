@@ -44,7 +44,13 @@ input {
   color: #55aa00;
 }
 
-#slideshowForm {
+.promo input {
+  margin-bottom: 5px !important;
+  width: 500px !important;
+  display: inline-block !important;
+}
+
+#slideshowForm, .promo {
   background-color: #f1f1f2;
   padding: 5px;
 }

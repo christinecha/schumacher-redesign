@@ -10,7 +10,8 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
       var selected_collection = 'All Products'
       var favoritesOnly = false
       var selected_filters = { // this object will contain all the selected filters for search
-        PriceFrom: 0
+        PriceFrom: 0,
+        UserId: currentUserId
       };
       var favoritesById = []
 
@@ -145,7 +146,10 @@ requirejs(["../scripts/helper/parse_url.js"], function() {
             var $productId = $('<div>').addClass('product-id')
             var $productSku = $('<span>').addClass('product-sku').html(products[i].ItemSku)
             var $productColor = $('<span>').addClass('product-color').html(products[i].Item_Color)
-            var $productPrice = $('<div>').addClass('product-price').html(products[i].Selling_Price_USD)
+            var $productPrice = $('<div>').addClass('product-price')
+            if (products[i].Selling_Price_USD) {
+              $productPrice = $productPrice.html('$' + (products[i].Selling_Price_USD).toFixed(2))
+            }
             $productId.append($productColor, ' ', $productSku)
             $productInfo.append($quickshop, $productType, $productName, $productId, $productPrice)
             $productPreview.append($productThumb, $favorite, $productInfo)

@@ -1,7 +1,7 @@
 "use strict"
 
 //// authorization
-var currentUserId // global variable for currentUserId
+var currentUserId = 115593 // global variable for currentUserId
 var session
 console.log('currentUserId: ', currentUserId)
 
